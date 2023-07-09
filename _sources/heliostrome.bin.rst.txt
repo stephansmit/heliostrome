@@ -1,0 +1,21 @@
+heliostrome.bin package
+=======================
+
+Submodules
+----------
+
+heliostrome.bin.my\_example module
+----------------------------------
+
+.. automodule:: heliostrome.bin.my_example
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: heliostrome.bin
+   :members:
+   :undoc-members:
+   :show-inheritance:

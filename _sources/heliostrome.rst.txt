@@ -1,0 +1,29 @@
+heliostrome package
+===================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   heliostrome.bin
+
+Submodules
+----------
+
+heliostrome.example module
+--------------------------
+
+.. automodule:: heliostrome.example
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: heliostrome
+   :members:
+   :undoc-members:
+   :show-inheritance:
