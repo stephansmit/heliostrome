@@ -1,0 +1,29 @@
+heliostrome.data\_collection package
+====================================
+
+Submodules
+----------
+
+heliostrome.data\_collection.irradiance module
+----------------------------------------------
+
+.. automodule:: heliostrome.data_collection.irradiance
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+heliostrome.data\_collection.precipation module
+-----------------------------------------------
+
+.. automodule:: heliostrome.data_collection.precipation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: heliostrome.data_collection
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -8,6 +8,7 @@ Subpackages
    :maxdepth: 4
 
    heliostrome.bin
+   heliostrome.data_collection
 
 Submodules
 ----------
