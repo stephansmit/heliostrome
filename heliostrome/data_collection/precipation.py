@@ -12,6 +12,23 @@ class PrecipitationDatum(BaseModel):
     time: datetime
     precip: float
 
+    @validator("precip")
+    def validate_precip(cls: PrecipitationDatum, value: float) -> float:
+        """Validates the precipitation value.
+
+        :param cls: _description_
+        :type cls: PrecipitationDatum
+        :param value: precipitation value
+        :type value: float
+        :raises ValueError: raised when value is less than 0
+        :return: validated precipitation value
+        :rtype: float
+        """
+
+        if value < 0:
+            raise ValueError("Precipitation value must be greater than 0.")
+        return value
+
 
 class PrecipationTable(BaseModel):
     columnNames: List[str]
