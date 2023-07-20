@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>heliostrome.data_collection.soil &mdash; heliostrome 0.0.2 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> heliostrome
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#stable-release">Stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#from-sources">From sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Package modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../heliostrome.html">heliostrome package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.bin.html">heliostrome.bin package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.data_collection.html">heliostrome.data_collection package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#module-heliostrome.example">heliostrome.example module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.html#heliostrome.example.Example"><code class="docutils literal notranslate"><span class="pre">Example</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#module-heliostrome">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.html#heliostrome.get_module_version"><code class="docutils literal notranslate"><span class="pre">get_module_version()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#deploying">Deploying</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">heliostrome</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../heliostrome.html">heliostrome</a> &raquo;</li>
+        
+      <li>heliostrome.data_collection.soil</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for heliostrome.data_collection.soil</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">soilgrids</span> <span class="kn">import</span> <span class="n">SoilGrids</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+
+<span class="n">LAYER_NAMES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;_0-5cm_mean&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_5-15cm_mean&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_15-30cm_mean&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_30-60cm_mean&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_60-100cm_mean&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_100-200cm_mean&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">WEIGHTS</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="SoilLayer"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.soil.SoilLayer">[docs]</a><span class="k">class</span> <span class="nc">SoilLayer</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span>
+        <span class="s2">&quot;_0-5cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_5-15cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_15-30cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_30-60cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_60-100cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_100-200cm_mean&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">weight</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">clay_value</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">sand_value</span><span class="p">:</span> <span class="nb">float</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">silt_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">100</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">clay_value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sand_value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">soil_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_soil_textural_class</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sand_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clay_value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SoilDatum"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.soil.SoilDatum">[docs]</a><span class="k">class</span> <span class="nc">SoilDatum</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">layers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SoilLayer</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">silt_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">layer</span><span class="o">.</span><span class="n">weight</span> <span class="o">*</span> <span class="n">layer</span><span class="o">.</span><span class="n">silt_value</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">])</span> <span class="o">/</span> <span class="mi">100</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">clay_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">layer</span><span class="o">.</span><span class="n">weight</span> <span class="o">*</span> <span class="n">layer</span><span class="o">.</span><span class="n">clay_value</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">])</span> <span class="o">/</span> <span class="mi">100</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sand_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">layer</span><span class="o">.</span><span class="n">weight</span> <span class="o">*</span> <span class="n">layer</span><span class="o">.</span><span class="n">sand_value</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">])</span> <span class="o">/</span> <span class="mi">100</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">soil_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">get_soil_textural_class</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sand_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clay_value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_soil_properties"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.soil.get_soil_properties">[docs]</a><span class="k">def</span> <span class="nf">get_soil_properties</span><span class="p">(</span>
+    <span class="n">field_polygon</span><span class="p">:</span> <span class="n">Polygon</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SoilDatum</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the soil value for the given service_id and bounding box.</span>
+
+<span class="sd">    :type Polygon: shapely.geometry.Polygon</span>
+<span class="sd">    :rtype: SoilDatum</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">west</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">north</span> <span class="o">=</span> <span class="n">field_polygon</span><span class="o">.</span><span class="n">bounds</span>
+
+    <span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">LAYER_NAMES</span><span class="p">,</span> <span class="n">WEIGHTS</span><span class="p">):</span>
+        <span class="n">sand_value</span> <span class="o">=</span> <span class="n">get_prop_per_layer_type</span><span class="p">(</span>
+            <span class="s2">&quot;sand&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">west</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">north</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">sand_value</span><span class="p">)</span>
+        <span class="n">clay_value</span> <span class="o">=</span> <span class="n">get_prop_per_layer_type</span><span class="p">(</span>
+            <span class="s2">&quot;clay&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">west</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">north</span>
+        <span class="p">)</span>
+        <span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">SoilLayer</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span><span class="p">,</span>
+                <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">,</span>
+                <span class="n">clay_value</span><span class="o">=</span><span class="n">clay_value</span><span class="p">,</span>
+                <span class="n">sand_value</span><span class="o">=</span><span class="n">sand_value</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">SoilDatum</span><span class="p">(</span><span class="n">layers</span><span class="o">=</span><span class="n">layers</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_prop_per_layer_type"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.soil.get_prop_per_layer_type">[docs]</a><span class="k">def</span> <span class="nf">get_prop_per_layer_type</span><span class="p">(</span>
+    <span class="n">service_id</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;clay&quot;</span><span class="p">,</span> <span class="s2">&quot;sand&quot;</span><span class="p">,</span> <span class="s2">&quot;silt&quot;</span><span class="p">],</span>
+    <span class="n">layer_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span>
+        <span class="s2">&quot;_0-5cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_5-15cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_15-30cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_30-60cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_60-100cm_mean&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_100-200cm_mean&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">west</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">east</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">south</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">north</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+
+<span class="sd">    :param service_id: _description_</span>
+<span class="sd">    :type service_id: Literal[&amp;quot;clay&amp;quot;, &amp;quot;sand&amp;quot;, &amp;quot;silt&amp;quot;]</span>
+<span class="sd">    :param layer_name: _description_</span>
+<span class="sd">    :type layer_name: Literal[ &amp;#39;_0</span>
+<span class="sd">    :param west: _description_</span>
+<span class="sd">    :type west: float</span>
+<span class="sd">    :param east: _description_</span>
+<span class="sd">    :type east: float</span>
+<span class="sd">    :param south: _description_</span>
+<span class="sd">    :type south: float</span>
+<span class="sd">    :param north: _description_</span>
+<span class="sd">    :type north: float</span>
+<span class="sd">    :return: _description_</span>
+<span class="sd">    :rtype: float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">soil_grids</span> <span class="o">=</span> <span class="n">SoilGrids</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">soil_grids</span><span class="o">.</span><span class="n">get_coverage_data</span><span class="p">(</span>
+        <span class="n">service_id</span><span class="o">=</span><span class="n">service_id</span><span class="p">,</span>
+        <span class="n">coverage_id</span><span class="o">=</span><span class="n">service_id</span> <span class="o">+</span> <span class="n">layer_name</span><span class="p">,</span>
+        <span class="n">west</span><span class="o">=</span><span class="n">west</span><span class="p">,</span>
+        <span class="n">south</span><span class="o">=</span><span class="n">south</span><span class="p">,</span>
+        <span class="n">east</span><span class="o">=</span><span class="n">east</span><span class="p">,</span>
+        <span class="n">north</span><span class="o">=</span><span class="n">north</span><span class="p">,</span>
+        <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;urn:ogc:def:crs:EPSG::4326&quot;</span><span class="p">,</span>
+        <span class="n">output</span><span class="o">=</span><span class="s2">&quot;test.tif&quot;</span><span class="p">,</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="get_soil_textural_class"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.soil.get_soil_textural_class">[docs]</a><span class="k">def</span> <span class="nf">get_soil_textural_class</span><span class="p">(</span><span class="n">sand</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">clay</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the soil textural class based on the sand and clay content.</span>
+
+<span class="sd">    :param sand: _description_</span>
+<span class="sd">    :type sand: _type_</span>
+<span class="sd">    :param clay: _description_</span>
+<span class="sd">    :type clay: _type_</span>
+<span class="sd">    :raises Exception: _description_</span>
+<span class="sd">    :return: _description_</span>
+<span class="sd">    :rtype: _type_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">silt</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">sand</span> <span class="o">-</span> <span class="n">clay</span>
+
+    <span class="k">if</span> <span class="n">sand</span> <span class="o">+</span> <span class="n">clay</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="ow">or</span> <span class="n">sand</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Inputs add up to over 100</span><span class="si">% o</span><span class="s2">r are negative&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">silt</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;Sand&quot;</span>
+    <span class="k">elif</span> <span class="n">silt</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">15</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;LoamySand&quot;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">7</span> <span class="ow">and</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="ow">and</span> <span class="n">sand</span> <span class="o">&gt;</span> <span class="mi">52</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+        <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">7</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">&lt;</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">30</span>
+    <span class="p">):</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;SandyLoam&quot;</span>
+    <span class="k">elif</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">7</span> <span class="ow">and</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">27</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">&gt;=</span> <span class="mi">28</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">&lt;</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">sand</span> <span class="o">&lt;=</span> <span class="mi">52</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;Loam&quot;</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">silt</span> <span class="o">&gt;=</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">12</span> <span class="ow">and</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">27</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+        <span class="n">silt</span> <span class="o">&gt;=</span> <span class="mi">50</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">&lt;</span> <span class="mi">80</span> <span class="ow">and</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">12</span>
+    <span class="p">):</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;SiltLoam&quot;</span>
+    <span class="k">elif</span> <span class="n">silt</span> <span class="o">&gt;=</span> <span class="mi">80</span> <span class="ow">and</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;Silt&quot;</span>
+    <span class="k">elif</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">20</span> <span class="ow">and</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">35</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">&lt;</span> <span class="mi">28</span> <span class="ow">and</span> <span class="n">sand</span> <span class="o">&gt;</span> <span class="mi">45</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;SandyClayLoam&quot;</span>
+    <span class="k">elif</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">27</span> <span class="ow">and</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">40</span> <span class="ow">and</span> <span class="n">sand</span> <span class="o">&gt;</span> <span class="mi">20</span> <span class="ow">and</span> <span class="n">sand</span> <span class="o">&lt;=</span> <span class="mi">45</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;ClayLoam&quot;</span>
+    <span class="k">elif</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">27</span> <span class="ow">and</span> <span class="n">clay</span> <span class="o">&lt;</span> <span class="mi">40</span> <span class="ow">and</span> <span class="n">sand</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;SiltyClayLoam&quot;</span>
+    <span class="k">elif</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">35</span> <span class="ow">and</span> <span class="n">sand</span> <span class="o">&gt;</span> <span class="mi">45</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;SandyClay&quot;</span>
+    <span class="k">elif</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">40</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">&gt;=</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;SiltClay&quot;</span>
+    <span class="k">elif</span> <span class="n">clay</span> <span class="o">&gt;=</span> <span class="mi">40</span> <span class="ow">and</span> <span class="n">sand</span> <span class="o">&lt;=</span> <span class="mi">45</span> <span class="ow">and</span> <span class="n">silt</span> <span class="o">&lt;</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;Clay&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">textural_class</span> <span class="o">=</span> <span class="s2">&quot;na&quot;</span>
+
+    <span class="k">return</span> <span class="n">textural_class</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Stephan Smit.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
