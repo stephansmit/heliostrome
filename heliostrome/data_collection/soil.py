@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from soilgrids import SoilGrids
+
 try:
     from typing import Literal
 except ImportError:
