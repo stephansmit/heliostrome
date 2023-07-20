@@ -20,6 +20,14 @@ heliostrome.data\_collection.precipation module
    :undoc-members:
    :show-inheritance:
 
+heliostrome.data\_collection.soil module
+----------------------------------------
+
+.. automodule:: heliostrome.data_collection.soil
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
