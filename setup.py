@@ -37,7 +37,12 @@ dev_requirements = [
     "wheel>=0.34.2",
 ]
 
-requirements = []
+requirements = [
+    "pydantic>=1.10.11",
+    "requests>=2.21.0",
+    "soilgrids>=0.1.4",
+    "shapely>=2.0.1",
+]
 
 extra_requirements = {
     "setup": setup_requirements,

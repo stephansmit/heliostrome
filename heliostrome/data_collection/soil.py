@@ -57,14 +57,10 @@ class SoilDatum(BaseModel):
 
 
 def get_soil_properties(
-    service_id: Literal["clay", "sand", "silt"],
     field_polygon: Polygon,
-) -> float:
+) -> SoilDatum:
     """Returns the soil value for the given service_id and bounding box.
 
-    :param service_id: type of soil to return
-    :type service_id: Literal[&quot;clay&quot;, &quot;sand&quot;, &quot;silt&quot;]
-    :param field_polygon: field shape
     :type Polygon: shapely.geometry.Polygon
     :rtype: SoilDatum
     """
@@ -75,13 +71,13 @@ def get_soil_properties(
         sand_value = get_prop_per_layer_type(
             "sand", layer_name, west, east, south, north
         )
+        print(sand_value)
         clay_value = get_prop_per_layer_type(
             "clay", layer_name, west, east, south, north
         )
         layers.append(
             SoilLayer(
                 name=layer_name,
-                soil_type=service_id,
                 weight=weight,
                 clay_value=clay_value,
                 sand_value=sand_value,
@@ -106,6 +102,23 @@ def get_prop_per_layer_type(
     south: float,
     north: float,
 ) -> float:
+    """_summary_
+
+    :param service_id: _description_
+    :type service_id: Literal[&quot;clay&quot;, &quot;sand&quot;, &quot;silt&quot;]
+    :param layer_name: _description_
+    :type layer_name: Literal[ &#39;_0
+    :param west: _description_
+    :type west: float
+    :param east: _description_
+    :type east: float
+    :param south: _description_
+    :type south: float
+    :param north: _description_
+    :type north: float
+    :return: _description_
+    :rtype: float
+    """
     soil_grids = SoilGrids()
     data = soil_grids.get_coverage_data(
         service_id=service_id,
@@ -119,7 +132,7 @@ def get_prop_per_layer_type(
         width=100,
         height=100,
     )
-    return data
+    return data.values.mean()
 
 
 def get_soil_textural_class(sand: float, clay: float) -> str:
