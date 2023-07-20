@@ -1,6 +1,10 @@
 from pydantic import BaseModel
 from soilgrids import SoilGrids
-from typing import Literal, List
+try:
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
+from typing import List
 from shapely.geometry import Polygon
 
 LAYER_NAMES = [
