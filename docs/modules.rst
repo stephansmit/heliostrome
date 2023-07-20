@@ -2,6 +2,7 @@ heliostrome
 ===========
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
    heliostrome
+   heliostrome.data_collection

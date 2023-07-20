@@ -3,14 +3,13 @@ Welcome to heliostrome's documentation!
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Contents:
 
    Overview <self>
    installation
    Package modules <modules>
    contributing
-   math
 
 .. mdinclude:: ../README.md
 
