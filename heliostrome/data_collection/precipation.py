@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import List, Union
-from pydantic import BaseModel, validator, parse_raw_as
+from pydantic import BaseModel, validator
 from urllib.parse import quote
 import requests
 from datetime import datetime
@@ -137,4 +137,5 @@ def get_precipitation(
     url = f"{base_url}?{encoded_query_param}"
 
     response = requests.get(url=url, timeout=10)
-    return parse_raw_as(PrecipitationResponse, response.text)
+
+    return PrecipitationResponse.model_validate(response.text)
