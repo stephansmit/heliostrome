@@ -4,6 +4,14 @@ heliostrome.data\_collection package
 Submodules
 ----------
 
+heliostrome.data\_collection.crops module
+-----------------------------------------
+
+.. automodule:: heliostrome.data_collection.crops
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 heliostrome.data\_collection.irradiance module
 ----------------------------------------------
 
