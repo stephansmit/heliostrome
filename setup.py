@@ -42,6 +42,7 @@ requirements = [
     "requests>=2.21.0",
     "soilgrids>=0.1.4",
     "shapely>=2.0.1",
+    "pvlib>=0.10.1",
 ]
 
 extra_requirements = {
