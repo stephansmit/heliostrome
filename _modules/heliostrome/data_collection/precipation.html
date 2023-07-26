@@ -191,7 +191,7 @@
   <h1>Source code for heliostrome.data_collection.precipation</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">validator</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">field_validator</span>
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">quote</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
@@ -212,7 +212,7 @@
     <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
     <span class="n">precip</span><span class="p">:</span> <span class="nb">float</span>
 
-<div class="viewcode-block" id="PrecipitationDatum.validate_precip"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipitationDatum.validate_precip">[docs]</a>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;precip&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="PrecipitationDatum.validate_precip"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipitationDatum.validate_precip">[docs]</a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;precip&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">validate_precip</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">PrecipitationDatum</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validates the precipitation value.</span>
 
@@ -245,7 +245,7 @@
     <span class="n">columnUnits</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
 
-<div class="viewcode-block" id="PrecipationTable.validate_column_names"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipationTable.validate_column_names">[docs]</a>    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;columnNames&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="PrecipationTable.validate_column_names"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipationTable.validate_column_names">[docs]</a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;columnNames&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">validate_column_names</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">PrecipationTable</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validates the column names in the response from NOAA&#39;s ERDDAP server.</span>
 
