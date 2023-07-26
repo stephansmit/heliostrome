@@ -221,9 +221,23 @@
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.soil.</span></span><span class="sig-name descname"><span class="pre">SoilDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.data_collection.soil.SoilLayer" title="heliostrome.data_collection.soil.SoilLayer"><span class="pre">SoilLayer</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#SoilDatum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>This class contains the data for a specific soil.
+It consists of different layers and has properties that are avaraged over the layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>BaseModel</strong> (<em>Pydantic BaseModel</em>) – pydantic base model</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>class representing a soil</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#heliostrome.data_collection.soil.SoilDatum" title="heliostrome.data_collection.soil.SoilDatum">SoilDatum</a></p>
+</dd>
+</dl>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
-<p>Uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
 allow <cite>self</cite> as a field name.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.clay_value">
@@ -238,12 +252,16 @@ allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.model_config">
 <span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.model_config" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.model_fields">
 <span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'layers':</span> <span class="pre">FieldInfo(annotation=List[heliostrome.data_collection.soil.SoilLayer],</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.model_fields" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.sand_value">
@@ -266,9 +284,22 @@ allow <cite>self</cite> as a field name.</p>
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.soil.</span></span><span class="sig-name descname"><span class="pre">SoilLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_0-5cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_5-15cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_15-30cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_30-60cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_60-100cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_100-200cm_mean'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clay_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sand_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#SoilLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>This class contains the data for a soil layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>BaseModel</strong> (<em>Pydantic BaseModel</em>) – pydantic base model</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>class representing a soil layer</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#heliostrome.data_collection.soil.SoilLayer" title="heliostrome.data_collection.soil.SoilLayer">SoilLayer</a></p>
+</dd>
+</dl>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises ValidationError if the input data cannot be parsed to form a valid model.</p>
-<p>Uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
 allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.clay_value">
@@ -278,12 +309,16 @@ allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.model_config">
 <span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.model_config" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.model_fields">
 <span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'clay_value':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'name':</span> <span class="pre">FieldInfo(annotation=Literal['_0-5cm_mean',</span> <span class="pre">'_5-15cm_mean',</span> <span class="pre">'_15-30cm_mean',</span> <span class="pre">'_30-60cm_mean',</span> <span class="pre">'_60-100cm_mean',</span> <span class="pre">'_100-200cm_mean'],</span> <span class="pre">required=True),</span> <span class="pre">'sand_value':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'weight':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.model_fields" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.name">
@@ -319,16 +354,16 @@ allow <cite>self</cite> as a field name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>service_id</strong> (<em>Literal</em><em>[</em><em>&amp;quot;clay&amp;quot;</em><em>, </em><em>&amp;quot;sand&amp;quot;</em><em>, </em><em>&amp;quot;silt&amp;quot;</em><em>]</em>) – _description_</p></li>
-<li><p><strong>layer_name</strong> (<em>Literal</em><em>[ </em><em>&amp;#39;_0</em>) – _description_</p></li>
-<li><p><strong>west</strong> (<em>float</em>) – _description_</p></li>
-<li><p><strong>east</strong> (<em>float</em>) – _description_</p></li>
-<li><p><strong>south</strong> (<em>float</em>) – _description_</p></li>
-<li><p><strong>north</strong> (<em>float</em>) – _description_</p></li>
+<li><p><strong>service_id</strong> (<em>Literal</em><em>[</em><em>'clay'</em><em>, </em><em>'sand'</em><em>, </em><em>'silt'</em><em>]</em>) – service id as defined in the SoilGrids API</p></li>
+<li><p><strong>layer_name</strong> (<em>Literal</em><em>[</em><em>'_0-5cm_mean'</em><em>, </em><em>'_5-15cm_mean'</em><em>, </em><em>'_15-30cm_mean'</em><em>, </em><em>'_30-60cm_mean'</em><em>, </em><em>'_60-100cm_mean'</em><em>, </em><em>'_100-200cm_mean'</em><em>]</em>) – name of the layer as defined in the SoilGrids API</p></li>
+<li><p><strong>west</strong> (<em>float</em>) – west boundary of the bounding box</p></li>
+<li><p><strong>east</strong> (<em>float</em>) – east boundary of the bounding box</p></li>
+<li><p><strong>south</strong> (<em>float</em>) – south boundary of the bounding box</p></li>
+<li><p><strong>north</strong> (<em>float</em>) – north boundary of the bounding box</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>_description_</p>
+<dd class="field-even"><p>mean % of the specific class in the layer</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
@@ -339,7 +374,7 @@ allow <cite>self</cite> as a field name.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.get_soil_properties">
 <span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.soil.</span></span><span class="sig-name descname"><span class="pre">get_soil_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_polygon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Polygon</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#heliostrome.data_collection.soil.SoilDatum" title="heliostrome.data_collection.soil.SoilDatum"><span class="pre">SoilDatum</span></a></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#get_soil_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.get_soil_properties" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the soil value for the given service_id and bounding box.</p>
+<dd><p>Returns the soil content % for the given service_id and bounding box.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#heliostrome.data_collection.soil.SoilDatum" title="heliostrome.data_collection.soil.SoilDatum">SoilDatum</a></p>
@@ -354,18 +389,18 @@ allow <cite>self</cite> as a field name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>sand</strong> (<em>_type_</em>) – _description_</p></li>
-<li><p><strong>clay</strong> (<em>_type_</em>) – _description_</p></li>
+<li><p><strong>sand</strong> (<em>float</em>) – sand content in %</p></li>
+<li><p><strong>clay</strong> (<em>float</em>) – clay content in %</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Exception</strong> – _description_</p>
+<dd class="field-even"><p><strong>Exception</strong> – raised when inputs add up to over 100% or are negative</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>_description_</p>
+<dd class="field-odd"><p>textural class</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>_type_</p>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
