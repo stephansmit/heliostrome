@@ -12,13 +12,13 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os_plus_delay[0] }}
     strategy:
       matrix:
         python-version: [3.8, 3.9]
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os_plus_delay: [[ubuntu-latest, 0], [windows-latest, 20], [macOS-latest, 30]]
 
-    steps:
+    steps:  
     - uses: actions/checkout@v1
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
@@ -28,8 +28,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install .[test]
+    
     - name: Test with pytest
-      run: |
+      run: | 
+        sleep ${{ matrix.os_plus_delay[1] }}
         pytest --cov-report xml --cov=heliostrome heliostrome/tests/
     - name: Upload codecov
       uses: codecov/codecov-action@v1
