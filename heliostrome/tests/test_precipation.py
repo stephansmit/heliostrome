@@ -1,8 +1,9 @@
+import random
 from datetime import datetime
 from heliostrome.data_collection.precipation import get_precipitation
 
-latitude = -18.6697
-longitude = 35.5273
+latitude = -18.6697 + 0.05 * (random.random() - 0.5)
+longitude = 35.5273 + 0.05 * (random.random() - 0.5)
 start_date_str = "2019-01-01"
 end_date_str = "2019-01-02"
 
