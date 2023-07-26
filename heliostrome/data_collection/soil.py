@@ -1,3 +1,5 @@
+import time
+from requests.exceptions import HTTPError
 from pydantic import BaseModel
 from soilgrids import SoilGrids
 
@@ -93,7 +95,6 @@ def get_soil_properties(
         sand_value = get_prop_per_layer_type(
             "sand", layer_name, west, east, south, north
         )
-        print(sand_value)
         clay_value = get_prop_per_layer_type(
             "clay", layer_name, west, east, south, north
         )
@@ -142,19 +143,31 @@ def get_prop_per_layer_type(
     :rtype: float
     """
     soil_grids = SoilGrids()
-    data = soil_grids.get_coverage_data(
-        service_id=service_id,
-        coverage_id=service_id + layer_name,
-        west=west,
-        south=south,
-        east=east,
-        north=north,
-        crs="urn:ogc:def:crs:EPSG::4326",
-        output="test.tif",
-        width=100,
-        height=100,
-    )
-    return data.values.mean()
+    n = 0
+    while n < 3:
+        try:
+            data = soil_grids.get_coverage_data(
+                service_id=service_id,
+                coverage_id=service_id + layer_name,
+                west=west,
+                south=south,
+                east=east,
+                north=north,
+                crs="urn:ogc:def:crs:EPSG::4326",
+                output="test.tif",
+                width=100,
+                height=100,
+            )
+            return data.values.mean()
+        except HTTPError as e:
+            n += 1
+            time.sleep(n * 10)
+            if e.response.status_code == 500:
+                return get_prop_per_layer_type(
+                    service_id, layer_name, west, east, south, north
+                )
+            else:
+                raise e
 
 
 def get_soil_textural_class(sand: float, clay: float) -> str:
