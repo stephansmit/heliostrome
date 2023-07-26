@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import List, Union
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator
 from urllib.parse import quote
 import requests
 from datetime import datetime
@@ -21,7 +21,7 @@ class PrecipitationDatum(BaseModel):
     time: datetime
     precip: float
 
-    @validator("precip")
+    @field_validator("precip")
     def validate_precip(cls: PrecipitationDatum, value: float) -> float:
         """Validates the precipitation value.
 
@@ -54,7 +54,7 @@ class PrecipationTable(BaseModel):
     columnUnits: List[str]
     rows: List[List[Union[float, str]]]
 
-    @validator("columnNames")
+    @field_validator("columnNames")
     def validate_column_names(cls: PrecipationTable, values: List[str]) -> List[str]:
         """Validates the column names in the response from NOAA's ERDDAP server.
 
