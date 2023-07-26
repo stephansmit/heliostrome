@@ -138,4 +138,4 @@ def get_precipitation(
 
     response = requests.get(url=url, timeout=10)
 
-    return PrecipitationResponse.model_validate(response.text)
+    return PrecipitationResponse.model_validate_json(response.text)
