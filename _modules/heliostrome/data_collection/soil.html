@@ -189,7 +189,9 @@
            <div itemprop="articleBody">
             
   <h1>Source code for heliostrome.data_collection.soil</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">requests.exceptions</span> <span class="kn">import</span> <span class="n">HTTPError</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span> <span class="nn">soilgrids</span> <span class="kn">import</span> <span class="n">SoilGrids</span>
 
 <span class="k">try</span><span class="p">:</span>
@@ -284,7 +286,6 @@
         <span class="n">sand_value</span> <span class="o">=</span> <span class="n">get_prop_per_layer_type</span><span class="p">(</span>
             <span class="s2">&quot;sand&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">west</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">north</span>
         <span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">sand_value</span><span class="p">)</span>
         <span class="n">clay_value</span> <span class="o">=</span> <span class="n">get_prop_per_layer_type</span><span class="p">(</span>
             <span class="s2">&quot;clay&quot;</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">west</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">north</span>
         <span class="p">)</span>
@@ -333,19 +334,31 @@
 <span class="sd">    :rtype: float</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">soil_grids</span> <span class="o">=</span> <span class="n">SoilGrids</span><span class="p">()</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">soil_grids</span><span class="o">.</span><span class="n">get_coverage_data</span><span class="p">(</span>
-        <span class="n">service_id</span><span class="o">=</span><span class="n">service_id</span><span class="p">,</span>
-        <span class="n">coverage_id</span><span class="o">=</span><span class="n">service_id</span> <span class="o">+</span> <span class="n">layer_name</span><span class="p">,</span>
-        <span class="n">west</span><span class="o">=</span><span class="n">west</span><span class="p">,</span>
-        <span class="n">south</span><span class="o">=</span><span class="n">south</span><span class="p">,</span>
-        <span class="n">east</span><span class="o">=</span><span class="n">east</span><span class="p">,</span>
-        <span class="n">north</span><span class="o">=</span><span class="n">north</span><span class="p">,</span>
-        <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;urn:ogc:def:crs:EPSG::4326&quot;</span><span class="p">,</span>
-        <span class="n">output</span><span class="o">=</span><span class="s2">&quot;test.tif&quot;</span><span class="p">,</span>
-        <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-        <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span></div>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">soil_grids</span><span class="o">.</span><span class="n">get_coverage_data</span><span class="p">(</span>
+                <span class="n">service_id</span><span class="o">=</span><span class="n">service_id</span><span class="p">,</span>
+                <span class="n">coverage_id</span><span class="o">=</span><span class="n">service_id</span> <span class="o">+</span> <span class="n">layer_name</span><span class="p">,</span>
+                <span class="n">west</span><span class="o">=</span><span class="n">west</span><span class="p">,</span>
+                <span class="n">south</span><span class="o">=</span><span class="n">south</span><span class="p">,</span>
+                <span class="n">east</span><span class="o">=</span><span class="n">east</span><span class="p">,</span>
+                <span class="n">north</span><span class="o">=</span><span class="n">north</span><span class="p">,</span>
+                <span class="n">crs</span><span class="o">=</span><span class="s2">&quot;urn:ogc:def:crs:EPSG::4326&quot;</span><span class="p">,</span>
+                <span class="n">output</span><span class="o">=</span><span class="s2">&quot;test.tif&quot;</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                <span class="n">height</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">500</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">get_prop_per_layer_type</span><span class="p">(</span>
+                    <span class="n">service_id</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">west</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">north</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">e</span></div>
 
 
 <div class="viewcode-block" id="get_soil_textural_class"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.soil.get_soil_textural_class">[docs]</a><span class="k">def</span> <span class="nf">get_soil_textural_class</span><span class="p">(</span><span class="n">sand</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">clay</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
