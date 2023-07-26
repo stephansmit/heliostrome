@@ -7,7 +7,6 @@ from pydantic import BaseModel
 
 class IrradianceDatum(BaseModel):
     time: datetime
-    time: datetime
     ghi: float
     dni: float
     dhi: float

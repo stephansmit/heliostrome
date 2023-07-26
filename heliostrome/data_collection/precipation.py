@@ -7,6 +7,15 @@ from datetime import datetime
 
 
 class PrecipitationDatum(BaseModel):
+    """This class contains the data for a precipitation datum.
+
+    :param BaseModel: pydantic base model
+    :type BaseModel: Pydantic BaseModel
+    :raises ValueError: raised when value is less than 0
+    :return: class representing a precipitation datum
+    :rtype: PrecipitationDatum
+    """
+
     latitude: float
     longitude: float
     time: datetime
@@ -31,6 +40,15 @@ class PrecipitationDatum(BaseModel):
 
 
 class PrecipationTable(BaseModel):
+    """This class contains the data for a precipitation table as returned by NOAA's ERDDAP server.
+
+    :param BaseModel: pydantic base model
+    :type BaseModel: Pydantic BaseModel
+    :raises ValueError: raised when not within the list of valid strings or correct order
+    :return: class representing a precipitation table
+    :rtype: PrecipationTable
+    """
+
     columnNames: List[str]
     columnTypes: List[str]
     columnUnits: List[str]
@@ -58,6 +76,11 @@ class PrecipationTable(BaseModel):
         return values
 
     def get_datums(self) -> List[PrecipitationDatum]:
+        """Get the precipitation datums from the table.
+
+        :return: list of precipitation datums
+        :rtype: List[PrecipitationDatum]
+        """
         datums = []
         for row in self.rows:
             datum = PrecipitationDatum(
@@ -71,6 +94,12 @@ class PrecipationTable(BaseModel):
 
 
 class PrecipitationResponse(BaseModel):
+    """This class contains the response from NOAA's ERDDAP server.
+
+    :param BaseModel: pydantic base model
+    :type BaseModel: Pydantic BaseModel
+    """
+
     table: PrecipationTable
 
 
@@ -96,7 +125,6 @@ def get_precipitation(
 
     start_date_str = start_date.strftime("%Y-%m-%d")
     end_date_str = end_date.strftime("%Y-%m-%dT%H:%M:%SZ")
-    # latitude, longitude = get_lat_long()
     base_url = (
         "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05.json"
     )

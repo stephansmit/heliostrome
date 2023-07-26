@@ -20,6 +20,14 @@ WEIGHTS = [2.5, 5, 7.5, 15, 20, 50]
 
 
 class SoilLayer(BaseModel):
+    """This class contains the data for a soil layer.
+
+    :param BaseModel: pydantic base model
+    :type BaseModel: Pydantic BaseModel
+    :return: class representing a soil layer
+    :rtype: SoilLayer
+    """
+
     name: Literal[
         "_0-5cm_mean",
         "_5-15cm_mean",
@@ -42,6 +50,15 @@ class SoilLayer(BaseModel):
 
 
 class SoilDatum(BaseModel):
+    """This class contains the data for a specific soil.
+    It consists of different layers and has properties that are avaraged over the layers.
+
+    :param BaseModel: pydantic base model
+    :type BaseModel: Pydantic BaseModel
+    :return: class representing a soil
+    :rtype: SoilDatum
+    """
+
     layers: List[SoilLayer]
 
     @property
@@ -64,7 +81,7 @@ class SoilDatum(BaseModel):
 def get_soil_properties(
     field_polygon: Polygon,
 ) -> SoilDatum:
-    """Returns the soil value for the given service_id and bounding box.
+    """Returns the soil content % for the given service_id and bounding box.
 
     :type Polygon: shapely.geometry.Polygon
     :rtype: SoilDatum
@@ -109,19 +126,19 @@ def get_prop_per_layer_type(
 ) -> float:
     """_summary_
 
-    :param service_id: _description_
-    :type service_id: Literal[&quot;clay&quot;, &quot;sand&quot;, &quot;silt&quot;]
-    :param layer_name: _description_
-    :type layer_name: Literal[ &#39;_0
-    :param west: _description_
+    :param service_id: service id as defined in the SoilGrids API
+    :type service_id: Literal['clay', 'sand', 'silt']
+    :param layer_name: name of the layer as defined in the SoilGrids API
+    :type layer_name: Literal['_0-5cm_mean', '_5-15cm_mean', '_15-30cm_mean', '_30-60cm_mean', '_60-100cm_mean', '_100-200cm_mean']
+    :param west: west boundary of the bounding box
     :type west: float
-    :param east: _description_
+    :param east: east boundary of the bounding box
     :type east: float
-    :param south: _description_
+    :param south: south boundary of the bounding box
     :type south: float
-    :param north: _description_
+    :param north: north boundary of the bounding box
     :type north: float
-    :return: _description_
+    :return: mean % of the specific class in the layer
     :rtype: float
     """
     soil_grids = SoilGrids()
@@ -143,13 +160,13 @@ def get_prop_per_layer_type(
 def get_soil_textural_class(sand: float, clay: float) -> str:
     """Returns the soil textural class based on the sand and clay content.
 
-    :param sand: _description_
-    :type sand: _type_
-    :param clay: _description_
-    :type clay: _type_
-    :raises Exception: _description_
-    :return: _description_
-    :rtype: _type_
+    :param sand: sand content in %
+    :type sand: float
+    :param clay: clay content in %
+    :type clay: float
+    :raises Exception: raised when inputs add up to over 100% or are negative
+    :return: textural class
+    :rtype: str
     """
     silt = 100 - sand - clay
 
