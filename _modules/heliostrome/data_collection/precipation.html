@@ -328,16 +328,11 @@
     <span class="n">encoded_query_param</span> <span class="o">=</span> <span class="n">quote</span><span class="p">(</span><span class="n">query_param</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="s2">&quot;():&quot;</span><span class="p">)</span>
     <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}</span><span class="s2">?</span><span class="si">{</span><span class="n">encoded_query_param</span><span class="si">}</span><span class="s2">&quot;</span>
 
-    <span class="c1"># request the url with a backoff strategy</span>
-
     <span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
-
     <span class="n">retries</span> <span class="o">=</span> <span class="n">Retry</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">backoff_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">status_forcelist</span><span class="o">=</span><span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">503</span><span class="p">,</span> <span class="mi">504</span><span class="p">])</span>
-
     <span class="n">s</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s2">&quot;https://&quot;</span><span class="p">,</span> <span class="n">HTTPAdapter</span><span class="p">(</span><span class="n">max_retries</span><span class="o">=</span><span class="n">retries</span><span class="p">))</span>
 
     <span class="n">response</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-
     <span class="k">return</span> <span class="n">PrecipitationResponse</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span></div>
 </pre></div>
 
