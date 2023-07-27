@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os_plus_delay[0] }}
     strategy:
       matrix:
-        python-version: [3.8, 3.9]
+        python-version: [3.9]
         os_plus_delay: [[ubuntu-latest, 0], [windows-latest, 30], [macOS-latest, 60]]
 
     steps:  
