@@ -104,6 +104,10 @@ class PrecipitationResponse(BaseModel):
     table: PrecipationTable
 
 
+def _get_precipitation_url():
+    return "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05.json"
+
+
 def get_precipitation(
     latitude: float,
     longitude: float,
@@ -126,9 +130,7 @@ def get_precipitation(
 
     start_date_str = start_date.strftime("%Y-%m-%d")
     end_date_str = end_date.strftime("%Y-%m-%dT%H:%M:%SZ")
-    base_url = (
-        "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05.json"
-    )
+    base_url = _get_precipitation_url()
 
     query_param = (
         f"precip[({start_date_str}):1:({end_date_str})]"
