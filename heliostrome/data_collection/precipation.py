@@ -137,14 +137,9 @@ def get_precipitation(
     encoded_query_param = quote(query_param, safe="():")
     url = f"{base_url}?{encoded_query_param}"
 
-    # request the url with a backoff strategy
-
     s = Session()
-
     retries = Retry(total=5, backoff_factor=2, status_forcelist=[500, 502, 503, 504])
-
     s.mount("https://", HTTPAdapter(max_retries=retries))
 
     response = s.get(url, timeout=30)
-
     return PrecipitationResponse.model_validate_json(response.text)

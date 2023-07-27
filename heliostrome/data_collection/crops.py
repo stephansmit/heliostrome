@@ -27,11 +27,11 @@ class HeliostromeCrop(BaseModel):
     HIstart: float
     HIstartCD: Optional[float] = None
     Kcb: float
+    LagAer: Optional[float] = None
     Maturity: float
     MaturityCD: Optional[float] = None
     MaxRooting: float
     MaxRootingCD: Optional[float] = None
-    Name: str
     PlantMethod: float
     PlantPop: float
     PolColdStress: int
@@ -84,4 +84,3 @@ def _get_aquacrop_names():
 def get_crop_data() -> List[HeliostromeCrop]:
     return [HeliostromeCrop(**crop_params[crop_name]) for crop_name in _get_aquacrop_names()]
 
-get_crop_data()
