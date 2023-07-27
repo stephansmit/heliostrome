@@ -82,5 +82,6 @@ def _get_aquacrop_names():
 
 
 def get_crop_data() -> List[HeliostromeCrop]:
-    return [HeliostromeCrop(**crop_params[crop_name]) for crop_name in _get_aquacrop_names()]
-
+    return [
+        HeliostromeCrop(**crop_params[crop_name]) for crop_name in _get_aquacrop_names()
+    ]

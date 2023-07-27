@@ -138,8 +138,10 @@ def get_precipitation(
     url = f"{base_url}?{encoded_query_param}"
 
     s = Session()
-    retries = Retry(total=5, backoff_factor=2, status_forcelist=[500, 502, 503, 504])
+    retries = Retry(
+        total=5, backoff_factor=2, status_forcelist=[403, 500, 502, 503, 504]
+    )
     s.mount("https://", HTTPAdapter(max_retries=retries))
 
-    response = s.get(url, timeout=30)
+    response = s.get(url, timeout=60)
     return PrecipitationResponse.model_validate_json(response.text)
