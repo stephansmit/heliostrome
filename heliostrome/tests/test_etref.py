@@ -17,7 +17,7 @@ def test_get_etref_daily():
         start_year=start_datetime.year,
         end_year=end_datetime.year,
     )
-    assert type(etref[0]) == EtRefDatum
+    assert isinstance(etref[0],EtRefDatum)
     assert len(etref) == 4383
     assert etref[0].time.year == 2005
     assert etref[0].time.hour == 0
