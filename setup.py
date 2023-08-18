@@ -46,7 +46,7 @@ requirements = [
     "shapely>=2.0.1",
     "pvlib>=0.10.1",
     "numpy==1.24.0",
-    "git+https://github.com/stephansmit/PyETo.git@master"
+    "PyETo@git+https://github.com/stephansmit/PyETo.git#79ddd88d727c7ebdad0ce26e220528d2921b66ea"
 ]
 
 extra_requirements = {
