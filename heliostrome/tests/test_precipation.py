@@ -1,11 +1,8 @@
 import requests_mock
 from datetime import datetime
-import requests
 from heliostrome.data_collection.precipation import (
     get_precipitation,
-    _get_precipitation_url,
 )
-import re
 from requests_mock import Mocker
 
 latitude = -18.6697

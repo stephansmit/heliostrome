@@ -13,6 +13,7 @@ setup_requirements = [
 ]
 
 test_requirements = [
+    "h5py>=2.10.0",
     "requests_mock>=1.11.0",
     "black>=19.10b0",
     "codecov>=2.1.4",
