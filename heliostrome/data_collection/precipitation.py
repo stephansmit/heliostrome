@@ -108,7 +108,7 @@ def _get_precipitation_url():
     return "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05.json"
 
 
-def get_precipitation(
+def get_precipitation_table(
     latitude: float,
     longitude: float,
     start_date: datetime.date,
@@ -147,3 +147,32 @@ def get_precipitation(
 
     response = s.get(url, timeout=60)
     return PrecipitationResponse.model_validate_json(response.text)
+
+
+def get_precipitation_data(
+    latitude: float,
+    longitude: float,
+    start_date: datetime.date,
+    end_date: datetime.date,
+) -> List[PrecipitationDatum]:
+    """Get precipitation data from NOAA's ERDDAP server.
+
+    :param latitude: latitude of the location
+    :type latitude: float
+    :param longitude: longitude of the location
+    :type longitude: float
+    :param start_date: start date of the data
+    :type start_date: datetime.date
+    :param end_date: end date of the data
+    :type end_date: datetime.date
+    :return: list of precipitation datums
+    :rtype: List[PrecipitationDatum]
+    """
+
+    response = get_precipitation_table(
+        latitude=latitude,
+        longitude=longitude,
+        start_date=start_date,
+        end_date=end_date,
+    )
+    return response.table.get_datums()

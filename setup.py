@@ -45,6 +45,8 @@ requirements = [
     "soilgrids>=0.1.4",
     "shapely>=2.0.1",
     "pvlib>=0.10.1",
+    "numpy==1.24.0",
+    "git+https://github.com/stephansmit/PyETo.git@master"
 ]
 
 extra_requirements = {
