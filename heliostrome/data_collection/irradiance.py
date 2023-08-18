@@ -4,14 +4,6 @@ from pvlib.iotools import get_pvgis_tmy, get_pvgis_hourly
 from pandas import date_range
 from pydantic import BaseModel
 import pandas as pd
-from pyeto import (
-    celsius2kelvin,
-    wind_speed_2m,
-    celsius2kelvin,
-    svp_from_t,
-    avp_from_tmin,
-    delta_svp,
-)
 
 
 class IrradianceDatumTMY(BaseModel):

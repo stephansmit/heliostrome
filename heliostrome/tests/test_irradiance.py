@@ -1,7 +1,6 @@
 from heliostrome.data_collection.irradiance import (
     get_irradiance_tmy,
     get_irradiance_daily,
-    IrradianceHourlyDatum,
     IrradianceDailyDatum,
     IrradianceDatumTMY,
 )

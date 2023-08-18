@@ -80,11 +80,11 @@ class EtRefDatum(IrradianceDailyDatum):
 
 def get_etref_daily(
     longitude: float, latitude: float, start_year: int, end_year: int
-) -> List[ClimateDatum]:
+) -> List[EtRefDatum]:
     daily_date = get_irradiance_daily(
         longitude=longitude,
         latitude=latitude,
         start_year=start_year,
         end_year=end_year,
     )
-    return [ClimateDatum(**datum.model_dump()) for datum in daily_date]
+    return [EtRefDatum(**datum.model_dump()) for datum in daily_date]
