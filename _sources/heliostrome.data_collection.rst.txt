@@ -12,6 +12,14 @@ heliostrome.data\_collection.crops module
    :undoc-members:
    :show-inheritance:
 
+heliostrome.data\_collection.etref module
+-----------------------------------------
+
+.. automodule:: heliostrome.data_collection.etref
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 heliostrome.data\_collection.irradiance module
 ----------------------------------------------
 
@@ -20,10 +28,10 @@ heliostrome.data\_collection.irradiance module
    :undoc-members:
    :show-inheritance:
 
-heliostrome.data\_collection.precipation module
------------------------------------------------
+heliostrome.data\_collection.precipitation module
+-------------------------------------------------
 
-.. automodule:: heliostrome.data_collection.precipation
+.. automodule:: heliostrome.data_collection.precipitation
    :members:
    :undoc-members:
    :show-inheritance:

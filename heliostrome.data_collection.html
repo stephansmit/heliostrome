@@ -212,11 +212,144 @@
 <section id="heliostrome-data-collection-crops-module">
 <h2>heliostrome.data_collection.crops module<a class="headerlink" href="#heliostrome-data-collection-crops-module" title="Permalink to this heading">¶</a></h2>
 </section>
+<section id="module-heliostrome.data_collection.etref">
+<span id="heliostrome-data-collection-etref-module"></span><h2>heliostrome.data_collection.etref module<a class="headerlink" href="#module-heliostrome.data_collection.etref" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.etref.</span></span><span class="sig-name descname"><span class="pre">EtRefDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poa_global_whm2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solar_elevation_deg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_min_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_max_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speed_10m_ms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altitude_m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/etref.html#EtRefDatum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum" title="heliostrome.data_collection.irradiance.IrradianceDailyDatum"><code class="xref py py-class docutils literal notranslate"><span class="pre">IrradianceDailyDatum</span></code></a></p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.altitude_m">
+<span class="sig-name descname"><span class="pre">altitude_m</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.altitude_m" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.avp_kpa">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">avp_kpa</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.avp_kpa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Actual vapour pressure (kPa)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.delta_svp_kpa">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delta_svp_kpa</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.delta_svp_kpa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slope of saturation vapour pressure curve (kPa/degC)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.etref_mmday">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">etref_mmday</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.etref_mmday" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference evapotranspiration (mm/day)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'altitude_m':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'poa_global_whm2':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'solar_elevation_deg':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_max_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_min_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'time':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True),</span> <span class="pre">'wind_speed_10m_ms':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.model_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.poa_global_mjm2">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">poa_global_mjm2</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.poa_global_mjm2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plane of array global irradiance (MJ/m2)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.poa_global_whm2">
+<span class="sig-name descname"><span class="pre">poa_global_whm2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.poa_global_whm2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.psy_kpa">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">psy_kpa</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.psy_kpa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Psychrometric constant (kPa/degC)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.solar_elevation_deg">
+<span class="sig-name descname"><span class="pre">solar_elevation_deg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.solar_elevation_deg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.svp_kpa">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">svp_kpa</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.svp_kpa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saturation vapour pressure (kPa)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.temp_air_c">
+<span class="sig-name descname"><span class="pre">temp_air_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.temp_air_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.temp_air_k">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">temp_air_k</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.temp_air_k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mean air temperature (K)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.temp_air_max_c">
+<span class="sig-name descname"><span class="pre">temp_air_max_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.temp_air_max_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.temp_air_max_k">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">temp_air_max_k</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.temp_air_max_k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximum air temperature (K)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.temp_air_min_K">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">temp_air_min_K</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.temp_air_min_K" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum air temperature (K)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.temp_air_min_c">
+<span class="sig-name descname"><span class="pre">temp_air_min_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.temp_air_min_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.time">
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.wind_speed_10m_ms">
+<span class="sig-name descname"><span class="pre">wind_speed_10m_ms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.wind_speed_10m_ms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.EtRefDatum.wind_speed_2m_ms">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wind_speed_2m_ms</span></span><a class="headerlink" href="#heliostrome.data_collection.etref.EtRefDatum.wind_speed_2m_ms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wind speed at 2m (m/s)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="heliostrome.data_collection.etref.get_etref_daily">
+<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.etref.</span></span><span class="sig-name descname"><span class="pre">get_etref_daily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.data_collection.etref.EtRefDatum" title="heliostrome.data_collection.etref.EtRefDatum"><span class="pre">EtRefDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/etref.html#get_etref_daily"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.etref.get_etref_daily" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
 <section id="module-heliostrome.data_collection.irradiance">
 <span id="heliostrome-data-collection-irradiance-module"></span><h2>heliostrome.data_collection.irradiance module<a class="headerlink" href="#module-heliostrome.data_collection.irradiance" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.irradiance.</span></span><span class="sig-name descname"><span class="pre">IrradianceDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ghi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dni</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dhi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative_humidity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pressure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/irradiance.html#IrradianceDatum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.irradiance.</span></span><span class="sig-name descname"><span class="pre">IrradianceDailyDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poa_global_whm2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solar_elevation_deg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_min_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_max_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speed_10m_ms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altitude_m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/irradiance.html#IrradianceDailyDatum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
@@ -224,69 +357,214 @@ validated to form a valid model.</p>
 <p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
 allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.dhi">
-<span class="sig-name descname"><span class="pre">dhi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.dhi" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.altitude_m">
+<span class="sig-name descname"><span class="pre">altitude_m</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.altitude_m" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.dni">
-<span class="sig-name descname"><span class="pre">dni</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.dni" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.ghi">
-<span class="sig-name descname"><span class="pre">ghi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.ghi" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.model_config">
-<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.model_config" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.model_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.model_fields">
-<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'dhi':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'dni':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'ghi':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'pressure':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'relative_humidity':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'time':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True),</span> <span class="pre">'wind_direction':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'wind_speed':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.model_fields" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'altitude_m':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'poa_global_whm2':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'solar_elevation_deg':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_max_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_min_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'time':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True),</span> <span class="pre">'wind_speed_10m_ms':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.model_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metadata about the fields defined on the model,
 mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
 <p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.pressure">
-<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.pressure" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.poa_global_whm2">
+<span class="sig-name descname"><span class="pre">poa_global_whm2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.poa_global_whm2" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.relative_humidity">
-<span class="sig-name descname"><span class="pre">relative_humidity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.relative_humidity" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.solar_elevation_deg">
+<span class="sig-name descname"><span class="pre">solar_elevation_deg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.solar_elevation_deg" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.temp_air">
-<span class="sig-name descname"><span class="pre">temp_air</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.temp_air" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.temp_air_c">
+<span class="sig-name descname"><span class="pre">temp_air_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.temp_air_c" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.time">
-<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.time" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.temp_air_max_c">
+<span class="sig-name descname"><span class="pre">temp_air_max_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.temp_air_max_c" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.wind_direction">
-<span class="sig-name descname"><span class="pre">wind_direction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.wind_direction" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.temp_air_min_c">
+<span class="sig-name descname"><span class="pre">temp_air_min_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.temp_air_min_c" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatum.wind_speed">
-<span class="sig-name descname"><span class="pre">wind_speed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatum.wind_speed" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.time">
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDailyDatum.wind_speed_10m_ms">
+<span class="sig-name descname"><span class="pre">wind_speed_10m_ms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum.wind_speed_10m_ms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.irradiance.</span></span><span class="sig-name descname"><span class="pre">IrradianceDatumTMY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ghi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dni</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dhi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative_humidity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speed_10m_ms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_direction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pressure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/irradiance.html#IrradianceDatumTMY"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.dhi">
+<span class="sig-name descname"><span class="pre">dhi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.dhi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.dni">
+<span class="sig-name descname"><span class="pre">dni</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.dni" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.ghi">
+<span class="sig-name descname"><span class="pre">ghi</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.ghi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'dhi':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'dni':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'ghi':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'pressure':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'relative_humidity':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'time':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True),</span> <span class="pre">'wind_direction':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'wind_speed_10m_ms':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.model_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.pressure">
+<span class="sig-name descname"><span class="pre">pressure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.pressure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.relative_humidity">
+<span class="sig-name descname"><span class="pre">relative_humidity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.relative_humidity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.temp_air_c">
+<span class="sig-name descname"><span class="pre">temp_air_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.temp_air_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.time">
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.wind_direction">
+<span class="sig-name descname"><span class="pre">wind_direction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.wind_direction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceDatumTMY.wind_speed_10m_ms">
+<span class="sig-name descname"><span class="pre">wind_speed_10m_ms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY.wind_speed_10m_ms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceHourlyDatum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.irradiance.</span></span><span class="sig-name descname"><span class="pre">IrradianceHourlyDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poa_global_wm2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solar_elevation_deg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wind_speed_10m_ms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altitude_m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/irradiance.html#IrradianceHourlyDatum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceHourlyDatum.altitude_m">
+<span class="sig-name descname"><span class="pre">altitude_m</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.altitude_m" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceHourlyDatum.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceHourlyDatum.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'altitude_m':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'poa_global_wm2':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'solar_elevation_deg':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'time':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True),</span> <span class="pre">'wind_speed_10m_ms':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.model_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceHourlyDatum.poa_global_wm2">
+<span class="sig-name descname"><span class="pre">poa_global_wm2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.poa_global_wm2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceHourlyDatum.solar_elevation_deg">
+<span class="sig-name descname"><span class="pre">solar_elevation_deg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.solar_elevation_deg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceHourlyDatum.temp_air_c">
+<span class="sig-name descname"><span class="pre">temp_air_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.temp_air_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceHourlyDatum.time">
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.IrradianceHourlyDatum.wind_speed_10m_ms">
+<span class="sig-name descname"><span class="pre">wind_speed_10m_ms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.wind_speed_10m_ms" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.get_irradiance">
-<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.irradiance.</span></span><span class="sig-name descname"><span class="pre">get_irradiance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.data_collection.irradiance.IrradianceDatum" title="heliostrome.data_collection.irradiance.IrradianceDatum"><span class="pre">IrradianceDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/irradiance.html#get_irradiance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.irradiance.get_irradiance" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.get_irradiance_daily">
+<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.irradiance.</span></span><span class="sig-name descname"><span class="pre">get_irradiance_daily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.data_collection.irradiance.IrradianceDailyDatum" title="heliostrome.data_collection.irradiance.IrradianceDailyDatum"><span class="pre">IrradianceDailyDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/irradiance.html#get_irradiance_daily"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.irradiance.get_irradiance_daily" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.get_irradiance_hourly">
+<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.irradiance.</span></span><span class="sig-name descname"><span class="pre">get_irradiance_hourly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.data_collection.irradiance.IrradianceHourlyDatum" title="heliostrome.data_collection.irradiance.IrradianceHourlyDatum"><span class="pre">IrradianceHourlyDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/irradiance.html#get_irradiance_hourly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.irradiance.get_irradiance_hourly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the irradiance data for a given location and year.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>longitude</strong> (<em>float</em>) – longitude of the location</p></li>
+<li><p><strong>latitude</strong> (<em>float</em>) – latitude of the location</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of the irradiance data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[IrradianceDatum]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="heliostrome.data_collection.irradiance.get_irradiance_tmy">
+<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.irradiance.</span></span><span class="sig-name descname"><span class="pre">get_irradiance_tmy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.data_collection.irradiance.IrradianceDatumTMY" title="heliostrome.data_collection.irradiance.IrradianceDatumTMY"><span class="pre">IrradianceDatumTMY</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/irradiance.html#get_irradiance_tmy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.irradiance.get_irradiance_tmy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the irradiance data for a given location and year.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -300,17 +578,17 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 <dd class="field-even"><p>list of the irradiance data</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="#heliostrome.data_collection.irradiance.IrradianceDatum" title="heliostrome.data_collection.irradiance.IrradianceDatum">IrradianceDatum</a>]</p>
+<dd class="field-odd"><p>List[IrradianceDatum]</p>
 </dd>
 </dl>
 </dd></dl>
 
 </section>
-<section id="module-heliostrome.data_collection.precipation">
-<span id="heliostrome-data-collection-precipation-module"></span><h2>heliostrome.data_collection.precipation module<a class="headerlink" href="#module-heliostrome.data_collection.precipation" title="Permalink to this heading">¶</a></h2>
+<section id="module-heliostrome.data_collection.precipitation">
+<span id="heliostrome-data-collection-precipitation-module"></span><h2>heliostrome.data_collection.precipitation module<a class="headerlink" href="#module-heliostrome.data_collection.precipitation" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipationTable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.precipation.</span></span><span class="sig-name descname"><span class="pre">PrecipationTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columnNames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columnTypes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columnUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/precipation.html#PrecipationTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipationTable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipationTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.precipitation.</span></span><span class="sig-name descname"><span class="pre">PrecipationTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columnNames</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columnTypes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columnUnits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/precipitation.html#PrecipationTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipationTable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
 <p>This class contains the data for a precipitation table as returned by NOAA’s ERDDAP server.</p>
 <dl class="field-list simple">
@@ -324,7 +602,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 <dd class="field-odd"><p>class representing a precipitation table</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipationTable" title="heliostrome.data_collection.precipation.PrecipationTable">PrecipationTable</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipationTable" title="heliostrome.data_collection.precipitation.PrecipationTable">PrecipationTable</a></p>
 </dd>
 </dl>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
@@ -333,61 +611,61 @@ validated to form a valid model.</p>
 <p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
 allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipationTable.columnNames">
-<span class="sig-name descname"><span class="pre">columnNames</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipationTable.columnNames" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipationTable.columnNames">
+<span class="sig-name descname"><span class="pre">columnNames</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipationTable.columnNames" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipationTable.columnTypes">
-<span class="sig-name descname"><span class="pre">columnTypes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipationTable.columnTypes" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipationTable.columnTypes">
+<span class="sig-name descname"><span class="pre">columnTypes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipationTable.columnTypes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipationTable.columnUnits">
-<span class="sig-name descname"><span class="pre">columnUnits</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipationTable.columnUnits" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipationTable.columnUnits">
+<span class="sig-name descname"><span class="pre">columnUnits</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipationTable.columnUnits" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipationTable.get_datums">
-<span class="sig-name descname"><span class="pre">get_datums</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipitationDatum" title="heliostrome.data_collection.precipation.PrecipitationDatum"><span class="pre">PrecipitationDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/precipation.html#PrecipationTable.get_datums"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipationTable.get_datums" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipationTable.get_datums">
+<span class="sig-name descname"><span class="pre">get_datums</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipitationDatum" title="heliostrome.data_collection.precipitation.PrecipitationDatum"><span class="pre">PrecipitationDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/precipitation.html#PrecipationTable.get_datums"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipationTable.get_datums" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the precipitation datums from the table.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list of precipitation datums</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipitationDatum" title="heliostrome.data_collection.precipation.PrecipitationDatum">PrecipitationDatum</a>]</p>
+<dd class="field-even"><p>List[<a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipitationDatum" title="heliostrome.data_collection.precipitation.PrecipitationDatum">PrecipitationDatum</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipationTable.model_config">
-<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipationTable.model_config" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipationTable.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipationTable.model_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipationTable.model_fields">
-<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'columnNames':</span> <span class="pre">FieldInfo(annotation=List[str],</span> <span class="pre">required=True),</span> <span class="pre">'columnTypes':</span> <span class="pre">FieldInfo(annotation=List[str],</span> <span class="pre">required=True),</span> <span class="pre">'columnUnits':</span> <span class="pre">FieldInfo(annotation=List[str],</span> <span class="pre">required=True),</span> <span class="pre">'rows':</span> <span class="pre">FieldInfo(annotation=List[List[Union[float,</span> <span class="pre">str]]],</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipationTable.model_fields" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipationTable.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'columnNames':</span> <span class="pre">FieldInfo(annotation=List[str],</span> <span class="pre">required=True),</span> <span class="pre">'columnTypes':</span> <span class="pre">FieldInfo(annotation=List[str],</span> <span class="pre">required=True),</span> <span class="pre">'columnUnits':</span> <span class="pre">FieldInfo(annotation=List[str],</span> <span class="pre">required=True),</span> <span class="pre">'rows':</span> <span class="pre">FieldInfo(annotation=List[List[Union[float,</span> <span class="pre">str]]],</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipationTable.model_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metadata about the fields defined on the model,
 mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
 <p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipationTable.rows">
-<span class="sig-name descname"><span class="pre">rows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipationTable.rows" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipationTable.rows">
+<span class="sig-name descname"><span class="pre">rows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipationTable.rows" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipationTable.validate_column_names">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_column_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/precipation.html#PrecipationTable.validate_column_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipationTable.validate_column_names" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipationTable.validate_column_names">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_column_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/precipitation.html#PrecipationTable.validate_column_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipationTable.validate_column_names" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validates the column names in the response from NOAA’s ERDDAP server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cls</strong> (<a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipationTable" title="heliostrome.data_collection.precipation.PrecipationTable"><em>PrecipationTable</em></a>) – _description_</p></li>
+<li><p><strong>cls</strong> (<a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipationTable" title="heliostrome.data_collection.precipitation.PrecipationTable"><em>PrecipationTable</em></a>) – _description_</p></li>
 <li><p><strong>values</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – list of the column names</p></li>
 </ul>
 </dd>
@@ -406,8 +684,8 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationDatum">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.precipation.</span></span><span class="sig-name descname"><span class="pre">PrecipitationDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/precipation.html#PrecipitationDatum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationDatum" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationDatum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.precipitation.</span></span><span class="sig-name descname"><span class="pre">PrecipitationDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precip</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/precipitation.html#PrecipitationDatum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationDatum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
 <p>This class contains the data for a precipitation datum.</p>
 <dl class="field-list simple">
@@ -421,7 +699,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 <dd class="field-odd"><p>class representing a precipitation datum</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipitationDatum" title="heliostrome.data_collection.precipation.PrecipitationDatum">PrecipitationDatum</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipitationDatum" title="heliostrome.data_collection.precipitation.PrecipitationDatum">PrecipitationDatum</a></p>
 </dd>
 </dl>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
@@ -430,47 +708,47 @@ validated to form a valid model.</p>
 <p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
 allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationDatum.latitude">
-<span class="sig-name descname"><span class="pre">latitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationDatum.latitude" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationDatum.latitude">
+<span class="sig-name descname"><span class="pre">latitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationDatum.latitude" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationDatum.longitude">
-<span class="sig-name descname"><span class="pre">longitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationDatum.longitude" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationDatum.longitude">
+<span class="sig-name descname"><span class="pre">longitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationDatum.longitude" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationDatum.model_config">
-<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationDatum.model_config" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationDatum.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationDatum.model_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationDatum.model_fields">
-<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'latitude':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'longitude':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'precip':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'time':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationDatum.model_fields" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationDatum.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'latitude':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'longitude':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'precip':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'time':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationDatum.model_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metadata about the fields defined on the model,
 mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
 <p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationDatum.precip">
-<span class="sig-name descname"><span class="pre">precip</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationDatum.precip" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationDatum.precip">
+<span class="sig-name descname"><span class="pre">precip</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationDatum.precip" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationDatum.time">
-<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationDatum.time" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationDatum.time">
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationDatum.time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationDatum.validate_precip">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_precip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/precipation.html#PrecipitationDatum.validate_precip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationDatum.validate_precip" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationDatum.validate_precip">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_precip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/precipitation.html#PrecipitationDatum.validate_precip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationDatum.validate_precip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Validates the precipitation value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cls</strong> (<a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipitationDatum" title="heliostrome.data_collection.precipation.PrecipitationDatum"><em>PrecipitationDatum</em></a>) – _description_</p></li>
+<li><p><strong>cls</strong> (<a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipitationDatum" title="heliostrome.data_collection.precipitation.PrecipitationDatum"><em>PrecipitationDatum</em></a>) – _description_</p></li>
 <li><p><strong>value</strong> (<em>float</em>) – precipitation value</p></li>
 </ul>
 </dd>
@@ -489,8 +767,8 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.precipation.</span></span><span class="sig-name descname"><span class="pre">PrecipitationResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipationTable" title="heliostrome.data_collection.precipation.PrecipationTable"><span class="pre">PrecipationTable</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/precipation.html#PrecipitationResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationResponse" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.precipitation.</span></span><span class="sig-name descname"><span class="pre">PrecipitationResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipationTable" title="heliostrome.data_collection.precipitation.PrecipationTable"><span class="pre">PrecipationTable</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/precipitation.html#PrecipitationResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationResponse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
 <p>This class contains the response from NOAA’s ERDDAP server.</p>
 <dl class="field-list simple">
@@ -504,29 +782,51 @@ validated to form a valid model.</p>
 <p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
 allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationResponse.model_config">
-<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationResponse.model_config" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationResponse.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationResponse.model_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationResponse.model_fields">
-<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'table':</span> <span class="pre">FieldInfo(annotation=PrecipationTable,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationResponse.model_fields" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationResponse.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'table':</span> <span class="pre">FieldInfo(annotation=PrecipationTable,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationResponse.model_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metadata about the fields defined on the model,
 mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
 <p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.PrecipitationResponse.table">
-<span class="sig-name descname"><span class="pre">table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipationTable" title="heliostrome.data_collection.precipation.PrecipationTable"><span class="pre">PrecipationTable</span></a></em><a class="headerlink" href="#heliostrome.data_collection.precipation.PrecipitationResponse.table" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.PrecipitationResponse.table">
+<span class="sig-name descname"><span class="pre">table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipationTable" title="heliostrome.data_collection.precipitation.PrecipationTable"><span class="pre">PrecipationTable</span></a></em><a class="headerlink" href="#heliostrome.data_collection.precipitation.PrecipitationResponse.table" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="heliostrome.data_collection.precipation.get_precipitation">
-<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.precipation.</span></span><span class="sig-name descname"><span class="pre">get_precipitation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date:</span> <span class="pre">~.datetime.date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date:</span> <span class="pre">~.datetime.date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipitationResponse" title="heliostrome.data_collection.precipation.PrecipitationResponse"><span class="pre">PrecipitationResponse</span></a></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/precipation.html#get_precipitation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipation.get_precipitation" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.get_precipitation_data">
+<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.precipitation.</span></span><span class="sig-name descname"><span class="pre">get_precipitation_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date:</span> <span class="pre">~.datetime.date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date:</span> <span class="pre">~.datetime.date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipitationDatum" title="heliostrome.data_collection.precipitation.PrecipitationDatum"><span class="pre">PrecipitationDatum</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/precipitation.html#get_precipitation_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipitation.get_precipitation_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get precipitation data from NOAA’s ERDDAP server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>latitude</strong> (<em>float</em>) – latitude of the location</p></li>
+<li><p><strong>longitude</strong> (<em>float</em>) – longitude of the location</p></li>
+<li><p><strong>start_date</strong> (<em>datetime.date</em>) – start date of the data</p></li>
+<li><p><strong>end_date</strong> (<em>datetime.date</em>) – end date of the data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of precipitation datums</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipitationDatum" title="heliostrome.data_collection.precipitation.PrecipitationDatum">PrecipitationDatum</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="heliostrome.data_collection.precipitation.get_precipitation_table">
+<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.precipitation.</span></span><span class="sig-name descname"><span class="pre">get_precipitation_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">longitude:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date:</span> <span class="pre">~.datetime.date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date:</span> <span class="pre">~.datetime.date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipitationResponse" title="heliostrome.data_collection.precipitation.PrecipitationResponse"><span class="pre">PrecipitationResponse</span></a></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/precipitation.html#get_precipitation_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.precipitation.get_precipitation_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get precipitation data from NOAA’s ERDDAP server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -541,7 +841,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 <dd class="field-even"><p>Response from NOAA’s ERDDAP server</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#heliostrome.data_collection.precipation.PrecipitationResponse" title="heliostrome.data_collection.precipation.PrecipitationResponse">PrecipitationResponse</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#heliostrome.data_collection.precipitation.PrecipitationResponse" title="heliostrome.data_collection.precipitation.PrecipitationResponse">PrecipitationResponse</a></p>
 </dd>
 </dl>
 </dd></dl>

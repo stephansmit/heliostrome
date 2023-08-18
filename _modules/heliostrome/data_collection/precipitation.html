@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>heliostrome.data_collection.precipation &mdash; heliostrome 0.0.2 documentation</title>
+  <title>heliostrome.data_collection.precipitation &mdash; heliostrome 0.0.2 documentation</title>
   
 
   
@@ -173,7 +173,7 @@
         
           <li><a href="../../heliostrome.html">heliostrome</a> &raquo;</li>
         
-      <li>heliostrome.data_collection.precipation</li>
+      <li>heliostrome.data_collection.precipitation</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -188,7 +188,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for heliostrome.data_collection.precipation</h1><div class="highlight"><pre>
+  <h1>Source code for heliostrome.data_collection.precipitation</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">field_validator</span>
@@ -198,7 +198,7 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 
-<div class="viewcode-block" id="PrecipitationDatum"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipitationDatum">[docs]</a><span class="k">class</span> <span class="nc">PrecipitationDatum</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="PrecipitationDatum"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipitationDatum">[docs]</a><span class="k">class</span> <span class="nc">PrecipitationDatum</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This class contains the data for a precipitation datum.</span>
 
 <span class="sd">    :param BaseModel: pydantic base model</span>
@@ -213,7 +213,7 @@
     <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
     <span class="n">precip</span><span class="p">:</span> <span class="nb">float</span>
 
-<div class="viewcode-block" id="PrecipitationDatum.validate_precip"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipitationDatum.validate_precip">[docs]</a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;precip&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="PrecipitationDatum.validate_precip"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipitationDatum.validate_precip">[docs]</a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;precip&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">validate_precip</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">PrecipitationDatum</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validates the precipitation value.</span>
 
@@ -231,7 +231,7 @@
         <span class="k">return</span> <span class="n">value</span></div></div>
 
 
-<div class="viewcode-block" id="PrecipationTable"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipationTable">[docs]</a><span class="k">class</span> <span class="nc">PrecipationTable</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="PrecipationTable"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipationTable">[docs]</a><span class="k">class</span> <span class="nc">PrecipationTable</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This class contains the data for a precipitation table as returned by NOAA&#39;s ERDDAP server.</span>
 
 <span class="sd">    :param BaseModel: pydantic base model</span>
@@ -246,7 +246,7 @@
     <span class="n">columnUnits</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
     <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span>
 
-<div class="viewcode-block" id="PrecipationTable.validate_column_names"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipationTable.validate_column_names">[docs]</a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;columnNames&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="PrecipationTable.validate_column_names"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipationTable.validate_column_names">[docs]</a>    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;columnNames&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">validate_column_names</span><span class="p">(</span><span class="bp">cls</span><span class="p">:</span> <span class="n">PrecipationTable</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Validates the column names in the response from NOAA&#39;s ERDDAP server.</span>
 
@@ -267,7 +267,7 @@
                 <span class="p">)</span>
         <span class="k">return</span> <span class="n">values</span></div>
 
-<div class="viewcode-block" id="PrecipationTable.get_datums"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipationTable.get_datums">[docs]</a>    <span class="k">def</span> <span class="nf">get_datums</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PrecipitationDatum</span><span class="p">]:</span>
+<div class="viewcode-block" id="PrecipationTable.get_datums"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipationTable.get_datums">[docs]</a>    <span class="k">def</span> <span class="nf">get_datums</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PrecipitationDatum</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the precipitation datums from the table.</span>
 
 <span class="sd">        :return: list of precipitation datums</span>
@@ -285,7 +285,7 @@
         <span class="k">return</span> <span class="n">datums</span></div></div>
 
 
-<div class="viewcode-block" id="PrecipitationResponse"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.PrecipitationResponse">[docs]</a><span class="k">class</span> <span class="nc">PrecipitationResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="PrecipitationResponse"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipitationResponse">[docs]</a><span class="k">class</span> <span class="nc">PrecipitationResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;This class contains the response from NOAA&#39;s ERDDAP server.</span>
 
 <span class="sd">    :param BaseModel: pydantic base model</span>
@@ -299,7 +299,7 @@
     <span class="k">return</span> <span class="s2">&quot;https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05.json&quot;</span>
 
 
-<div class="viewcode-block" id="get_precipitation"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipation.get_precipitation">[docs]</a><span class="k">def</span> <span class="nf">get_precipitation</span><span class="p">(</span>
+<div class="viewcode-block" id="get_precipitation_table"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.get_precipitation_table">[docs]</a><span class="k">def</span> <span class="nf">get_precipitation_table</span><span class="p">(</span>
     <span class="n">latitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">longitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">,</span>
@@ -338,6 +338,35 @@
 
     <span class="n">response</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">PrecipitationResponse</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_precipitation_data"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.get_precipitation_data">[docs]</a><span class="k">def</span> <span class="nf">get_precipitation_data</span><span class="p">(</span>
+    <span class="n">latitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">longitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PrecipitationDatum</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get precipitation data from NOAA&#39;s ERDDAP server.</span>
+
+<span class="sd">    :param latitude: latitude of the location</span>
+<span class="sd">    :type latitude: float</span>
+<span class="sd">    :param longitude: longitude of the location</span>
+<span class="sd">    :type longitude: float</span>
+<span class="sd">    :param start_date: start date of the data</span>
+<span class="sd">    :type start_date: datetime.date</span>
+<span class="sd">    :param end_date: end date of the data</span>
+<span class="sd">    :type end_date: datetime.date</span>
+<span class="sd">    :return: list of precipitation datums</span>
+<span class="sd">    :rtype: List[PrecipitationDatum]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">get_precipitation_table</span><span class="p">(</span>
+        <span class="n">latitude</span><span class="o">=</span><span class="n">latitude</span><span class="p">,</span>
+        <span class="n">longitude</span><span class="o">=</span><span class="n">longitude</span><span class="p">,</span>
+        <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span>
+        <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">get_datums</span><span class="p">()</span></div>
 </pre></div>
 
            </div>
