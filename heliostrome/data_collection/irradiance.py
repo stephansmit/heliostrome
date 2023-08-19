@@ -4,6 +4,7 @@ from pvlib.iotools import get_pvgis_tmy, get_pvgis_hourly
 from pandas import date_range
 from pydantic import BaseModel
 import pandas as pd
+from functools import cache
 from heliostrome.models.location import Location
 
 
@@ -127,6 +128,7 @@ def get_irradiance_hourly(
     return [IrradianceHourlyDatum(**item) for item in data]
 
 
+@cache
 def get_irradiance_daily(
     location: Location, start_year: int, end_year: int
 ) -> List[IrradianceDailyDatum]:

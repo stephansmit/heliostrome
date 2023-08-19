@@ -1,7 +1,8 @@
-from typing import List
+from typing import List, Literal
 from pydantic import BaseModel, computed_field
 from datetime import datetime
 import pandas as pd
+import altair as alt
 from heliostrome.models.location import Location
 from heliostrome.data_collection.etref import get_etref_daily, EtRefDailyDatum
 from heliostrome.data_collection.precipitation import (
@@ -69,13 +70,27 @@ class ClimateData(BaseModel):
         ]
         super().__init__(climate_daily=climate_daily)
 
+    def plot_data(
+        self,
+        y_axis: Literal[
+            "etref_mm", "precip_mm", "temp_air_max_c", "temp_air_min_c"
+        ] = "etref_mm",
+    ):
+        records = [datum.model_dump() for datum in self.climate_daily]
+        df = pd.DataFrame(data=records)
+        max_y = 1.1 * df[y_axis].max()
+        return (
+            alt.Chart(df)
+            .mark_bar()
+            .encode(x="date", y=alt.Y(y_axis, scale=alt.Scale(domain=(0, max_y))))
+            .properties(width=800, height=300)
+            .interactive(bind_y=False)
+        )
+
 
 # location = Location(latitude=45.0917, longitude=5.1221)
-# start_date = datetime(2016, 1, 1, 0).date()
-# end_date = datetime(2016, 2, 1, 0).date()
+# start_date = datetime(2005, 1, 1, 0).date()
+# end_date = datetime(2016, 1, 1, 0).date()
 
 
 # data = ClimateData(location=location, start_date=start_date, end_date=end_date)
-
-# data = ClimateData(climate_daily=[datum])
-# data.aquacrop_input

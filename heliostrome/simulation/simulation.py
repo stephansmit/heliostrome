@@ -34,3 +34,5 @@ model = AquaCropModel(
 )
 
 model.run_model(till_termination=True)
+
+model

@@ -7,6 +7,7 @@ from requests import Session
 from datetime import datetime
 from heliostrome.models.location import Location
 import pytz
+from functools import cache
 
 
 class PrecipitationDailyDatum(BaseModel):
@@ -169,6 +170,7 @@ def get_precipitation_table(
     return PrecipitationResponse.model_validate_json(response.text)
 
 
+@cache
 def get_precipitation_data(
     location: Location,
     start_date: datetime.date,
