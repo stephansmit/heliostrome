@@ -47,7 +47,22 @@ class SoilLayer(BaseModel):
         return 100 - self.clay_value - self.sand_value
 
     @property
-    def soil_type(self):
+    def soil_type(
+        self,
+    ) -> Literal[
+        "Sand",
+        "LoamySand",
+        "SandyLoam",
+        "Loam",
+        "SiltLoam",
+        "Silt",
+        "SandyClayLoam",
+        "ClayLoam",
+        "SiltyClayLoam",
+        "SandyClay",
+        "SiltClay",
+        "Clay",
+    ]:
         return get_soil_textural_class(self.sand_value, self.clay_value)
 
 
@@ -76,7 +91,22 @@ class SoilDatum(BaseModel):
         return sum([layer.weight * layer.sand_value for layer in self.layers]) / 100
 
     @property
-    def soil_type(self):
+    def soil_type(
+        self,
+    ) -> Literal[
+        "Sand",
+        "LoamySand",
+        "SandyLoam",
+        "Loam",
+        "SiltLoam",
+        "Silt",
+        "SandyClayLoam",
+        "ClayLoam",
+        "SiltyClayLoam",
+        "SandyClay",
+        "SiltClay",
+        "Clay",
+    ]:
         return get_soil_textural_class(self.sand_value, self.clay_value)
 
 

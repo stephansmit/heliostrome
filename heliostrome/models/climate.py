@@ -42,7 +42,8 @@ class ClimateData(BaseModel):
             axis="columns",
         )
         df.drop("etref_mm", axis="columns", inplace=True)
-        return df
+        df["Date"] = df["Date"].dt.tz_convert(None)
+        return df[["MinTemp", "MaxTemp", "Precipitation", "ReferenceET", "Date"]]
 
     def __init__(
         self, location: Location, start_date: datetime.date, end_date: datetime.date
