@@ -4,6 +4,7 @@ from pvlib.iotools import get_pvgis_tmy, get_pvgis_hourly
 from pandas import date_range
 from pydantic import BaseModel
 import pandas as pd
+from heliostrome.models.location import Location
 
 
 class IrradianceDatumTMY(BaseModel):
@@ -38,9 +39,7 @@ class IrradianceDailyDatum(BaseModel):
     altitude_m: float
 
 
-def get_irradiance_tmy(
-    longitude: float, latitude: float, year: int
-) -> List[IrradianceDatumTMY]:
+def get_irradiance_tmy(location: Location, year: int) -> List[IrradianceDatumTMY]:
     """Gets the irradiance data for a given location and year.
 
     :param longitude: longitude of the location
@@ -54,8 +53,8 @@ def get_irradiance_tmy(
     """
 
     df, _, _, _ = get_pvgis_tmy(
-        latitude,
-        longitude,
+        location.latitude,
+        location.longitude,
         outputformat="csv",
         usehorizon=True,
         userhorizon=None,
@@ -87,7 +86,7 @@ def get_irradiance_tmy(
 
 
 def get_irradiance_hourly(
-    longitude: float, latitude: float, start_year: int, end_year: int
+    location: Location, start_year: int, end_year: int
 ) -> List[IrradianceHourlyDatum]:
     """Gets the irradiance data for a given location and year.
 
@@ -101,8 +100,8 @@ def get_irradiance_hourly(
     """
 
     df, metadata, _ = get_pvgis_hourly(
-        latitude,
-        longitude,
+        location.latitude,
+        location.longitude,
         start=start_year,
         end=end_year,
         components=False,
@@ -129,10 +128,10 @@ def get_irradiance_hourly(
 
 
 def get_irradiance_daily(
-    longitude: float, latitude: float, start_year: int, end_year: int
+    location: Location, start_year: int, end_year: int
 ) -> List[IrradianceDailyDatum]:
     hourly_data = get_irradiance_hourly(
-        longitude=longitude, latitude=latitude, start_year=start_year, end_year=end_year
+        location=location, start_year=start_year, end_year=end_year
     )
     df_hourly = pd.DataFrame([item.model_dump() for item in hourly_data]).set_index(
         "time"

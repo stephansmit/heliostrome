@@ -13,9 +13,10 @@ from heliostrome.data_collection.irradiance import (
     IrradianceDailyDatum,
     get_irradiance_daily,
 )
+from heliostrome.models.location import Location
 
 
-class EtRefDatum(IrradianceDailyDatum):
+class EtRefDailyDatum(IrradianceDailyDatum):
     @property
     def wind_speed_2m_ms(self):
         """Wind speed at 2m (m/s)"""
@@ -62,7 +63,7 @@ class EtRefDatum(IrradianceDailyDatum):
         return psy_const(self._pascal_to_kpa(alt2pres(self.altitude_m)))
 
     @property
-    def etref_mmday(self):
+    def etref_mm(self):
         """Reference evapotranspiration (mm/day)"""
         return fao56_penman_monteith(
             net_rad=self.poa_global_mjm2,
@@ -79,12 +80,11 @@ class EtRefDatum(IrradianceDailyDatum):
 
 
 def get_etref_daily(
-    longitude: float, latitude: float, start_year: int, end_year: int
-) -> List[EtRefDatum]:
+    location: Location, start_year: int, end_year: int
+) -> List[EtRefDailyDatum]:
     daily_date = get_irradiance_daily(
-        longitude=longitude,
-        latitude=latitude,
+        location=location,
         start_year=start_year,
         end_year=end_year,
     )
-    return [EtRefDatum(**datum.model_dump()) for datum in daily_date]
+    return [EtRefDailyDatum(**datum.model_dump()) for datum in daily_date]

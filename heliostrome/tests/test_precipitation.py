@@ -2,9 +2,10 @@ import requests_mock
 from datetime import datetime
 from heliostrome.data_collection.precipitation import get_precipitation_data
 from requests_mock import Mocker
+from heliostrome.models.location import Location
 
-latitude = -18.6697
-longitude = 35.5273
+
+location = Location(latitude=48.0917, longitude=5.1221)
 start_date_str = "2019-01-01"
 end_date_str = "2019-01-02"
 
@@ -18,8 +19,7 @@ def test_get_precipitation_data():
             mock_response_text = f.read()
         m.get(requests_mock.ANY, text=mock_response_text)
         precipitation = get_precipitation_data(
-            latitude=latitude,
-            longitude=longitude,
+            location=location,
             start_date=start_date,
             end_date=end_date,
         )

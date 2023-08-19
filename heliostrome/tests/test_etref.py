@@ -1,23 +1,24 @@
 from datetime import datetime
-from heliostrome.data_collection.etref import get_etref_daily, EtRefDatum
+from heliostrome.data_collection.etref import get_etref_daily, EtRefDailyDatum
+from heliostrome.models.location import Location
 
-start_datetime = datetime(2005, 1, 1, 0)
-end_datetime = datetime(2016, 1, 1, 0)
-start_year = start_datetime.year
-end_year = end_datetime.year
+start_date = datetime(2005, 1, 1, 0).date()
+end_date = datetime(2016, 1, 1, 0).date()
+start_year = start_date.year
+end_year = end_date.year
 
 longitude = 5.1221
-latitude = 52.0917
+latitude = 48.0917
+location = Location(longitude=longitude, latitude=latitude)
 
 
 def test_get_etref_daily():
     etref = get_etref_daily(
-        longitude=longitude,
-        latitude=latitude,
-        start_year=start_datetime.year,
-        end_year=end_datetime.year,
+        location=location,
+        start_year=start_date.year,
+        end_year=end_date.year,
     )
-    assert isinstance(etref[0],EtRefDatum)
+    assert isinstance(etref[0], EtRefDailyDatum)
     assert len(etref) == 4383
     assert etref[0].time.year == 2005
     assert etref[0].time.hour == 0

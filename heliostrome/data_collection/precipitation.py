@@ -5,9 +5,11 @@ from urllib.parse import quote
 from requests.adapters import HTTPAdapter, Retry
 from requests import Session
 from datetime import datetime
+from heliostrome.models.location import Location
+import pytz
 
 
-class PrecipitationDatum(BaseModel):
+class PrecipitationDailyDatum(BaseModel):
     """This class contains the data for a precipitation datum.
 
     :param BaseModel: pydantic base model
@@ -20,10 +22,14 @@ class PrecipitationDatum(BaseModel):
     latitude: float
     longitude: float
     time: datetime
-    precip: float
+    precip_mm: float
 
-    @field_validator("precip")
-    def validate_precip(cls: PrecipitationDatum, value: float) -> float:
+    @property
+    def date(self) -> datetime.date:
+        return self.time.date()
+
+    @field_validator("precip_mm")
+    def validate_precip_mm(cls: PrecipitationDailyDatum, value: float) -> float:
         """Validates the precipitation value.
 
         :param cls: _description_
@@ -76,7 +82,7 @@ class PrecipationTable(BaseModel):
                 )
         return values
 
-    def get_datums(self) -> List[PrecipitationDatum]:
+    def get_datums(self) -> List[PrecipitationDailyDatum]:
         """Get the precipitation datums from the table.
 
         :return: list of precipitation datums
@@ -84,11 +90,13 @@ class PrecipationTable(BaseModel):
         """
         datums = []
         for row in self.rows:
-            datum = PrecipitationDatum(
+            datum = PrecipitationDailyDatum(
                 latitude=row[1],
                 longitude=row[2],
-                time=datetime.strptime(row[0], "%Y-%m-%dT%H:%M:%SZ"),
-                precip=row[3],
+                time=datetime.strptime(row[0], "%Y-%m-%dT%H:%M:%SZ").replace(
+                    tzinfo=pytz.UTC
+                ),
+                precip_mm=row[3],
             )
             datums.append(datum)
         return datums
@@ -106,6 +114,19 @@ class PrecipitationResponse(BaseModel):
 
 def _get_precipitation_url():
     return "https://coastwatch.pfeg.noaa.gov/erddap/griddap/chirps20GlobalDailyP05.json"
+
+
+def _get_precipitation_url_with_param(
+    start_date_str: str, end_date_str: str, latitude: float, longitude: float
+) -> str:
+    base_url = _get_precipitation_url()
+    query_param = (
+        f"precip[({start_date_str}):1:({end_date_str})]"
+        + f"[({latitude}):1:({latitude})][({longitude}):1:({longitude})]"
+    )
+    encoded_query_param = quote(query_param, safe="():")
+    url = f"{base_url}?{encoded_query_param}"
+    return url
 
 
 def get_precipitation_table(
@@ -130,14 +151,13 @@ def get_precipitation_table(
 
     start_date_str = start_date.strftime("%Y-%m-%d")
     end_date_str = end_date.strftime("%Y-%m-%dT%H:%M:%SZ")
-    base_url = _get_precipitation_url()
 
-    query_param = (
-        f"precip[({start_date_str}):1:({end_date_str})]"
-        + f"[({latitude}):1:({latitude})][({longitude}):1:({longitude})]"
+    url = _get_precipitation_url_with_param(
+        start_date_str=start_date_str,
+        end_date_str=end_date_str,
+        latitude=latitude,
+        longitude=longitude,
     )
-    encoded_query_param = quote(query_param, safe="():")
-    url = f"{base_url}?{encoded_query_param}"
 
     s = Session()
     retries = Retry(
@@ -150,11 +170,10 @@ def get_precipitation_table(
 
 
 def get_precipitation_data(
-    latitude: float,
-    longitude: float,
+    location: Location,
     start_date: datetime.date,
     end_date: datetime.date,
-) -> List[PrecipitationDatum]:
+) -> List[PrecipitationDailyDatum]:
     """Get precipitation data from NOAA's ERDDAP server.
 
     :param latitude: latitude of the location
@@ -170,8 +189,8 @@ def get_precipitation_data(
     """
 
     response = get_precipitation_table(
-        latitude=latitude,
-        longitude=longitude,
+        latitude=location.latitude,
+        longitude=location.longitude,
         start_date=start_date,
         end_date=end_date,
     )
