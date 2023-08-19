@@ -58,12 +58,17 @@ class HeliostromeCrop(BaseModel):
     Kcb: float = Field(
         description="Crop coefficient when canopy growth is complete but prior to senescence"
     )
-    LagAer: Optional[float] = None
+    LagAer: Optional[float] = Field(
+        default=None,
+        description="number of days lag before aeration stress affects crop growth",
+    )
     Maturity: float = Field(
         description="Growing degree/Calendar days from sowing to maturity"
     )
     MaturityCD: Optional[float] = None
-    MaxRooting: float
+    MaxRooting: float = Field(
+        description="growing degree/Calendar days from sowing to maximum rooting"
+    )
     MaxRootingCD: Optional[float] = None
     PlantMethod: float = Field(
         description="planting method (0 = Transplanted, 1 =  Sown)"
