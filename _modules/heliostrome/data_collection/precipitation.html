@@ -199,7 +199,7 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">heliostrome.models.location</span> <span class="kn">import</span> <span class="n">Location</span>
 <span class="kn">import</span> <span class="nn">pytz</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cache</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 
 
 <div class="viewcode-block" id="PrecipitationDailyDatum"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipitationDailyDatum">[docs]</a><span class="k">class</span> <span class="nc">PrecipitationDailyDatum</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -362,7 +362,7 @@
     <span class="k">return</span> <span class="n">PrecipitationResponse</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_precipitation_data"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.get_precipitation_data">[docs]</a><span class="nd">@cache</span>
+<div class="viewcode-block" id="get_precipitation_data"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.get_precipitation_data">[docs]</a><span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">get_precipitation_data</span><span class="p">(</span>
     <span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span>
     <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">,</span>
