@@ -1,5 +1,4 @@
 from pydantic import BaseModel, Field, computed_field
-from typing import Optional
 from pvlib.location import lookup_altitude
 
 
