@@ -210,98 +210,8 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </section>
-<section id="module-heliostrome.models.climate">
-<span id="heliostrome-models-climate-module"></span><h2>heliostrome.models.climate module<a class="headerlink" href="#module-heliostrome.models.climate" title="Permalink to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.models.climate.</span></span><span class="sig-name descname"><span class="pre">ClimateDailyDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_min_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_max_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precip_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etref_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/models/climate.html#ClimateDailyDatum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
-validated to form a valid model.</p>
-<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
-allow <cite>self</cite> as a field name.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.date">
-<span class="sig-name descname"><span class="pre">date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.date" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.etref_clipped_mm">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">etref_clipped_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.etref_clipped_mm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.etref_mm">
-<span class="sig-name descname"><span class="pre">etref_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.etref_mm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.model_config">
-<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.model_config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.model_fields">
-<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'date':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True),</span> <span class="pre">'etref_mm':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'precip_mm':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_max_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_min_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.model_fields" title="Permalink to this definition">¶</a></dt>
-<dd><p>Metadata about the fields defined on the model,
-mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
-<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.precip_mm">
-<span class="sig-name descname"><span class="pre">precip_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.precip_mm" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.temp_air_max_c">
-<span class="sig-name descname"><span class="pre">temp_air_max_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.temp_air_max_c" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.temp_air_min_c">
-<span class="sig-name descname"><span class="pre">temp_air_min_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.temp_air_min_c" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.models.climate.</span></span><span class="sig-name descname"><span class="pre">ClimateData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location:</span> <span class="pre">~heliostrome.models.location.Location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date:</span> <span class="pre">~.datetime.date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date:</span> <span class="pre">~.datetime.date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/models/climate.html#ClimateData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.models.climate.ClimateData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
-validated to form a valid model.</p>
-<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
-allow <cite>self</cite> as a field name.</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.aquacrop_input">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">aquacrop_input</span></span><a class="headerlink" href="#heliostrome.models.climate.ClimateData.aquacrop_input" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.climate_daily">
-<span class="sig-name descname"><span class="pre">climate_daily</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.models.climate.ClimateDailyDatum" title="heliostrome.models.climate.ClimateDailyDatum"><span class="pre">ClimateDailyDatum</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateData.climate_daily" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.model_config">
-<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateData.model_config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.model_fields">
-<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'climate_daily':</span> <span class="pre">FieldInfo(annotation=List[heliostrome.models.climate.ClimateDailyDatum],</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateData.model_fields" title="Permalink to this definition">¶</a></dt>
-<dd><p>Metadata about the fields defined on the model,
-mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
-<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="heliostrome-models-climate-module">
+<h2>heliostrome.models.climate module<a class="headerlink" href="#heliostrome-models-climate-module" title="Permalink to this heading">¶</a></h2>
 </section>
 <section id="module-heliostrome.models.location">
 <span id="heliostrome-models-location-module"></span><h2>heliostrome.models.location module<a class="headerlink" href="#module-heliostrome.models.location" title="Permalink to this heading">¶</a></h2>
@@ -342,6 +252,359 @@ allow <cite>self</cite> as a field name.</p>
 mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
 <p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
 </dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-heliostrome.models.simulationresults">
+<span id="heliostrome-models-simulationresults-module"></span><h2>heliostrome.models.simulationresults module<a class="headerlink" href="#module-heliostrome.models.simulationresults" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.models.simulationresults.</span></span><span class="sig-name descname"><span class="pre">CropGrowth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">season_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gdd_cum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">canopy_cover</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">canopy_cover_ns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">biomass</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">biomass_ns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">harvest_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">harvest_index_adj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yield_</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/models/simulationresults.html#CropGrowth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.biomass">
+<span class="sig-name descname"><span class="pre">biomass</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.biomass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.biomass_ns">
+<span class="sig-name descname"><span class="pre">biomass_ns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.biomass_ns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.canopy_cover">
+<span class="sig-name descname"><span class="pre">canopy_cover</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.canopy_cover" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.canopy_cover_ns">
+<span class="sig-name descname"><span class="pre">canopy_cover_ns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.canopy_cover_ns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.dap">
+<span class="sig-name descname"><span class="pre">dap</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.dap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.gdd">
+<span class="sig-name descname"><span class="pre">gdd</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.gdd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.gdd_cum">
+<span class="sig-name descname"><span class="pre">gdd_cum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.gdd_cum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.harvest_index">
+<span class="sig-name descname"><span class="pre">harvest_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.harvest_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.harvest_index_adj">
+<span class="sig-name descname"><span class="pre">harvest_index_adj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.harvest_index_adj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'biomass':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='biomass</span> <span class="pre">[Mg/ha]'),</span> <span class="pre">'biomass_ns':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='biomass</span> <span class="pre">no</span> <span class="pre">stress</span> <span class="pre">[Mg/ha]'),</span> <span class="pre">'canopy_cover':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='canopy</span> <span class="pre">cover</span> <span class="pre">[m2/m2]',</span> <span class="pre">metadata=[Ge(ge=0),</span> <span class="pre">Le(le=1)]),</span> <span class="pre">'canopy_cover_ns':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='canopy</span> <span class="pre">cover</span> <span class="pre">no</span> <span class="pre">stress</span> <span class="pre">[m2/m2]',</span> <span class="pre">metadata=[Ge(ge=0),</span> <span class="pre">Le(le=1)]),</span> <span class="pre">'dap':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True,</span> <span class="pre">description='days</span> <span class="pre">after</span> <span class="pre">planting</span> <span class="pre">[day]'),</span> <span class="pre">'gdd':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='growing</span> <span class="pre">degree</span> <span class="pre">days</span> <span class="pre">[degCday]'),</span> <span class="pre">'gdd_cum':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='cumulative</span> <span class="pre">growing</span> <span class="pre">degree</span> <span class="pre">days</span> <span class="pre">[degCday]'),</span> <span class="pre">'harvest_index':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='harvest</span> <span class="pre">index</span> <span class="pre">[%]'),</span> <span class="pre">'harvest_index_adj':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='adjusted</span> <span class="pre">harvest</span> <span class="pre">index</span> <span class="pre">[%]'),</span> <span class="pre">'season_counter':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True),</span> <span class="pre">'time_step_counter':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True),</span> <span class="pre">'yield_':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'z_root':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='root</span> <span class="pre">zone</span> <span class="pre">depth</span> <span class="pre">[m]')}</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.model_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.season_counter">
+<span class="sig-name descname"><span class="pre">season_counter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.season_counter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.time_step_counter">
+<span class="sig-name descname"><span class="pre">time_step_counter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.time_step_counter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.yield_">
+<span class="sig-name descname"><span class="pre">yield_</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.yield_" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.CropGrowth.z_root">
+<span class="sig-name descname"><span class="pre">z_root</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.CropGrowth.z_root" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.SimulationResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.models.simulationresults.</span></span><span class="sig-name descname"><span class="pre">SimulationResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Season</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extra_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/models/simulationresults.html#SimulationResult"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.models.simulationresults.SimulationResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.SimulationResult.crop_type">
+<span class="sig-name descname"><span class="pre">crop_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.SimulationResult.crop_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.SimulationResult.harvest_date">
+<span class="sig-name descname"><span class="pre">harvest_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.SimulationResult.harvest_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.SimulationResult.harvest_date_step">
+<span class="sig-name descname"><span class="pre">harvest_date_step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.SimulationResult.harvest_date_step" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.SimulationResult.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.SimulationResult.model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.SimulationResult.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'crop_type':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True,</span> <span class="pre">alias='crop</span> <span class="pre">Type',</span> <span class="pre">alias_priority=2),</span> <span class="pre">'harvest_date':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True,</span> <span class="pre">alias='Harvest</span> <span class="pre">Date</span> <span class="pre">(YYYY/MM/DD)',</span> <span class="pre">alias_priority=2),</span> <span class="pre">'harvest_date_step':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True,</span> <span class="pre">alias='Harvest</span> <span class="pre">Date</span> <span class="pre">(Step)',</span> <span class="pre">alias_priority=2),</span> <span class="pre">'season':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True,</span> <span class="pre">alias='Season',</span> <span class="pre">alias_priority=2),</span> <span class="pre">'seasonal_irrigation_mm':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">alias='Seasonal</span> <span class="pre">irrigation</span> <span class="pre">(mm)',</span> <span class="pre">alias_priority=2),</span> <span class="pre">'yield_tonneha':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">alias='Yield</span> <span class="pre">(tonne/ha)',</span> <span class="pre">alias_priority=2)}</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.SimulationResult.model_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.SimulationResult.season">
+<span class="sig-name descname"><span class="pre">season</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.SimulationResult.season" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.SimulationResult.seasonal_irrigation_mm">
+<span class="sig-name descname"><span class="pre">seasonal_irrigation_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.SimulationResult.seasonal_irrigation_mm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.SimulationResult.yield_tonneha">
+<span class="sig-name descname"><span class="pre">yield_tonneha</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.SimulationResult.yield_tonneha" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.models.simulationresults.</span></span><span class="sig-name descname"><span class="pre">WaterFlux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">season_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Wr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_gw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_storage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IrrDay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Infl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Runoff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DeepPerc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CR</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Gwin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Es</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">EsPot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Tr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TrPot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/models/simulationresults.html#WaterFlux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.CR">
+<span class="sig-name descname"><span class="pre">CR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.CR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.DeepPerc">
+<span class="sig-name descname"><span class="pre">DeepPerc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.DeepPerc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.Es">
+<span class="sig-name descname"><span class="pre">Es</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.Es" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.EsPot">
+<span class="sig-name descname"><span class="pre">EsPot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.EsPot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.Gwin">
+<span class="sig-name descname"><span class="pre">Gwin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.Gwin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.Infl">
+<span class="sig-name descname"><span class="pre">Infl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.Infl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.IrrDay">
+<span class="sig-name descname"><span class="pre">IrrDay</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.IrrDay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.Runoff">
+<span class="sig-name descname"><span class="pre">Runoff</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.Runoff" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.Tr">
+<span class="sig-name descname"><span class="pre">Tr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.Tr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.TrPot">
+<span class="sig-name descname"><span class="pre">TrPot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.TrPot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.Wr">
+<span class="sig-name descname"><span class="pre">Wr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.Wr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.dap">
+<span class="sig-name descname"><span class="pre">dap</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.dap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'CR':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='capillary</span> <span class="pre">rise</span> <span class="pre">[mm/day]'),</span> <span class="pre">'DeepPerc':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='deep</span> <span class="pre">percolation</span> <span class="pre">[mm/day]'),</span> <span class="pre">'Es':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='surface</span> <span class="pre">evaporation</span> <span class="pre">current</span> <span class="pre">day</span> <span class="pre">[mm/day]'),</span> <span class="pre">'EsPot':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='Potential</span> <span class="pre">surface</span> <span class="pre">evaporation</span> <span class="pre">current</span> <span class="pre">day</span> <span class="pre">[mm/day]'),</span> <span class="pre">'Gwin':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='ground</span> <span class="pre">water</span> <span class="pre">inflow'),</span> <span class="pre">'Infl':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='infiltration</span> <span class="pre">so</span> <span class="pre">far'),</span> <span class="pre">'IrrDay':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='irrigation</span> <span class="pre">on</span> <span class="pre">current</span> <span class="pre">day'),</span> <span class="pre">'Runoff':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='surface</span> <span class="pre">runoff</span> <span class="pre">[mm/day]'),</span> <span class="pre">'Tr':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='daily</span> <span class="pre">crop</span> <span class="pre">transpiration</span> <span class="pre">[mm/day]'),</span> <span class="pre">'TrPot':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='daily</span> <span class="pre">potential</span> <span class="pre">crop</span> <span class="pre">transpiration</span> <span class="pre">[mm/day]'),</span> <span class="pre">'Wr':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">root</span> <span class="pre">zone</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'dap':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='days</span> <span class="pre">after</span> <span class="pre">planting</span> <span class="pre">[day]'),</span> <span class="pre">'season_counter':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'surface_storage':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'time_step_counter':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'z_gw':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='ground</span> <span class="pre">water</span> <span class="pre">depth</span> <span class="pre">[m]')}</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.model_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.season_counter">
+<span class="sig-name descname"><span class="pre">season_counter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.season_counter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.surface_storage">
+<span class="sig-name descname"><span class="pre">surface_storage</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.surface_storage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.time_step_counter">
+<span class="sig-name descname"><span class="pre">time_step_counter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.time_step_counter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterFlux.z_gw">
+<span class="sig-name descname"><span class="pre">z_gw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterFlux.z_gw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.models.simulationresults.</span></span><span class="sig-name descname"><span class="pre">WaterStorage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_step_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">growing_season</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dap</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th4</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th5</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th6</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th7</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th8</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th9</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th10</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th11</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">th12</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/models/simulationresults.html#WaterStorage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.dap">
+<span class="sig-name descname"><span class="pre">dap</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.dap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.growing_season">
+<span class="sig-name descname"><span class="pre">growing_season</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.growing_season" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'dap':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='days</span> <span class="pre">after</span> <span class="pre">planting'),</span> <span class="pre">'growing_season':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'th1':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">1</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th10':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">10</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th11':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">11</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th12':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">12</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th2':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">2</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th3':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">3</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th4':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">4</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th5':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">5</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th6':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">6</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th7':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">7</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th8':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">8</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'th9':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True,</span> <span class="pre">description='water</span> <span class="pre">content</span> <span class="pre">of</span> <span class="pre">soil</span> <span class="pre">compartment</span> <span class="pre">9</span> <span class="pre">[m3/m3]'),</span> <span class="pre">'time_step_counter':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.model_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th1">
+<span class="sig-name descname"><span class="pre">th1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th10">
+<span class="sig-name descname"><span class="pre">th10</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th11">
+<span class="sig-name descname"><span class="pre">th11</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th12">
+<span class="sig-name descname"><span class="pre">th12</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th2">
+<span class="sig-name descname"><span class="pre">th2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th3">
+<span class="sig-name descname"><span class="pre">th3</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th4">
+<span class="sig-name descname"><span class="pre">th4</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th5">
+<span class="sig-name descname"><span class="pre">th5</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th6">
+<span class="sig-name descname"><span class="pre">th6</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th7">
+<span class="sig-name descname"><span class="pre">th7</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th8">
+<span class="sig-name descname"><span class="pre">th8</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.th9">
+<span class="sig-name descname"><span class="pre">th9</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.th9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.simulationresults.WaterStorage.time_step_counter">
+<span class="sig-name descname"><span class="pre">time_step_counter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.simulationresults.WaterStorage.time_step_counter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

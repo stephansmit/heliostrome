@@ -196,6 +196,7 @@
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">date_range</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">cache</span>
 <span class="kn">from</span> <span class="nn">heliostrome.models.location</span> <span class="kn">import</span> <span class="n">Location</span>
 
 
@@ -319,7 +320,8 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">IrradianceHourlyDatum</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="get_irradiance_daily"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_daily">[docs]</a><span class="k">def</span> <span class="nf">get_irradiance_daily</span><span class="p">(</span>
+<div class="viewcode-block" id="get_irradiance_daily"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_daily">[docs]</a><span class="nd">@cache</span>
+<span class="k">def</span> <span class="nf">get_irradiance_daily</span><span class="p">(</span>
     <span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceDailyDatum</span><span class="p">]:</span>
     <span class="n">hourly_data</span> <span class="o">=</span> <span class="n">get_irradiance_hourly</span><span class="p">(</span>

@@ -20,6 +20,14 @@ heliostrome.models.location module
    :undoc-members:
    :show-inheritance:
 
+heliostrome.models.simulationresults module
+-------------------------------------------
+
+.. automodule:: heliostrome.models.simulationresults
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
