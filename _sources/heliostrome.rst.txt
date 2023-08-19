@@ -9,6 +9,7 @@ Subpackages
 
    heliostrome.bin
    heliostrome.data_collection
+   heliostrome.models
 
 Submodules
 ----------

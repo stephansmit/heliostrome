@@ -101,6 +101,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.bin.html">heliostrome.bin package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.data_collection.html">heliostrome.data_collection package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.models.html">heliostrome.models package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#submodules">Submodules</a></li>
@@ -195,6 +196,7 @@
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">date_range</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">heliostrome.models.location</span> <span class="kn">import</span> <span class="n">Location</span>
 
 
 <div class="viewcode-block" id="IrradianceDatumTMY"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY">[docs]</a><span class="k">class</span> <span class="nc">IrradianceDatumTMY</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
@@ -229,9 +231,7 @@
     <span class="n">altitude_m</span><span class="p">:</span> <span class="nb">float</span></div>
 
 
-<div class="viewcode-block" id="get_irradiance_tmy"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_tmy">[docs]</a><span class="k">def</span> <span class="nf">get_irradiance_tmy</span><span class="p">(</span>
-    <span class="n">longitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">latitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">year</span><span class="p">:</span> <span class="nb">int</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">]:</span>
+<div class="viewcode-block" id="get_irradiance_tmy"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_tmy">[docs]</a><span class="k">def</span> <span class="nf">get_irradiance_tmy</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">year</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the irradiance data for a given location and year.</span>
 
 <span class="sd">    :param longitude: longitude of the location</span>
@@ -245,8 +245,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">df</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_pvgis_tmy</span><span class="p">(</span>
-        <span class="n">latitude</span><span class="p">,</span>
-        <span class="n">longitude</span><span class="p">,</span>
+        <span class="n">location</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+        <span class="n">location</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
         <span class="n">outputformat</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span>
         <span class="n">usehorizon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">userhorizon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -278,7 +278,7 @@
 
 
 <div class="viewcode-block" id="get_irradiance_hourly"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_hourly">[docs]</a><span class="k">def</span> <span class="nf">get_irradiance_hourly</span><span class="p">(</span>
-    <span class="n">longitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">latitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceHourlyDatum</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the irradiance data for a given location and year.</span>
 
@@ -292,8 +292,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">df</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_pvgis_hourly</span><span class="p">(</span>
-        <span class="n">latitude</span><span class="p">,</span>
-        <span class="n">longitude</span><span class="p">,</span>
+        <span class="n">location</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+        <span class="n">location</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
         <span class="n">start</span><span class="o">=</span><span class="n">start_year</span><span class="p">,</span>
         <span class="n">end</span><span class="o">=</span><span class="n">end_year</span><span class="p">,</span>
         <span class="n">components</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -320,10 +320,10 @@
 
 
 <div class="viewcode-block" id="get_irradiance_daily"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_daily">[docs]</a><span class="k">def</span> <span class="nf">get_irradiance_daily</span><span class="p">(</span>
-    <span class="n">longitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">latitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceDailyDatum</span><span class="p">]:</span>
     <span class="n">hourly_data</span> <span class="o">=</span> <span class="n">get_irradiance_hourly</span><span class="p">(</span>
-        <span class="n">longitude</span><span class="o">=</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="n">latitude</span><span class="p">,</span> <span class="n">start_year</span><span class="o">=</span><span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span><span class="o">=</span><span class="n">end_year</span>
+        <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">start_year</span><span class="o">=</span><span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span><span class="o">=</span><span class="n">end_year</span>
     <span class="p">)</span>
     <span class="n">df_hourly</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">hourly_data</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
         <span class="s2">&quot;time&quot;</span>

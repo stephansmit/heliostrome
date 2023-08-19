@@ -101,6 +101,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.bin.html">heliostrome.bin package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.data_collection.html">heliostrome.data_collection package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.models.html">heliostrome.models package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#submodules">Submodules</a></li>
@@ -204,9 +205,10 @@
     <span class="n">IrradianceDailyDatum</span><span class="p">,</span>
     <span class="n">get_irradiance_daily</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">heliostrome.models.location</span> <span class="kn">import</span> <span class="n">Location</span>
 
 
-<div class="viewcode-block" id="EtRefDatum"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDatum">[docs]</a><span class="k">class</span> <span class="nc">EtRefDatum</span><span class="p">(</span><span class="n">IrradianceDailyDatum</span><span class="p">):</span>
+<div class="viewcode-block" id="EtRefDailyDatum"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum">[docs]</a><span class="k">class</span> <span class="nc">EtRefDailyDatum</span><span class="p">(</span><span class="n">IrradianceDailyDatum</span><span class="p">):</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">wind_speed_2m_ms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wind speed at 2m (m/s)&quot;&quot;&quot;</span>
@@ -253,7 +255,7 @@
         <span class="k">return</span> <span class="n">psy_const</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pascal_to_kpa</span><span class="p">(</span><span class="n">alt2pres</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">altitude_m</span><span class="p">)))</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">etref_mmday</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">etref_mm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reference evapotranspiration (mm/day)&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">fao56_penman_monteith</span><span class="p">(</span>
             <span class="n">net_rad</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">poa_global_mjm2</span><span class="p">,</span>
@@ -270,15 +272,14 @@
 
 
 <div class="viewcode-block" id="get_etref_daily"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.etref.get_etref_daily">[docs]</a><span class="k">def</span> <span class="nf">get_etref_daily</span><span class="p">(</span>
-    <span class="n">longitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">latitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">EtRefDatum</span><span class="p">]:</span>
+    <span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">EtRefDailyDatum</span><span class="p">]:</span>
     <span class="n">daily_date</span> <span class="o">=</span> <span class="n">get_irradiance_daily</span><span class="p">(</span>
-        <span class="n">longitude</span><span class="o">=</span><span class="n">longitude</span><span class="p">,</span>
-        <span class="n">latitude</span><span class="o">=</span><span class="n">latitude</span><span class="p">,</span>
+        <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span>
         <span class="n">start_year</span><span class="o">=</span><span class="n">start_year</span><span class="p">,</span>
         <span class="n">end_year</span><span class="o">=</span><span class="n">end_year</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">EtRefDatum</span><span class="p">(</span><span class="o">**</span><span class="n">datum</span><span class="o">.</span><span class="n">model_dump</span><span class="p">())</span> <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">daily_date</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="p">[</span><span class="n">EtRefDailyDatum</span><span class="p">(</span><span class="o">**</span><span class="n">datum</span><span class="o">.</span><span class="n">model_dump</span><span class="p">())</span> <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">daily_date</span><span class="p">]</span></div>
 </pre></div>
 
            </div>
