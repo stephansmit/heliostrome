@@ -239,7 +239,22 @@
         <span class="k">return</span> <span class="mi">100</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">clay_value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sand_value</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">soil_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">soil_type</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span>
+        <span class="s2">&quot;Sand&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;LoamySand&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SandyLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Loam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SiltLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Silt&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SandyClayLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ClayLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SiltyClayLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SandyClay&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SiltClay&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Clay&quot;</span><span class="p">,</span>
+    <span class="p">]:</span>
         <span class="k">return</span> <span class="n">get_soil_textural_class</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sand_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clay_value</span><span class="p">)</span></div>
 
 
@@ -268,7 +283,22 @@
         <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">layer</span><span class="o">.</span><span class="n">weight</span> <span class="o">*</span> <span class="n">layer</span><span class="o">.</span><span class="n">sand_value</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">])</span> <span class="o">/</span> <span class="mi">100</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">soil_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">soil_type</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span>
+        <span class="s2">&quot;Sand&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;LoamySand&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SandyLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Loam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SiltLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Silt&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SandyClayLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ClayLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SiltyClayLoam&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SandyClay&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SiltClay&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Clay&quot;</span><span class="p">,</span>
+    <span class="p">]:</span>
         <span class="k">return</span> <span class="n">get_soil_textural_class</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sand_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">clay_value</span><span class="p">)</span></div>
 
 
