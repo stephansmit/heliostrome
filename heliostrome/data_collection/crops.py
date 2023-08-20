@@ -1,6 +1,8 @@
 from typing import List, Optional
 from aquacrop.entities.crops.crop_params import crop_params
 from pydantic import BaseModel, Field
+import pandas as pd
+import altair as alt
 
 
 class HeliostromeCrop(BaseModel):
@@ -123,12 +125,8 @@ class HeliostromeCrop(BaseModel):
     YldFormCD: Optional[float] = None
     Zmax: float = Field(description="Maximum effective rooting depth (m)")
     Zmin: float = Field(description="Minimum effective rooting depth (m)")
-    a_HI: float = Field(
-        description="harvest index crop parameter a (page 145)", ge=0.5, le=40
-    )
-    b_HI: float = Field(
-        description="harvest index crop parameter b (page 147)", ge=1, le=20
-    )
+    a_HI: float = Field(description="harvest index crop parameter a (page 145)")
+    b_HI: float = Field(description="harvest index crop parameter b (page 147)")
     dHI0: float = Field(
         description="Maximum allowable increase of harvest index above reference value"
     )
@@ -180,6 +178,9 @@ class HeliostromeCrop(BaseModel):
         description="Upper soil water depletion threshold for water stress effects on affect canopy expansion"
     )
 
+    def get_attr_for_plot(self):
+        return [k for k in self.model_dump().keys() if k != "Name"]
+
 
 def _get_aquacrop_names():
     return list(crop_params.keys())
@@ -193,3 +194,44 @@ def get_all_crop_data() -> List[HeliostromeCrop]:
 
 def get_crop_data(crop_name: str) -> HeliostromeCrop:
     return HeliostromeCrop(**crop_params[crop_name])
+
+
+class HeliostromCrops(BaseModel):
+    crops: List[HeliostromeCrop] = get_all_crop_data()
+
+    def _as_df(self):
+        records = []
+        for crop in self.crops:
+            for attr, field in crop.model_fields.items():
+                if attr != "Name":
+                    record = {"name": crop.Name}
+                    record["property"] = attr
+                    record["description"] = field.description
+                    record["value"] = getattr(crop, attr)
+
+                    records.append(record)
+
+        return pd.DataFrame.from_records(records)
+
+    def plot(self):
+        df = self._as_df()
+        attributes = self.crops[0].get_attr_for_plot()
+        input_dropdown = alt.binding_select(options=attributes, name="Property ")
+
+        selection = alt.selection_point(
+            fields=["property"], value=attributes[0], bind=input_dropdown
+        )
+
+        chart = (
+            alt.Chart(df)
+            .mark_bar()
+            .encode(
+                x=alt.X("name:N", title="Crop name"),
+                y=alt.Y("value:Q", title="Value"),
+                tooltip=["name", "value", "description"],
+            )
+            .add_params(selection)
+            .transform_filter(selection)
+            .interactive()
+        )
+        return chart
