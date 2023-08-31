@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 
 
 class CropGrowth(BaseModel):
+    time: datetime
     time_step_counter: int
     season_counter: int
     dap: int = Field(description="days after planting [day]")
@@ -30,6 +31,7 @@ class SimulationResult(BaseModel):
 
 
 class WaterFlux(BaseModel):
+    time: datetime
     time_step_counter: float
     season_counter: float
     dap: float = Field(description="days after planting [day]")
@@ -41,7 +43,7 @@ class WaterFlux(BaseModel):
     Runoff: float = Field(description="surface runoff [mm/day]")
     DeepPerc: float = Field(description="deep percolation [mm/day]")
     CR: float = Field(description="capillary rise [mm/day]")
-    Gwin: float = Field(description="ground water inflow")
+    GwIn: float = Field(description="ground water inflow")
     Es: float = Field(description="surface evaporation current day [mm/day]")
     EsPot: float = Field(
         description="Potential surface evaporation current day [mm/day]"
@@ -51,6 +53,7 @@ class WaterFlux(BaseModel):
 
 
 class WaterStorage(BaseModel):
+    time: datetime
     time_step_counter: float
     growing_season: float
     dap: float = Field(description="days after planting")
