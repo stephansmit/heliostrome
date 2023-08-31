@@ -180,8 +180,6 @@ chart = (
     .interactive(bind_y=False)
 )
 
-chart.propertieswidth=600, height=400
-chart
 
 # df = model.get_simulation_results()
 # records = df.to_dict(orient="records")
