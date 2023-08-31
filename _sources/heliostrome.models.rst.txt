@@ -4,6 +4,14 @@ heliostrome.models package
 Submodules
 ----------
 
+heliostrome.models.aquacrop\_results module
+-------------------------------------------
+
+.. automodule:: heliostrome.models.aquacrop_results
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 heliostrome.models.climate module
 ---------------------------------
 
@@ -16,14 +24,6 @@ heliostrome.models.location module
 ----------------------------------
 
 .. automodule:: heliostrome.models.location
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-heliostrome.models.simulationresults module
--------------------------------------------
-
-.. automodule:: heliostrome.models.simulationresults
    :members:
    :undoc-members:
    :show-inheritance:

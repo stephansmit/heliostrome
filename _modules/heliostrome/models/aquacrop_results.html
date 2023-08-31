@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>heliostrome.models.simulationresults &mdash; heliostrome 0.0.2 documentation</title>
+  <title>heliostrome.models.aquacrop_results &mdash; heliostrome 0.1.0 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.0.2
+                0.1.0
               </div>
             
           
@@ -174,7 +174,7 @@
         
           <li><a href="../../heliostrome.html">heliostrome</a> &raquo;</li>
         
-      <li>heliostrome.models.simulationresults</li>
+      <li>heliostrome.models.aquacrop_results</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -189,12 +189,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for heliostrome.models.simulationresults</h1><div class="highlight"><pre>
+  <h1>Source code for heliostrome.models.aquacrop_results</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
 
 
-<div class="viewcode-block" id="CropGrowth"><a class="viewcode-back" href="../../../heliostrome.models.html#heliostrome.models.simulationresults.CropGrowth">[docs]</a><span class="k">class</span> <span class="nc">CropGrowth</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="CropGrowth"><a class="viewcode-back" href="../../../heliostrome.models.html#heliostrome.models.aquacrop_results.CropGrowth">[docs]</a><span class="k">class</span> <span class="nc">CropGrowth</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
     <span class="n">time_step_counter</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">season_counter</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">dap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;days after planting [day]&quot;</span><span class="p">)</span>
@@ -212,7 +213,7 @@
     <span class="n">yield_</span><span class="p">:</span> <span class="nb">float</span></div>
 
 
-<div class="viewcode-block" id="SimulationResult"><a class="viewcode-back" href="../../../heliostrome.models.html#heliostrome.models.simulationresults.SimulationResult">[docs]</a><span class="k">class</span> <span class="nc">SimulationResult</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="SimulationResult"><a class="viewcode-back" href="../../../heliostrome.models.html#heliostrome.models.aquacrop_results.SimulationResult">[docs]</a><span class="k">class</span> <span class="nc">SimulationResult</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">season</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;Season&quot;</span><span class="p">)</span>
     <span class="n">crop_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;crop Type&quot;</span><span class="p">)</span>
     <span class="n">harvest_date_step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;Harvest Date (Step)&quot;</span><span class="p">)</span>
@@ -221,7 +222,8 @@
     <span class="n">harvest_date</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">alias</span><span class="o">=</span><span class="s2">&quot;Harvest Date (YYYY/MM/DD)&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="WaterFlux"><a class="viewcode-back" href="../../../heliostrome.models.html#heliostrome.models.simulationresults.WaterFlux">[docs]</a><span class="k">class</span> <span class="nc">WaterFlux</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="WaterFlux"><a class="viewcode-back" href="../../../heliostrome.models.html#heliostrome.models.aquacrop_results.WaterFlux">[docs]</a><span class="k">class</span> <span class="nc">WaterFlux</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
     <span class="n">time_step_counter</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">season_counter</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">dap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;days after planting [day]&quot;</span><span class="p">)</span>
@@ -233,7 +235,7 @@
     <span class="n">Runoff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;surface runoff [mm/day]&quot;</span><span class="p">)</span>
     <span class="n">DeepPerc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;deep percolation [mm/day]&quot;</span><span class="p">)</span>
     <span class="n">CR</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;capillary rise [mm/day]&quot;</span><span class="p">)</span>
-    <span class="n">Gwin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ground water inflow&quot;</span><span class="p">)</span>
+    <span class="n">GwIn</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;ground water inflow&quot;</span><span class="p">)</span>
     <span class="n">Es</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;surface evaporation current day [mm/day]&quot;</span><span class="p">)</span>
     <span class="n">EsPot</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Potential surface evaporation current day [mm/day]&quot;</span>
@@ -242,7 +244,8 @@
     <span class="n">TrPot</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;daily potential crop transpiration [mm/day]&quot;</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="WaterStorage"><a class="viewcode-back" href="../../../heliostrome.models.html#heliostrome.models.simulationresults.WaterStorage">[docs]</a><span class="k">class</span> <span class="nc">WaterStorage</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<div class="viewcode-block" id="WaterStorage"><a class="viewcode-back" href="../../../heliostrome.models.html#heliostrome.models.aquacrop_results.WaterStorage">[docs]</a><span class="k">class</span> <span class="nc">WaterStorage</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
     <span class="n">time_step_counter</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">growing_season</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">dap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;days after planting&quot;</span><span class="p">)</span>
