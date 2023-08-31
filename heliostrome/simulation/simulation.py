@@ -12,7 +12,6 @@ from heliostrome.models.aquacrop_results import (
 )
 from pydantic import BaseModel
 from typing import List
-from datetime import datetime
 from datetime import date
 import pandas as pd
 import altair as alt
