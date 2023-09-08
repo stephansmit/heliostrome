@@ -12,10 +12,10 @@ year = 2015
 
 def test_get_irradiance_tmy():
     irradiance = get_irradiance_tmy(location=location, year=year)
-    assert isinstance(irradiance[0], IrradianceDatumTMY)
-    assert len(irradiance) == 365 * 24
-    assert irradiance[0].time.year == 2015
-    assert irradiance[0].time.hour == 0
+    assert isinstance(irradiance.data[0], IrradianceDatumTMY)
+    assert len(irradiance.data) == 365 * 24
+    assert irradiance.data[0].time.year == 2015
+    assert irradiance.data[0].time.hour == 0
 
 
 def test_get_irradiance_daily():
