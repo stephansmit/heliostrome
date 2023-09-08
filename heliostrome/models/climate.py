@@ -59,7 +59,10 @@ class ClimateData(BaseModel):
             {"wind_speed_10m_ms": "windspeed", "temp_air_c": "temp_air"},
             axis="columns",
         ).set_index("time")
-        return {"weather_data": df_final, "weather_metadata": self.irradiance_data.metadata}
+        return {
+            "weather_data": df_final,
+            "weather_metadata": self.irradiance_data.metadata,
+        }
 
     def __init__(
         self, location: Location, start_date: datetime.date, end_date: datetime.date

@@ -81,9 +81,9 @@ def get_irradiance_tmy(location: Location, year: int) -> List[IrradianceDatumTMY
         endyear=2016,
         url="https://re.jrc.ec.europa.eu/api/",
         timeout=60,
-        map_variables=True
-    )        
-    
+        map_variables=True,
+    )
+
     start_date = datetime(year, 1, 1, 0)
     end_date = datetime(year, 12, 31, 23)
     df["time"] = date_range(start=start_date, end=end_date, freq="H")
@@ -102,8 +102,7 @@ def get_irradiance_tmy(location: Location, year: int) -> List[IrradianceDatumTMY
     )
     data = df.to_dict(orient="records")
     return IrradianceDataTMY(
-        data=[IrradianceDatumTMY(**item) for item in data],  
-        metadata=metadata  
+        data=[IrradianceDatumTMY(**item) for item in data], metadata=metadata
     )
 
 

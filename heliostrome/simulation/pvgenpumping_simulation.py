@@ -14,10 +14,13 @@ start_date = datetime(2005, 1, 1, 0).date()
 end_date = datetime(2016, 1, 1, 0).date()
 
 
-data = ClimateData(location=location, start_date=start_date, end_date=end_date)
+# data = ClimateData(location=location, start_date=start_date, end_date=end_date)
+main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
+
+pvpumping_input = os.path.join(main_folder, "data/weather/TUN_Tunis.607150_IWEC.epw")
 pvgen1 = pvgen.PVGeneration(
     # Weather data path
-    weather_data_and_metadata=data.pvpumping_input,
+    weather_data_and_metadata=pvpumping_input,
     pv_module_name="Canadian Solar CS5C 80M",  # Name of pv module to model
     modules_per_string=4,
     strings_in_parallel=1,
@@ -27,7 +30,6 @@ pvgen1 = pvgen.PVGeneration(
 
 mppt1 = mppt.MPPT(efficiency=0.96, idname="PCA-120-BLS-M2")
 
-main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
 pump_file = os.path.join(main_folder, "data/pump/SCB_10_150_120_BL.txt")
 pump_sunpump = pp.Pump(path=pump_file)
 
@@ -47,5 +49,10 @@ pvps1 = pvps.PVPumpSystem(
 )
 pvps1.run_model()
 
+pvps1.calc_efficiency()
 
-# pvgen1.plot_model()
+print(pvps1)
+print("\ntotal water pumped in the year = ", pvps1.flow.Qlpm.sum() * 60)
+print(
+    "\ndetails on second day of pumping = \n", pvps1.flow[24:200]
+)  # pvgen1.plot_model()

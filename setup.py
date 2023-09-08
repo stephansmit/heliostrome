@@ -44,13 +44,13 @@ requirements = [
     "requests>=2.21.0",
     "soilgrids>=0.1.4",
     "shapely>=2.0.1",
-    "pvlib>=0.10.1",
+    "pvlib==0.9.5",
     "altair==5.0.1",
     "numpy==1.24.0",
     "scikit-learn==1.3.0",
     "aquacrop@git+https://github.com/stephansmit/aquacrop.git#61e6c49ddd98532cbee0307ffd0bb0c05428d623",
     "PyETo@git+https://github.com/stephansmit/PyETo.git#79ddd88d727c7ebdad0ce26e220528d2921b66ea",
-    "pvpumpingsystem@git+https://github.com/stephansmit/pvpumpingsystem.git#e15bc0e1e3e0bd10d4ff14be8d79a47edd5d85a7"
+    "pvpumpingsystem@git+https://github.com/stephansmit/pvpumpingsystem.git#8b92f44a9c3d0cbc0a31c83866f589a553e0ffc2"
 ]
 
 extra_requirements = {
