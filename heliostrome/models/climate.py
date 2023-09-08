@@ -55,12 +55,11 @@ class ClimateData(BaseModel):
     def pvpumping_input(self):
         records = [datum.model_dump() for datum in self.irradiance_data.data]
         df = pd.DataFrame(data=records)
-        df.rename(
+        df_final = df.rename(
             {"wind_speed_10m_ms": "windspeed", "temp_air_c": "temp_air"},
-            inplace=True,
             axis="columns",
-        )
-        return {"weather_data": df, "weather_metadata": self.irradiance_data.metadata}
+        ).set_index("time")
+        return {"weather_data": df_final, "weather_metadata": self.irradiance_data.metadata}
 
     def __init__(
         self, location: Location, start_date: datetime.date, end_date: datetime.date
@@ -85,10 +84,8 @@ class ClimateData(BaseModel):
             for etref_datum in etref_data
             if etref_datum.time in precipitation_data_dict
         ]
-        irradiance_data = get_irradiance_tmy(location=location, 
-                                             year=start_date.year)
-        super().__init__(climate_daily=climate_daily,
-                         irradiance_data=irradiance_data)
+        irradiance_data = get_irradiance_tmy(location=location, year=start_date.year)
+        super().__init__(climate_daily=climate_daily, irradiance_data=irradiance_data)
 
     def plot_data(
         self,
