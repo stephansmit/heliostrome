@@ -133,7 +133,7 @@ class SimulationResultV2(BaseModel):
 model.run_model(till_termination=True)
 
 
-# results = SimulationResultV2(model)
+results = SimulationResultV2(model)
 
 
 # crop_growth = results.crop_growth
