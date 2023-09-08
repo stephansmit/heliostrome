@@ -1,5 +1,5 @@
 
-import heliostrome.models.location import Location
+from heliostrome.models.location import Location
 from heliostrome.models.climate import ClimateData
 from datetime import datetime
 
