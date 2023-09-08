@@ -6,15 +6,7 @@ import pvpumpingsystem.mppt as mppt
 import pvpumpingsystem.pipenetwork as pn
 import pvpumpingsystem.pvpumpsystem as pvps
 import heliostrome
-from heliostrome.models.location import Location
-from heliostrome.models.climate import ClimateData
 
-location = Location(latitude=45.0917, longitude=5.1221)
-start_date = datetime(2005, 1, 1, 0).date()
-end_date = datetime(2016, 1, 1, 0).date()
-
-
-# data = ClimateData(location=location, start_date=start_date, end_date=end_date)
 main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
 
 pvpumping_input = os.path.join(main_folder, "data/weather/TUN_Tunis.607150_IWEC.epw")
@@ -24,7 +16,6 @@ pvgen1 = pvgen.PVGeneration(
     pv_module_name="Canadian Solar CS5C 80M",  # Name of pv module to model
     modules_per_string=4,
     strings_in_parallel=1,
-    # Models used (check pvlib.modelchain for all available models)
     orientation_strategy="south_at_latitude_tilt",  # or 'flat' or None
 )
 
