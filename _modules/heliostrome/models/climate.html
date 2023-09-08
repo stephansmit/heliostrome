@@ -247,12 +247,11 @@
     <span class="k">def</span> <span class="nf">pvpumping_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">records</span> <span class="o">=</span> <span class="p">[</span><span class="n">datum</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">irradiance_data</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">records</span><span class="p">)</span>
-        <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">df_final</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
             <span class="p">{</span><span class="s2">&quot;wind_speed_10m_ms&quot;</span><span class="p">:</span> <span class="s2">&quot;windspeed&quot;</span><span class="p">,</span> <span class="s2">&quot;temp_air_c&quot;</span><span class="p">:</span> <span class="s2">&quot;temp_air&quot;</span><span class="p">},</span>
-            <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;weather_data&quot;</span><span class="p">:</span> <span class="n">df</span><span class="p">,</span> <span class="s2">&quot;weather_metadata&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">irradiance_data</span><span class="o">.</span><span class="n">metadata</span><span class="p">}</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;weather_data&quot;</span><span class="p">:</span> <span class="n">df_final</span><span class="p">,</span> <span class="s2">&quot;weather_metadata&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">irradiance_data</span><span class="o">.</span><span class="n">metadata</span><span class="p">}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span>
@@ -277,10 +276,8 @@
             <span class="k">for</span> <span class="n">etref_datum</span> <span class="ow">in</span> <span class="n">etref_data</span>
             <span class="k">if</span> <span class="n">etref_datum</span><span class="o">.</span><span class="n">time</span> <span class="ow">in</span> <span class="n">precipitation_data_dict</span>
         <span class="p">]</span>
-        <span class="n">irradiance_data</span> <span class="o">=</span> <span class="n">get_irradiance_tmy</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> 
-                                             <span class="n">year</span><span class="o">=</span><span class="n">start_date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">climate_daily</span><span class="o">=</span><span class="n">climate_daily</span><span class="p">,</span>
-                         <span class="n">irradiance_data</span><span class="o">=</span><span class="n">irradiance_data</span><span class="p">)</span>
+        <span class="n">irradiance_data</span> <span class="o">=</span> <span class="n">get_irradiance_tmy</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="n">start_date</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">climate_daily</span><span class="o">=</span><span class="n">climate_daily</span><span class="p">,</span> <span class="n">irradiance_data</span><span class="o">=</span><span class="n">irradiance_data</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ClimateData.plot_data"><a class="viewcode-back" href="../../../heliostrome.models.html#heliostrome.models.climate.ClimateData.plot_data">[docs]</a>    <span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
