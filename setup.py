@@ -50,7 +50,7 @@ requirements = [
     "scikit-learn==1.3.0",
     "aquacrop@git+https://github.com/stephansmit/aquacrop.git#61e6c49ddd98532cbee0307ffd0bb0c05428d623",
     "PyETo@git+https://github.com/stephansmit/PyETo.git#79ddd88d727c7ebdad0ce26e220528d2921b66ea",
-    "pvpumpingsystem@git+https://github.com/stephansmit/pvpumpingsystem.git#4bc78e1f75beca84a884633e1d8af1172980609b"
+    "pvpumpingsystem@git+https://github.com/stephansmit/pvpumpingsystem.git#e15bc0e1e3e0bd10d4ff14be8d79a47edd5d85a7"
 ]
 
 extra_requirements = {
