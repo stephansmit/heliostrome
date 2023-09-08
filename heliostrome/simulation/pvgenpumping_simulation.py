@@ -1,5 +1,4 @@
 import os
-from datetime import datetime
 import pvpumpingsystem.pvgeneration as pvgen
 import pvpumpingsystem.pump as pp
 import pvpumpingsystem.mppt as mppt
