@@ -273,9 +273,9 @@
         <span class="n">endyear</span><span class="o">=</span><span class="mi">2016</span><span class="p">,</span>
         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://re.jrc.ec.europa.eu/api/&quot;</span><span class="p">,</span>
         <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
-        <span class="n">map_variables</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>        
-    
+        <span class="n">map_variables</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
     <span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
@@ -294,8 +294,7 @@
     <span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">IrradianceDataTMY</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span>  
-        <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>  
+        <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
     <span class="p">)</span></div>
 
 
