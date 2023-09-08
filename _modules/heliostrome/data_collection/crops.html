@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>heliostrome.data_collection.crops &mdash; heliostrome 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> heliostrome
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#stable-release">Stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#from-sources">From sources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Package modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../heliostrome.html">heliostrome package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.bin.html">heliostrome.bin package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.data_collection.html">heliostrome.data_collection package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.models.html">heliostrome.models package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#module-heliostrome.example">heliostrome.example module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.html#heliostrome.example.Example"><code class="docutils literal notranslate"><span class="pre">Example</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../heliostrome.html#module-heliostrome">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../heliostrome.html#heliostrome.get_module_version"><code class="docutils literal notranslate"><span class="pre">get_module_version()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#get-started">Get Started!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#deploying">Deploying</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">heliostrome</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../heliostrome.html">heliostrome</a> &raquo;</li>
+        
+      <li>heliostrome.data_collection.crops</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for heliostrome.data_collection.crops</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">aquacrop.entities.crops.crop_params</span> <span class="kn">import</span> <span class="n">crop_params</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+
+
+<div class="viewcode-block" id="HeliostromeCrop"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop">[docs]</a><span class="k">class</span> <span class="nc">HeliostromeCrop</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">Name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Aer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Vol (%) below saturation at which stress begins to occur due to deficient aeration&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">LagAer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of days lag before aeration stress affects crop growth&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">CCx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;maximum canopy cover (fraction of soil cover)&quot;</span><span class="p">)</span>
+    <span class="n">CDC</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;canopy decline coefficient (fraction per gdd)&quot;</span><span class="p">)</span>
+    <span class="n">CDC_CD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;canopy decline coefficient (fraction per gdd)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">CGC</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;canopy growth coefficient (fraction per gdd)&quot;</span><span class="p">)</span>
+    <span class="n">CGC_CD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;canopy growth coefficient (fraction per gdd)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">CalendarType</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;calendar Type (1 = Calendar days, 2 = Growing degree days)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">CropType</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;crop Type (1 = Leafy vegetable, 2 = Root/tuber, 3 = Fruit/grain)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Determinant</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;crop Determinancy (0 = Indeterminant, 1 = Determinant)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ETadj</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Adjustment to water stress thresholds depending on daily ET0 (0 = No, 1 = Yes)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">Emergence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;growing degree/calendar days from sowing to emergence/transplant&quot;</span>
+    <span class="p">)</span>
+    <span class="n">EmergenceCD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">Flowering</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;duration of flowering in growing degree/calendar days (-999 for non-fruit/grain crops)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">FloweringCD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">GDD_lo</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Growing degree days (degC/day) at which no crop transpiration occurs&quot;</span>
+    <span class="p">)</span>
+    <span class="n">GDD_up</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;minimum growing degree days (degC/day) required for full crop transpiration potential&quot;</span>
+    <span class="p">)</span>
+    <span class="n">GDDmethod</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;growing degree day method&quot;</span><span class="p">)</span>
+    <span class="n">HI0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;reference harvest index [%]&quot;</span><span class="p">)</span>
+    <span class="n">HIstart</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;growing degree/calendar days from sowing to start of yield_ formation&quot;</span>
+    <span class="p">)</span>
+    <span class="n">HIstartCD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">Kcb</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Crop coefficient when canopy growth is complete but prior to senescence&quot;</span>
+    <span class="p">)</span>
+    <span class="n">LagAer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of days lag before aeration stress affects crop growth&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">Maturity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Growing degree/Calendar days from sowing to maturity&quot;</span>
+    <span class="p">)</span>
+    <span class="n">MaturityCD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">MaxRooting</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;growing degree/Calendar days from sowing to maximum rooting&quot;</span>
+    <span class="p">)</span>
+    <span class="n">MaxRootingCD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">PlantMethod</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;planting method (0 = Transplanted, 1 =  Sown)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">PlantPop</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of plants per hectare&quot;</span><span class="p">)</span>
+    <span class="n">PolColdStress</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;pollination cold stress coefficient&quot;</span><span class="p">)</span>
+    <span class="n">PolHeatStress</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;pollination heat stress coefficient&quot;</span><span class="p">)</span>
+    <span class="n">SeedSize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Soil surface area (cm2) covered by an individual seedling at 90</span><span class="si">% e</span><span class="s2">mergence&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Senescence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Growing degree/Calendar days from sowing to senescence&quot;</span>
+    <span class="p">)</span>
+    <span class="n">SenescenceCD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">SwitchGDD</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;convert calendar to gdd mode if inputs are given in calendar days (0 = No; 1 = Yes)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">SxBotQ</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum root water extraction at the bottom of the root zone (m3/m3/day) (page 108)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">SxTopQ</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum root water extraction at top of the root zone (m3/m3/day) (page 108)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Tbase</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;base temperature (below which crop development does not progress) [degC] (page 21)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Tmax_lo</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;maximum air temperature (degC) at which pollination completely fails&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Tmax_up</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;maximum air temperature (degC) above which pollination begins to fail&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Tmin_lo</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum air temperature (degC) at which pollination completely fails&quot;</span>
+    <span class="p">)</span>
+    <span class="n">Tmin_up</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot; Minimum air temperature (degC) below which pollination begins to fail&quot;</span>
+    <span class="p">)</span>
+    <span class="n">TrColdStress</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;transpiration cold stress coefficient&quot;</span><span class="p">)</span>
+    <span class="n">Tupp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;upper temperature (above which crop development no longer increases with an increase in air temperature) [degC] (page 21)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">WP</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Water productivity normalized for ET0 and C02 (g/m2)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">WPy</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Adjustment of water productivity in yield_ formation stage (</span><span class="si">% o</span><span class="s2">f WP)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">YldForm</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;duration of yield_ formation in growing degree/calendar days&quot;</span>
+    <span class="p">)</span>
+    <span class="n">YldFormCD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">Zmax</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum effective rooting depth (m)&quot;</span><span class="p">)</span>
+    <span class="n">Zmin</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Minimum effective rooting depth (m)&quot;</span><span class="p">)</span>
+    <span class="n">a_HI</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;harvest index crop parameter a (page 145)&quot;</span><span class="p">)</span>
+    <span class="n">b_HI</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;harvest index crop parameter b (page 147)&quot;</span><span class="p">)</span>
+    <span class="n">dHI0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Maximum allowable increase of harvest index above reference value&quot;</span>
+    <span class="p">)</span>
+    <span class="n">dHI_pre</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Possible increase of harvest index due to water stress before flowering (%)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">exc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;excess of potential fruits&quot;</span><span class="p">)</span>
+    <span class="n">fage</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;decline of crop coefficient due to ageing (%/day) (page 95)&quot;</span>
+    <span class="p">)</span>
+    <span class="n">fshape_r</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;shape factor describing root expansion&quot;</span><span class="p">)</span>
+    <span class="n">fshape_w1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Shape factor describing water stress effects on canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">fshape_w2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Shape factor describing water stress effects on canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">fshape_w3</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Shape factor describing water stress effects on canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">fshape_w4</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Shape factor describing water stress effects on canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">fsink</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lower soil water depletion threshold for water stress effects on canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">p_lo1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lower soil water depletion threshold for water stress effects on canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">p_lo2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lower soil water depletion threshold for water stress effects on canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">p_lo3</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lower soil water depletion threshold for water stress effects on canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">p_lo4</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lower soil water depletion threshold for water stress effects on canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">p_up1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Upper soil water depletion threshold for water stress effects on affect canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">p_up2</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Upper soil water depletion threshold for water stress effects on affect canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">p_up3</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Upper soil water depletion threshold for water stress effects on affect canopy expansion&quot;</span>
+    <span class="p">)</span>
+    <span class="n">p_up4</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Upper soil water depletion threshold for water stress effects on affect canopy expansion&quot;</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="HeliostromeCrop.get_attr_for_plot"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.get_attr_for_plot">[docs]</a>    <span class="k">def</span> <span class="nf">get_attr_for_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s2">&quot;Name&quot;</span><span class="p">]</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_get_aquacrop_names</span><span class="p">():</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">crop_params</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+
+<div class="viewcode-block" id="get_all_crop_data"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.crops.get_all_crop_data">[docs]</a><span class="k">def</span> <span class="nf">get_all_crop_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">HeliostromeCrop</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">HeliostromeCrop</span><span class="p">(</span><span class="o">**</span><span class="n">crop_params</span><span class="p">[</span><span class="n">crop_name</span><span class="p">])</span> <span class="k">for</span> <span class="n">crop_name</span> <span class="ow">in</span> <span class="n">_get_aquacrop_names</span><span class="p">()</span>
+    <span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="get_crop_data"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.crops.get_crop_data">[docs]</a><span class="k">def</span> <span class="nf">get_crop_data</span><span class="p">(</span><span class="n">crop_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">HeliostromeCrop</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">HeliostromeCrop</span><span class="p">(</span><span class="o">**</span><span class="n">crop_params</span><span class="p">[</span><span class="n">crop_name</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="HeliostromCrops"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromCrops">[docs]</a><span class="k">class</span> <span class="nc">HeliostromCrops</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">crops</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">HeliostromeCrop</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_all_crop_data</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_as_df</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">crop</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">crops</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">attr</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">crop</span><span class="o">.</span><span class="n">model_fields</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">attr</span> <span class="o">!=</span> <span class="s2">&quot;Name&quot;</span><span class="p">:</span>
+                    <span class="n">record</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">crop</span><span class="o">.</span><span class="n">Name</span><span class="p">}</span>
+                    <span class="n">record</span><span class="p">[</span><span class="s2">&quot;property&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">attr</span>
+                    <span class="n">record</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">description</span>
+                    <span class="n">record</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">crop</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+
+                    <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+
+<div class="viewcode-block" id="HeliostromCrops.plot"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromCrops.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_df</span><span class="p">()</span>
+        <span class="n">attributes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crops</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_attr_for_plot</span><span class="p">()</span>
+        <span class="n">input_dropdown</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">binding_select</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">attributes</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Property &quot;</span><span class="p">)</span>
+
+        <span class="n">selection</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_point</span><span class="p">(</span>
+            <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;property&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="n">attributes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bind</span><span class="o">=</span><span class="n">input_dropdown</span>
+        <span class="p">)</span>
+
+        <span class="n">chart</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+                <span class="n">x</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;name:N&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Crop name&quot;</span><span class="p">),</span>
+                <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;value:Q&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Value&quot;</span><span class="p">),</span>
+                <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">add_params</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span><span class="n">selection</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">chart</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Stephan Smit.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

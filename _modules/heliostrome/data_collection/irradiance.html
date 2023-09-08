@@ -190,7 +190,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for heliostrome.data_collection.irradiance</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pvlib.iotools</span> <span class="kn">import</span> <span class="n">get_pvgis_tmy</span><span class="p">,</span> <span class="n">get_pvgis_hourly</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">date_range</span>
@@ -232,6 +232,11 @@
     <span class="n">altitude_m</span><span class="p">:</span> <span class="nb">float</span></div>
 
 
+<div class="viewcode-block" id="IrradianceDataTMY"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDataTMY">[docs]</a><span class="k">class</span> <span class="nc">IrradianceDataTMY</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">]</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span></div>
+
+
 <div class="viewcode-block" id="get_irradiance_tmy"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_tmy">[docs]</a><span class="k">def</span> <span class="nf">get_irradiance_tmy</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">year</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the irradiance data for a given location and year.</span>
 
@@ -258,6 +263,19 @@
         <span class="n">map_variables</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
 
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_pvgis_tmy</span><span class="p">(</span>
+        <span class="n">location</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
+        <span class="n">location</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
+        <span class="n">outputformat</span><span class="o">=</span><span class="s2">&quot;epw&quot;</span><span class="p">,</span>
+        <span class="n">usehorizon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">userhorizon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">startyear</span><span class="o">=</span><span class="mi">2007</span><span class="p">,</span>
+        <span class="n">endyear</span><span class="o">=</span><span class="mi">2016</span><span class="p">,</span>
+        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://re.jrc.ec.europa.eu/api/&quot;</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+        <span class="n">map_variables</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>        
+    
     <span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
@@ -275,7 +293,10 @@
         <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="n">IrradianceDataTMY</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span>  
+        <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>  
+    <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_irradiance_hourly"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_hourly">[docs]</a><span class="k">def</span> <span class="nf">get_irradiance_hourly</span><span class="p">(</span>

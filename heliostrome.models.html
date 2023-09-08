@@ -578,8 +578,118 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 </dd></dl>
 
 </section>
-<section id="heliostrome-models-climate-module">
-<h2>heliostrome.models.climate module<a class="headerlink" href="#heliostrome-models-climate-module" title="Permalink to this heading">¶</a></h2>
+<section id="module-heliostrome.models.climate">
+<span id="heliostrome-models-climate-module"></span><h2>heliostrome.models.climate module<a class="headerlink" href="#module-heliostrome.models.climate" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.models.climate.</span></span><span class="sig-name descname"><span class="pre">ClimateDailyDatum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_min_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temp_air_max_c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precip_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etref_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poa_global_whm2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/models/climate.html#ClimateDailyDatum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+allow <cite>self</cite> as a field name.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.date">
+<span class="sig-name descname"><span class="pre">date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.etref_clipped_mm">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">etref_clipped_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.etref_clipped_mm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.etref_mm">
+<span class="sig-name descname"><span class="pre">etref_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.etref_mm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'date':</span> <span class="pre">FieldInfo(annotation=datetime,</span> <span class="pre">required=True),</span> <span class="pre">'etref_mm':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'poa_global_whm2':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'precip_mm':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_max_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'temp_air_min_c':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.model_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.poa_global_whm2">
+<span class="sig-name descname"><span class="pre">poa_global_whm2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.poa_global_whm2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.precip_mm">
+<span class="sig-name descname"><span class="pre">precip_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.precip_mm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.temp_air_max_c">
+<span class="sig-name descname"><span class="pre">temp_air_max_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.temp_air_max_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateDailyDatum.temp_air_min_c">
+<span class="sig-name descname"><span class="pre">temp_air_min_c</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateDailyDatum.temp_air_min_c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.models.climate.</span></span><span class="sig-name descname"><span class="pre">ClimateData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location:</span> <span class="pre">~heliostrome.models.location.Location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date:</span> <span class="pre">~.datetime.date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date:</span> <span class="pre">~.datetime.date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/models/climate.html#ClimateData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.models.climate.ClimateData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
+allow <cite>self</cite> as a field name.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.aquacrop_input">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">aquacrop_input</span></span><a class="headerlink" href="#heliostrome.models.climate.ClimateData.aquacrop_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.climate_daily">
+<span class="sig-name descname"><span class="pre">climate_daily</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#heliostrome.models.climate.ClimateDailyDatum" title="heliostrome.models.climate.ClimateDailyDatum"><span class="pre">ClimateDailyDatum</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateData.climate_daily" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.irradiance_data">
+<span class="sig-name descname"><span class="pre">irradiance_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDataTMY" title="heliostrome.data_collection.irradiance.IrradianceDataTMY"><span class="pre">IrradianceDataTMY</span></a></em><a class="headerlink" href="#heliostrome.models.climate.ClimateData.irradiance_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateData.model_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'climate_daily':</span> <span class="pre">FieldInfo(annotation=List[heliostrome.models.climate.ClimateDailyDatum],</span> <span class="pre">required=True),</span> <span class="pre">'irradiance_data':</span> <span class="pre">FieldInfo(annotation=IrradianceDataTMY,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.models.climate.ClimateData.model_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.plot_data">
+<span class="sig-name descname"><span class="pre">plot_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'etref_mm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'precip_mm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'temp_air_max_c'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'temp_air_min_c'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'etref_clipped_mm'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'poa_global_whm2'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'etref_mm'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/models/climate.html#ClimateData.plot_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.models.climate.ClimateData.plot_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.models.climate.ClimateData.pvpumping_input">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pvpumping_input</span></span><a class="headerlink" href="#heliostrome.models.climate.ClimateData.pvpumping_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-heliostrome.models.location">
 <span id="heliostrome-models-location-module"></span><h2>heliostrome.models.location module<a class="headerlink" href="#module-heliostrome.models.location" title="Permalink to this heading">¶</a></h2>
