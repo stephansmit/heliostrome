@@ -133,51 +133,51 @@ class SimulationResultV2(BaseModel):
 model.run_model(till_termination=True)
 
 
-results = SimulationResultV2(model)
+# results = SimulationResultV2(model)
 
 
-crop_growth = results.crop_growth
-water_flux = results.water_flux
-water_storage = results.water_storage
+# crop_growth = results.crop_growth
+# water_flux = results.water_flux
+# water_storage = results.water_storage
 
 
-df = pd.DataFrame(item.model_dump() for item in water_storage)
-df_melted = df.melt(
-    id_vars=["time"],
-    value_vars=[
-        "th1",
-        "th2",
-        "th3",
-        "th4",
-        "th5",
-        "th6",
-        "th7",
-        "th8",
-        "th9",
-        "th10",
-        "th11",
-        "th12",
-    ],
-    var_name="category",
-    value_name="value",
-)
+# df = pd.DataFrame(item.model_dump() for item in water_storage)
+# df_melted = df.melt(
+#     id_vars=["time"],
+#     value_vars=[
+#         "th1",
+#         "th2",
+#         "th3",
+#         "th4",
+#         "th5",
+#         "th6",
+#         "th7",
+#         "th8",
+#         "th9",
+#         "th10",
+#         "th11",
+#         "th12",
+#     ],
+#     var_name="category",
+#     value_name="value",
+# )
 
 
-selection = alt.selection_multi(fields=["category"], bind="legend")
+# selection = alt.selection_multi(fields=["category"], bind="legend")
 
 
-chart = (
-    alt.Chart(df_melted)
-    .mark_line()
-    .encode(
-        x="time:T",
-        y=alt.Y("value:Q"),
-        color="category:N",
-        opacity=alt.condition(selection, alt.value(1), alt.value(0.2)),
-    )
-    .add_selection(selection)
-    .interactive(bind_y=False)
-)
+# chart = (
+#     alt.Chart(df_melted)
+#     .mark_line()
+#     .encode(
+#         x="time:T",
+#         y=alt.Y("value:Q"),
+#         color="category:N",
+#         opacity=alt.condition(selection, alt.value(1), alt.value(0.2)),
+#     )
+#     .add_selection(selection)
+#     .interactive(bind_y=False)
+# )
 
 
 # df = model.get_simulation_results()

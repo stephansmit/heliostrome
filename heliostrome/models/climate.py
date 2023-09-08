@@ -5,6 +5,9 @@ import pandas as pd
 import altair as alt
 from heliostrome.models.location import Location
 from heliostrome.data_collection.etref import get_etref_daily, EtRefDailyDatum
+from heliostrome.data_collection.irradiance import IrradianceDataTMY
+from heliostrome.data_collection.irradiance import get_irradiance_tmy
+
 from heliostrome.data_collection.precipitation import (
     get_precipitation_data,
     PrecipitationDailyDatum,
@@ -17,6 +20,7 @@ class ClimateDailyDatum(BaseModel):
     precip_mm: float
     etref_mm: float
     date: datetime
+    poa_global_whm2: float
 
     @computed_field
     @property
@@ -26,6 +30,7 @@ class ClimateDailyDatum(BaseModel):
 
 class ClimateData(BaseModel):
     climate_daily: List[ClimateDailyDatum]
+    irradiance_data: IrradianceDataTMY
 
     @property
     def aquacrop_input(self):
@@ -46,6 +51,17 @@ class ClimateData(BaseModel):
         df["Date"] = df["Date"].dt.tz_convert(None)
         return df[["MinTemp", "MaxTemp", "Precipitation", "ReferenceET", "Date"]]
 
+    @property
+    def pvpumping_input(self):
+        records = [datum.model_dump() for datum in self.irradiance_data.data]
+        df = pd.DataFrame(data=records)
+        df.rename(
+            {"wind_speed_10m_ms": "windspeed", "temp_air_c": "temp_air"},
+            inplace=True,
+            axis="columns",
+        )
+        return {"weather_data": df, "weather_metadata": self.irradiance_data.metadata}
+
     def __init__(
         self, location: Location, start_date: datetime.date, end_date: datetime.date
     ):
@@ -64,16 +80,25 @@ class ClimateData(BaseModel):
                 precip_mm=precipitation_data_dict[etref_datum.time].precip_mm,
                 etref_mm=etref_datum.etref_mm,
                 date=etref_datum.time,
+                poa_global_whm2=etref_datum.poa_global_whm2,
             )
             for etref_datum in etref_data
             if etref_datum.time in precipitation_data_dict
         ]
-        super().__init__(climate_daily=climate_daily)
+        irradiance_data = get_irradiance_tmy(location=location, 
+                                             year=start_date.year)
+        super().__init__(climate_daily=climate_daily,
+                         irradiance_data=irradiance_data)
 
     def plot_data(
         self,
         y_axis: Literal[
-            "etref_mm", "precip_mm", "temp_air_max_c", "temp_air_min_c"
+            "etref_mm",
+            "precip_mm",
+            "temp_air_max_c",
+            "temp_air_min_c",
+            "etref_clipped_mm",
+            "poa_global_whm2",
         ] = "etref_mm",
     ):
         records = [datum.model_dump() for datum in self.climate_daily]
@@ -86,11 +111,3 @@ class ClimateData(BaseModel):
             .properties(width=800, height=300)
             .interactive(bind_y=False)
         )
-
-
-# location = Location(latitude=45.0917, longitude=5.1221)
-# start_date = datetime(2005, 1, 1, 0).date()
-# end_date = datetime(2016, 1, 1, 0).date()
-
-
-# data = ClimateData(location=location, start_date=start_date, end_date=end_date)

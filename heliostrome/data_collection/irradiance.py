@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 from datetime import datetime
 from pvlib.iotools import get_pvgis_tmy, get_pvgis_hourly
 from pandas import date_range
@@ -40,6 +40,11 @@ class IrradianceDailyDatum(BaseModel):
     altitude_m: float
 
 
+class IrradianceDataTMY(BaseModel):
+    data: List[IrradianceDatumTMY]
+    metadata: Union[List, dict]
+
+
 def get_irradiance_tmy(location: Location, year: int) -> List[IrradianceDatumTMY]:
     """Gets the irradiance data for a given location and year.
 
@@ -66,6 +71,19 @@ def get_irradiance_tmy(location: Location, year: int) -> List[IrradianceDatumTMY
         map_variables=True,
     )
 
+    _, _, _, metadata = get_pvgis_tmy(
+        location.latitude,
+        location.longitude,
+        outputformat="epw",
+        usehorizon=True,
+        userhorizon=None,
+        startyear=2007,
+        endyear=2016,
+        url="https://re.jrc.ec.europa.eu/api/",
+        timeout=60,
+        map_variables=True
+    )        
+    
     start_date = datetime(year, 1, 1, 0)
     end_date = datetime(year, 12, 31, 23)
     df["time"] = date_range(start=start_date, end=end_date, freq="H")
@@ -83,7 +101,10 @@ def get_irradiance_tmy(location: Location, year: int) -> List[IrradianceDatumTMY
         inplace=True,
     )
     data = df.to_dict(orient="records")
-    return [IrradianceDatumTMY(**item) for item in data]
+    return IrradianceDataTMY(
+        data=[IrradianceDatumTMY(**item) for item in data],  
+        metadata=metadata  
+    )
 
 
 def get_irradiance_hourly(
