@@ -24,8 +24,8 @@ Chapter: 2.6 & 3.4"""
 alt.data_transformers.enable("default", max_rows=None)
 
 location = Location(latitude=24.0958, longitude=90.4125)
-start_date = datetime(2012, 5, 1, 0).date()
-end_date = datetime(2013, 5, 1, 0).date()
+start_date = datetime(2011, 1, 1, 0).date()
+end_date = datetime(2013, 12, 31, 0).date()
 
 climate_data = ClimateData(
     location=location,
@@ -37,10 +37,10 @@ climate_data.plot_data(y_axis='temp_air_max_c')
 
 soil = Soil("ClayLoam")
 crop = get_crop_data("Tomato")
-sowing_date = datetime(2012, 6, 26, 0).strftime("%m/%d")
+sowing_date = datetime(2005, 6, 26, 0).strftime("%m/%d")
 crop = Crop(crop.Name, planting_date=sowing_date)
-irr_mngt = IrrigationManagement(irrigation_method=1, SMT=[35])
-InitWC = InitialWaterContent(value=["FC"])
+irr_mngt = IrrigationManagement(irrigation_method=4, NetIrrSMT=80)
+InitWC = InitialWaterContent(wc_type='Pct',value=[35])
 
 model = AquaCropModel(
     sim_start_time=start_date.strftime("%Y/%m/%d"),
@@ -51,9 +51,10 @@ model = AquaCropModel(
     initial_water_content=InitWC,
     irrigation_management=irr_mngt,
 )
+
 model.run_model(till_termination=True)
 
 df = model.get_simulation_results()
-df
 
-model.get_simulation_results()
+
+print(df)
