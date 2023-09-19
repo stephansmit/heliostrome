@@ -21,6 +21,9 @@ import altair as alt
 Location: Gazipur
 Chapter: 2.6 & 3.4"""
 
+Casestudies = []
+Casestudy = "Gazipur - Summer Tomato"
+
 alt.data_transformers.enable("default", max_rows=None)
 
 location = Location(latitude=24.0958, longitude=90.4125)
@@ -45,17 +48,18 @@ InitWC = InitialWaterContent(wc_type = 'Pct', value=["26"])
 # input_data = [location.latitude, location.longitude, start_date, end_date, soil, crop, sowing_date,irr_mngt.irrigation_method, irr_mngt.SMT,InitWC.wc_type ]
 # input_df = pd.DataFrame(input_data,columns=['Latitude','Longitude','Start Date','End Date', 'Soil Type', 'Crop Type', 'Sowing Date', 'Irrigation Method', 'SMT', 'IWC'])
 
-input_df = {'Latitude' : location.latitude,
-            'Longitude' :location.longitude,
-            'Start Date' : start_date,
-            'End Date' : end_date,
-             'Soil Type' : soil.Name, 
-             'Crop Type' : crop.Name,
-             'Sowing Date' :sowing_date,
-             'Irrigation Method' : irr_mngt.irrigation_method,
-             'SMT' : irr_mngt.SMT, 
-             'Init WC - WC Type' :InitWC.wc_type,
-             'Init WC - Value': InitWC.value}
+input_df = {'Case Study': [Casestudy],
+            'Latitude' : [location.latitude],
+            'Longitude' :[location.longitude],
+            'Start Date' : [start_date],
+            'End Date' : [end_date],
+             'Soil Type' : [soil.Name], 
+             'Crop Type' : [crop.Name],
+             'Sowing Date' :[sowing_date],
+             'Irrigation Method' : [irr_mngt.irrigation_method],
+             'SMT' : [irr_mngt.SMT], 
+             'Init WC - WC Type' :[InitWC.wc_type],
+             'Init WC - Value': [InitWC.value]}
 
 
 model = AquaCropModel(
@@ -70,9 +74,20 @@ model = AquaCropModel(
 model.run_model(till_termination=True)
 
 df = model.get_simulation_results()
-print(df)
-print(input_df)
-input_df.to_excel('filename')
+
+for i in range(len(df)):
+    Casestudies.append(Casestudy)
+
+df.insert(0, 'Case Study', Casestudies)
+input_df = pd.DataFrame(input_df)
+
+
+writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results.xlsx', engine = 'openpyxl')
+input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
+df.to_excel(writer, index=False, sheet_name= "Output Results")
+
+writer.close()
 
 model.get_simulation_results()
+
 
