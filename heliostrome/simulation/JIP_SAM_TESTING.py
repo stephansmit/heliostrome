@@ -39,7 +39,7 @@ soil = Soil("ClayLoam")
 crop = get_crop_data("Tomato")
 sowing_date = datetime(2005, 6, 26, 0).strftime("%m/%d")
 crop = Crop(crop.Name, planting_date=sowing_date)
-irr_mngt = IrrigationManagement(irrigation_method=4, NetIrrSMT=80)
+irr_mngt = IrrigationManagement(irrigation_method=1, SMT=[80]*4)
 InitWC = InitialWaterContent(wc_type='Pct',value=[35])
 
 model = AquaCropModel(
@@ -58,3 +58,8 @@ df = model.get_simulation_results()
 
 
 print(df)
+
+"""print(model._outputs.water_flux.head())
+print(model._outputs.water_storage.head())
+print(model._outputs.crop_growth.head())
+print(model._outputs.final_stats.head())"""
