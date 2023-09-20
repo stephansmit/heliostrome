@@ -19,6 +19,7 @@ import altair as alt
 from openpyxl import load_workbook #added!
 import numpy as np
 import time
+import matplotlib.pyplot as plt
 
 # Start the timer 
 start_time = time.time()
@@ -140,3 +141,4 @@ final_input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
 final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 
 writer.close()
+
