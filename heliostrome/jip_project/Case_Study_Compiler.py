@@ -67,8 +67,8 @@ alt.data_transformers.enable("default", max_rows=None)
 #no optimasation yet, but I assume i can figure some cython methods or other stuff. just have to refresh my memory
 
 final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
-final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value', 'Crop Type', 'Yield (Ton/HA)', 'Water Used (mm)'])
-
+final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value',  'Yield (Ton/HA)', 'Water Used (mm)'])
+                                       
 for i in range(len(extracted_rows["Case Study"])):
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
     start_date = extracted_rows["Start Date"][i].date()
@@ -101,9 +101,8 @@ for i in range(len(extracted_rows["Case Study"])):
                 'SMT' : [irr_mngt.SMT], 
                 'Init WC - WC Type' :[InitWC.wc_type],
                 'Init WC - Value': [InitWC.value],
-                'Crop Type': [extracted_rows]['Crop Type'][i],
-                'Yield (Ton/HA)': [extracted_rows]['Yield'][i],
-                'Water Used (mm)': [extracted_rows]['Water used'][i]])}
+                'Yield (Ton/HA)': [extracted_rows['Yield'][i]],
+                'Water Used (mm)': [extracted_rows['Water used'][i]]}
 
 
     model = AquaCropModel(
