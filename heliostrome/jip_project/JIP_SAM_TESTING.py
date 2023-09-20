@@ -48,6 +48,9 @@ row_mapping = {
 # Initialize a dictionary to store the extracted rows with names
 extracted_rows = {}
 
+# Initialize an empty list for the Case Study Names
+Casestudies = []
+
 # Loop through the row names and extract the rows
 for row_name, row_index in row_mapping.items():
     row_data = df_bangladesh.iloc[row_index, 1:].tolist()
@@ -62,6 +65,9 @@ alt.data_transformers.enable("default", max_rows=None)
 #changes from here mostly concer date besides the obvious for loop. Dates from excel are already in datetime format, so change the line to compensate
 #everything that has a value in the excel sheet is called independently from the code above with exracted_rows["name attribute"][casestudy index number]
 #no optimasation yet, but I assume i can figure some cython methods or other stuff. just have to refresh my memory
+
+final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
+final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'WC Type','Value'])
 
 for i in range(len(extracted_rows["Case Study"])):
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
@@ -113,6 +119,13 @@ for i in range(len(extracted_rows["Case Study"])):
 
     df = model.get_simulation_results()
 
+    for x in range(len(df)):
+        Casestudies.append(extracted_rows["Case Study"][i])
+
+    final_df = final_df.append(df, ignore_index=True)
+    input_df = pd.DataFrame(input_df)
+    final_input_df = final_df.append(df, ignore_index=True)
+
 
     #time elapsed
     end_time = time.time()
@@ -120,19 +133,11 @@ for i in range(len(extracted_rows["Case Study"])):
     print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
     start_time = end_time
 
+    
+final_df.insert(0, 'Case Study', Casestudies)
 
-
-"""for i in range(len(df)):
-    Casestudies.append(Casestudy)
-
-df.insert(0, 'Case Study', Casestudies)
-input_df = pd.DataFrame(input_df)
-
-
-writer = pd.ExcelWriter(r'heliostrome\jip_project\results\Compleye_test_results.xlsx', engine = 'openpyxl')
-input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
-df.to_excel(writer, index=False, sheet_name= "Output Results")
+writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results.xlsx', engine = 'openpyxl')
+final_input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
+final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 
 writer.close()
-
-model.get_simulation_results()"""
