@@ -20,6 +20,7 @@ from openpyxl import load_workbook #added!
 import numpy as np
 import time
 import matplotlib.pyplot as plt
+from irrigation_schedule_morrocco_wheat import IRRschedule
 
 # Start the timer 
 start_time = time.time()
@@ -64,7 +65,7 @@ alt.data_transformers.enable("default", max_rows=None)
 final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
 final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value',  'Yield (Ton/HA)', 'Water Used (mm)'])
                                        
-for i in range(len(extracted_rows["Case Study"])):
+for i in range(3):
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
     start_date = extracted_rows["Start Date"][i].date()
     end_date = extracted_rows["End Date"][i].date()
@@ -81,8 +82,8 @@ for i in range(len(extracted_rows["Case Study"])):
     crop = get_crop_data("Wheat")
     sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
     crop = Crop(crop.Name, planting_date=sowing_date)
-    irr_mngt = IrrigationManagement(irrigation_method=0)
-    InitWC = InitialWaterContent(value = ['FC'])
+    irr_mngt = IrrigationManagement(irrigation_method=1, SMT = [35]*4)
+    InitWC = InitialWaterContent(value = ['SAT'])
     
     input_df = {'Case Study': [extracted_rows["Case Study"][i]],
                 'Latitude' : [location.latitude],
