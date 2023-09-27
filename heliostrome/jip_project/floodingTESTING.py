@@ -2,6 +2,7 @@ from datetime import datetime
 from heliostrome.models.location import Location
 from heliostrome.models.climate import ClimateData
 from aquacrop.core import IrrigationManagement
+from aquacrop.entities.fieldManagement import FieldMngt
 from aquacrop import Crop, InitialWaterContent, Soil, AquaCropModel
 from heliostrome.data_collection.crops import get_crop_data
 from heliostrome.models.aquacrop_results import (
@@ -12,9 +13,14 @@ from heliostrome.models.aquacrop_results import (
 )
 from pydantic import BaseModel
 from typing import List
+from datetime import datetime
 from datetime import date
-import pandas as pd
+import pandas as pd 
 import altair as alt
+from openpyxl import load_workbook #added!
+import numpy as np
+import time
+import matplotlib.pyplot as plt
 
 alt.data_transformers.enable("default", max_rows=None)
 
@@ -43,6 +49,7 @@ model = AquaCropModel(
     crop=crop,
     initial_water_content=InitWC,
     irrigation_management=irr_mngt,
+    field_management=FieldMngt(sr_inhb = True)
 )
 
 

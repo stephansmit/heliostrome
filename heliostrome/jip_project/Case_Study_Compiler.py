@@ -2,6 +2,7 @@ from datetime import datetime
 from heliostrome.models.location import Location
 from heliostrome.models.climate import ClimateData
 from aquacrop.core import IrrigationManagement
+from aquacrop.entities.fieldManagement import FieldMngt
 from aquacrop import Crop, InitialWaterContent, Soil, AquaCropModel
 from heliostrome.data_collection.crops import get_crop_data
 from heliostrome.models.aquacrop_results import (
@@ -69,8 +70,9 @@ alt.data_transformers.enable("default", max_rows=None)
 
 final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
 final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value',  'Yield (Ton/HA)', 'Water Used (mm)'])
-                                       
-for i in range(len(extracted_rows["Case Study"])):
+
+
+for i in range(1):
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
     start_date = extracted_rows["Start Date"][i].date()
     end_date = extracted_rows["End Date"][i].date()
@@ -89,6 +91,7 @@ for i in range(len(extracted_rows["Case Study"])):
     crop = Crop(crop.Name, planting_date=sowing_date)
     irr_mngt = IrrigationManagement(irrigation_method=1, SMT=[extracted_rows["Irrigation Method"][i]]*4)
     InitWC = InitialWaterContent(wc_type = 'Pct', value=[extracted_rows["Initial Water Content"][i]])
+    
     
     input_df = {'Case Study': [extracted_rows["Case Study"][i]],
                 'Latitude' : [location.latitude],
@@ -113,7 +116,8 @@ for i in range(len(extracted_rows["Case Study"])):
         soil=soil,
         crop=crop,
         initial_water_content=InitWC,
-        irrigation_management=irr_mngt,
+        irrigation_management=irr_mngt, 
+        
     )
     model.run_model(till_termination=True)
 
