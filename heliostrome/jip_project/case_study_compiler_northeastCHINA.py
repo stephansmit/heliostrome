@@ -84,7 +84,7 @@ for i in range(4):
     )
 
     climate_data.plot_data(y_axis='temp_air_max_c')
-
+    print(extracted_rows["Sowing Date"][i])
     soil = Soil(extracted_rows["Soil Type"][i])
     crop = get_crop_data(extracted_rows["Crop Type"][i])
     sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
@@ -109,7 +109,7 @@ for i in range(4):
                 'Yield (Ton/HA)': [extracted_rows['Yield'][i]],
                 'Water Used (mm)': [extracted_rows['Water used'][i]]}
 
-
+    
     model = AquaCropModel(
         sim_start_time=start_date.strftime("%Y/%m/%d"),
         sim_end_time=end_date.strftime("%Y/%m/%d"),
@@ -118,7 +118,7 @@ for i in range(4):
         crop=crop,
         initial_water_content=InitWC,
         irrigation_management=irr_mngt, 
-        field_management=FieldMngt(mulches= bool(extracted_rows["Mulches"][i] == "True")),
+        field_management=FieldMngt(mulches= extracted_rows["Mulches"][i], mulch_pct=100),
     )
     
     model.run_model(till_termination=True)
@@ -185,7 +185,7 @@ for i in range(2):
         crop=crop,
         initial_water_content=InitWC,
         irrigation_management=irr_mngt, 
-        field_management=FieldMngt(mulches= bool(extracted_rows["Mulches"][i+4] == "True")),
+        field_management=FieldMngt(mulches=extracted_rows["Mulches"][i+4], mulch_pct=100),
     )
     
     model.run_model(till_termination=True)
