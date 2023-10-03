@@ -83,7 +83,7 @@ for i in range(3):
     sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
     crop = Crop(crop.Name, planting_date=sowing_date)
     irr_mngt = IrrigationManagement(irrigation_method=1, SMT = [35]*4)
-    InitWC = InitialWaterContent(value = ['SAT'])
+    InitWC = InitialWaterContent(value = ['FC'])
     
     input_df = {'Case Study': [extracted_rows["Case Study"][i]],
                 'Latitude' : [location.latitude],
