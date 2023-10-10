@@ -2,6 +2,7 @@ from datetime import datetime
 from heliostrome.models.location import Location
 from heliostrome.models.climate import ClimateData
 from aquacrop.core import IrrigationManagement
+from aquacrop.entities.irrigationManagement import IrrMngtStruct
 from aquacrop import Crop, InitialWaterContent, Soil, AquaCropModel, FieldMngt
 from heliostrome.data_collection.crops import get_crop_data
 from heliostrome.models.aquacrop_results import (
@@ -86,7 +87,7 @@ for i in range(len(extracted_rows["Case Study"])):
     
     print(IRRschedule(i), sowing_date, start_date, end_date)
 
-    irr_mngt = IrrigationManagement(irrigation_method=3, Schedule = IRRschedule(i))
+    irr_mngt = IrrigationManagement(irrigation_method=3, Schedule = IRRschedule(i, B = 10), MaxIrr = 100)
     InitWC = InitialWaterContent(value = ['FC'])
     
     input_df = {'Case Study': [extracted_rows["Case Study"][i]],
@@ -113,7 +114,8 @@ for i in range(len(extracted_rows["Case Study"])):
         crop=crop,
         initial_water_content=InitWC,
         irrigation_management=irr_mngt,
-        field_management= FieldMngt(sr_inhb =True, bunds=True, z_bund=0.12, bund_water=30),
+        field_management= FieldMngt(bunds=True, z_bund=0.12, bund_water=30),
+
         )
     
     model.run_model(till_termination=True)
