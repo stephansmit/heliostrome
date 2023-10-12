@@ -140,7 +140,7 @@ for i in range(1):
     
 final_df.insert(0, 'Case Study', Casestudies)
 
-writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results.xlsx', engine = 'openpyxl')
+writer = pd.ExcelWriter(r'heliostrome\jip_project\results\IranPotato_results.xlsx', engine = 'openpyxl')
 final_input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
 final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 

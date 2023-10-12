@@ -2,7 +2,8 @@ from datetime import datetime
 from heliostrome.models.location import Location
 from heliostrome.models.climate import ClimateData
 from aquacrop.core import IrrigationManagement
-from aquacrop import Crop, InitialWaterContent, Soil, AquaCropModel
+from aquacrop.entities.irrigationManagement import IrrMngtStruct
+from aquacrop import Crop, InitialWaterContent, Soil, AquaCropModel, FieldMngt
 from heliostrome.data_collection.crops import get_crop_data
 from heliostrome.models.aquacrop_results import (
     SimulationResult,
@@ -65,7 +66,8 @@ alt.data_transformers.enable("default", max_rows=None)
 final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
 final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value',  'Yield (Ton/HA)', 'Water Used (mm)'])
                                        
-for i in range(3):
+for i in range(len(extracted_rows["Case Study"])):
+    
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
     start_date = extracted_rows["Start Date"][i].date()
     end_date = extracted_rows["End Date"][i].date()
@@ -82,8 +84,11 @@ for i in range(3):
     crop = get_crop_data("Wheat")
     sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
     crop = Crop(crop.Name, planting_date=sowing_date)
-    irr_mngt = IrrigationManagement(irrigation_method=1, SMT = [35]*4)
-    InitWC = InitialWaterContent(value = ['SAT'])
+    
+    print(IRRschedule(i), sowing_date, start_date, end_date)
+
+    irr_mngt = IrrigationManagement(irrigation_method=3, Schedule = IRRschedule(i, B = 10), MaxIrr = 100)
+    InitWC = InitialWaterContent(value = ['FC'])
     
     input_df = {'Case Study': [extracted_rows["Case Study"][i]],
                 'Latitude' : [location.latitude],
@@ -109,7 +114,10 @@ for i in range(3):
         crop=crop,
         initial_water_content=InitWC,
         irrigation_management=irr_mngt,
-    )
+        field_management= FieldMngt(bunds=True, z_bund=0.12, bund_water=30),
+
+        )
+    
     model.run_model(till_termination=True)
 
     df = model.get_simulation_results()
@@ -137,3 +145,6 @@ final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 
 writer.close()
 
+
+print(model._outputs.water_flux.head())
+print(model._outputs.water_storage.head())
