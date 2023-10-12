@@ -17,7 +17,7 @@ from datetime import datetime
 from datetime import date
 import pandas as pd 
 import altair as alt
-from openpyxl import load_workbook #added!
+from openpyxl import load_workbook
 import numpy as np
 import time
 import matplotlib.pyplot as plt
@@ -27,7 +27,7 @@ from irrigation_schedule_morrocco_wheat import IRRschedule
 start_time = time.time()
 
 # Load the Excel file
-excel_file = excel_file = r'heliostrome\jip_project\results\Factors to run simulation.xlsx'  # Replace with the path to your Excel file
+excel_file = r'heliostrome\jip_project\results\Factors to run simulation.xlsx'  # Replace with the path to your Excel file
 sheet_name = "Morocco Wheat Case Study"  # Replace with the name of the sheet containing the data
 df_bangladesh = pd.read_excel(excel_file, sheet_name=sheet_name)
 
@@ -65,7 +65,11 @@ alt.data_transformers.enable("default", max_rows=None)
 
 final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
 final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value',  'Yield (Ton/HA)', 'Water Used (mm)'])
-                                       
+
+#waterflux excel file
+writer1 = pd.ExcelWriter(r'heliostrome\jip_project\results\WaterFlux_moroccoWheat.xlsx', engine='openpyxl')
+
+
 for i in range(len(extracted_rows["Case Study"])):
     
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
@@ -119,15 +123,33 @@ for i in range(len(extracted_rows["Case Study"])):
         )
     
     model.run_model(till_termination=True)
+    
+    #end simulation run
 
+
+    ####data storage lines-----------------------------------------------------------
+    
     df = model.get_simulation_results()
 
     for x in range(len(df)):
         Casestudies.append(extracted_rows["Case Study"][i])
+    
+    # Append data to final_df and final_input_df using concat
+    final_df = pd.concat([final_df, df], ignore_index=True)
+        #final_df = final_df.append(df, ignore_index=True)
 
-    final_df = final_df.append(df, ignore_index=True)
     input_df = pd.DataFrame(input_df)
-    final_input_df = final_input_df.append(input_df, ignore_index=True)
+
+    final_input_df = pd.concat([final_input_df, pd.DataFrame(input_df)], ignore_index=True)
+    #final_input_df = final_input_df.append(input_df, ignore_index=True)
+
+    #waterflux related lines
+    water_flux = model._outputs.water_flux
+    sheet_name = f"waterflux for {extracted_rows['Case Study'][i]}"
+    water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
+
+
+
 
 
     #time elapsed
@@ -136,15 +158,18 @@ for i in range(len(extracted_rows["Case Study"])):
     print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
     start_time = end_time
 
-    
+
+
+writer1.close()
+
+# Insert the 'Case Study' column to final_df
 final_df.insert(0, 'Case Study', Casestudies)
 
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results_moroccoWheat.xlsx', engine = 'openpyxl')
 final_input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
 final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 
+
 writer.close()
 
 
-print(model._outputs.water_flux.head())
-print(model._outputs.water_storage.head())
