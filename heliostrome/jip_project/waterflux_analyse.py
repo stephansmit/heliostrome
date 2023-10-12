@@ -7,7 +7,7 @@ excel_file_path = r"heliostrome/jip_project/results/WaterFlux_moroccoWheat.xlsx"
 xls = pd.ExcelFile(excel_file_path)
 
 # Create a new Excel writer object to save the cleaned data
-writer = pd.ExcelWriter(r'heliostrome/jip_project/results/cleaned_waterfluxdata_morocco.xlsx', engine='openpyxl')
+writer = pd.ExcelWriter(r'heliostrome/jip_project/results/cleaned_WaterFlux_morocco.xlsx', engine='openpyxl')
 
 # Iterate through each sheet in the Excel file
 for sheet_name in xls.sheet_names:
