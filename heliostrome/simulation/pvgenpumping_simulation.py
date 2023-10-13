@@ -20,7 +20,8 @@ pvgen1 = pvgen.PVGeneration(
 
 mppt1 = mppt.MPPT(efficiency=0.96, idname="PCA-120-BLS-M2")
 
-pump_file = os.path.join(main_folder, "data/pump/SCB_10_150_120_BL.txt")
+pump_file = os.path.join(main_folder, "data/pump/Lorentz_ps1200.txt")
+#pump_file = os.path.join(main_folder, "data/pump/SCS_30_130_120_BL.txt")
 pump_sunpump = pp.Pump(path=pump_file)
 
 pipes1 = pn.PipeNetwork(
