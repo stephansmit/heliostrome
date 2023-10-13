@@ -71,6 +71,9 @@ alt.data_transformers.enable("default", max_rows=None)
 final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
 final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value',  'Yield (Ton/HA)', 'Water Used (mm)'])
 
+#waterflux excel file
+writer1 = pd.ExcelWriter(r'heliostrome\jip_project\results\WaterFlux_IranPotato.xlsx', engine='openpyxl')
+
 
 for i in range(1):
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
@@ -130,6 +133,10 @@ for i in range(1):
     input_df = pd.DataFrame(input_df)
     final_input_df = final_input_df.append(input_df, ignore_index=True)
 
+    #waterflux related lines
+    water_flux = model._outputs.water_flux
+    sheet_name = f"waterflux for {extracted_rows['Case Study'][i]}"
+    water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
 
     #time elapsed
     end_time = time.time()
@@ -137,10 +144,11 @@ for i in range(1):
     print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
     start_time = end_time
 
-    
+writer1.close()
+   
 final_df.insert(0, 'Case Study', Casestudies)
 
-writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results.xlsx', engine = 'openpyxl')
+writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results_IranPotato.xlsx', engine = 'openpyxl')
 final_input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
 final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 

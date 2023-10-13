@@ -1,6 +1,8 @@
 import pandas as pd
 
-def IRRschedule(A):
+#A is respective field
+#B is amount of simulation years. 1 is default. anything else will create an extended list with added years and depths for more simulations
+def IRRschedule(A, B=1):
     IrrigationType = ['C1', 'C1', 'C1', 'C2', 'C2', 'C2', 'C2', 'C2', 'C2', 'C3', 'C3', 'C3', 'C3', 'V1', 'V1', 'V1', 'V2', 'V2', 'V2', 'V3', 'V3', 'V3', 'V4', 'V4', 'V4', 'V5', 'V5', 'V5', 'V6', 'V6', 'V6']
 
     if A == 0:
@@ -34,9 +36,28 @@ def IRRschedule(A):
         return None  # Handle unknown A values
 
     # Convert Date strings to datetime objects
-    Date = pd.to_datetime(Date, format='%d/%m/%Y')
+    base_dates = pd.to_datetime(Date, format='%d/%m/%Y')
 
-    # Create the DataFrame
-    schedule = pd.DataFrame({'Date': Date, 'Depth': Depth})
+    # Initialize lists to store extended Date and Depth
+    extended_dates = []
+    extended_depth = []
+
+    # Create the DataFrame for the base year
+    schedule = pd.DataFrame({'Date': base_dates, 'Depth': Depth})
+
+    # Extend the DataFrame for B years with shifted dates and repeated depths
+    for _ in range(B - 1):
+        base_dates = [d + pd.DateOffset(years=1) for d in base_dates]
+        extended_dates.extend(base_dates)
+        extended_depth.extend(Depth)
+
+    # Create a DataFrame for the extended data
+    extended_schedule = pd.DataFrame({'Date': extended_dates, 'Depth': extended_depth})
+
+    # Concatenate the base schedule with the extended schedule
+    schedule = pd.concat([schedule, extended_schedule], ignore_index=True)
+
+    #schedule = schedule.append(pd.DataFrame({'Date': extended_dates, 'Depth': extended_depth}), ignore_index=True)
 
     return schedule
+
