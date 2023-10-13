@@ -1,4 +1,5 @@
 import os
+from pvlib.iotools import get_pvgis_tmy
 import pvpumpingsystem.pvgeneration as pvgen
 import pvpumpingsystem.pump as pp
 import pvpumpingsystem.mppt as mppt
@@ -8,10 +9,20 @@ import heliostrome
 
 main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
 
-pvpumping_input = os.path.join(main_folder, "data/weather/TUN_Tunis.607150_IWEC.epw")
+
+latitude = 35.6
+longitude = 53.5
+name = 'Chokwe'
+tz = 'UTC'
+
+data, months_selected, inputs, metadata = get_pvgis_tmy(latitude, longitude, outputformat='csv', usehorizon=True, userhorizon=None, startyear=None, endyear=None, map_variables=True, url='https://re.jrc.ec.europa.eu/api/', timeout=30)
+
+inputs['Name'] = name
+inputs['TZ'] = tz
+inputs['altitude'] = inputs['elevation']
 pvgen1 = pvgen.PVGeneration(
     # Weather data path
-    weather_data_and_metadata=pvpumping_input,
+    weather_data_and_metadata = {'weather_data':data, 'weather_metadata': inputs},
     pv_module_name="Canadian Solar CS5C 80M",  # Name of pv module to model
     modules_per_string=4,
     strings_in_parallel=1,

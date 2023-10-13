@@ -51,8 +51,13 @@ def IRRschedule(A, B=1):
         extended_dates.extend(base_dates)
         extended_depth.extend(Depth)
 
-    # Concatenate the extended lists
-    schedule = schedule.append(pd.DataFrame({'Date': extended_dates, 'Depth': extended_depth}), ignore_index=True)
+    # Create a DataFrame for the extended data
+    extended_schedule = pd.DataFrame({'Date': extended_dates, 'Depth': extended_depth})
+
+    # Concatenate the base schedule with the extended schedule
+    schedule = pd.concat([schedule, extended_schedule], ignore_index=True)
+
+    #schedule = schedule.append(pd.DataFrame({'Date': extended_dates, 'Depth': extended_depth}), ignore_index=True)
 
     return schedule
 
