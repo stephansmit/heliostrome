@@ -10,7 +10,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pvlib import pvsystem
 from pvpumpingsystem.pump import Pump
-
 import heliostrome
 
 def get_iv_curve_pump(pump: Pump, static_head: float):
@@ -64,7 +63,7 @@ pvgen1 = pvgen.PVGeneration(
     weather_data_and_metadata = {'weather_data': data, 'weather_metadata': inputs},
     pv_module_name="Canadian Solar CS5C 80M",  # Name of pv module to model
     modules_per_string=4,
-    strings_in_parallel=2,
+    strings_in_parallel=1,
     orientation_strategy="south_at_latitude_tilt",  # or 'flat' or None
 )
 
@@ -82,15 +81,6 @@ pipes1 = pn.PipeNetwork(
     material="plastic",
 )
 
-
-# load_fctI, intervalsVH = pump_sunpump.functIforVH()
-# Vrange_load = np.arange(*intervalsVH['V'](pipes1.h_stat))
-# I_fromVH = load_fctI(Vrange_load, pipes1.h_stat, error_raising=False)
-# iv_pump = pd.DataFrame()
-# iv_pump["v"] = Vrange_load
-# iv_pump["i"] = I_fromVH
-
-
 pvps1 = pvps.PVPumpSystem(
     pvgen1,
     pump_sunpump,
@@ -99,7 +89,6 @@ pvps1 = pvps.PVPumpSystem(
     pipes=pipes1,
     
 )
-# voltage_solar, get_iv_curve_pump(pvps1.motorpump, pipes1.h_stat)
 
 voltage_pump, current_pump = get_iv_curve_pump(pvps1.motorpump, pipes1.h_stat)
 voltage_solar, current_solar = get_iv_curve_solar(pvps1.pvgeneration.system, 1000, 25)
@@ -110,14 +99,3 @@ ax.plot(voltage_solar, current_solar)
 ax.set_xlabel("Voltage [V]")
 ax.set_ylabel("Current [A]")
 plt.show()
-
-# result
-# pvps1.operating_point(plot=True)
-# pvps1.calc_efficiency()
-
-# print(pvps1)
-# print("\ntotal water pumped in the year = ", pvps1.flow.Qlpm.sum() * 60)
-# print(
-#     "\ndetails on second day of pumping = \n", pvps1.flow[24:200]
-# )  # pvgen1.plot_model()
-
