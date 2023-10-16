@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Read the Excel file
-excel_file = r'heliostrome\jip_project\results\Northeastchina_results.xlsx'
+excel_file = r'heliostrome\jip_project\results\test_results_northeastCHINA.xlsx'
 sheet_name = "Output Results"
 df = pd.read_excel(excel_file, sheet_name=sheet_name)
 

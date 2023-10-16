@@ -21,45 +21,18 @@ from openpyxl import load_workbook
 import numpy as np
 import time
 import matplotlib.pyplot as plt
-from irrigation_schedule_morrocco_wheat import IRRschedule
+from modules.irrigation_schedule_morrocco_wheat import IRRschedule
+from modules.Load_excel import factors_to_run
 
 # Start the timer 
 start_time = time.time()
 
-# Load the Excel file
-excel_file = r'heliostrome\jip_project\results\Factors to run simulation.xlsx'  # Replace with the path to your Excel file
 sheet_name = "Morocco Wheat Case Study"  # Replace with the name of the sheet containing the data
-df_bangladesh = pd.read_excel(excel_file, sheet_name=sheet_name)
+extracted_rows = factors_to_run(sheet_name)
 
-# Define a mapping of row names to row indices
-row_mapping = {
-    "Case Study": 0,
-    "Longitude": 1,
-    "Latitude": 2,
-    "Start Date": 3,
-    "End Date": 4,
-    "Sowing Date": 5,
-    "Soil Type": 6,
-    "Irrigation Method": 7,
-    "Initial Water Content": 8,
-    "Crop Type": 9,
-    "Yield": 10,
-    "Water used": 11
-}
-
-# Initialize a dictionary to store the extracted rows with names
-extracted_rows = {}
 
 # Initialize an empty list for the Case Study Names
 Casestudies = []
-
-# Loop through the row names and extract the rows
-for row_name, row_index in row_mapping.items():
-    row_data = df_bangladesh.iloc[row_index, 1:].tolist()
-    extracted_rows[row_name] = row_data
-
-# Now, the extracted_rows dictionary contains the data with row names as keys
-# You can access each list by its corresponding row name, e.g., extracted_rows["Longitude"]
 
 alt.data_transformers.enable("default", max_rows=None)
 
