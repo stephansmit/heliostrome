@@ -48,10 +48,11 @@ def get_iv_curve_solar(system: pvsystem, effective_irradiance: float, temp_cell:
 main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
 
 
-latitude = 35.6
-longitude = 53.5
-name = 'Chokwe'
+latitude = 24.10
+longitude = 90.41
+name = 'Gazipur'
 tz = 'UTC'
+
 
 data, months_selected, inputs, metadata = get_pvgis_tmy(latitude, longitude, outputformat='csv', usehorizon=True, userhorizon=None, startyear=None, endyear=None, map_variables=True, url='https://re.jrc.ec.europa.eu/api/', timeout=30)
 
@@ -61,7 +62,7 @@ inputs['altitude'] = inputs['elevation']
 pvgen1 = pvgen.PVGeneration(
     # Weather data path
     weather_data_and_metadata = {'weather_data': data, 'weather_metadata': inputs},
-    pv_module_name="Canadian Solar CS5C 80M",  # Name of pv module to model
+    pv_module_name="Trina Solar TSM-260PA05A",  # Name of pv module to model
     modules_per_string=4,
     strings_in_parallel=1,
     orientation_strategy="south_at_latitude_tilt",  # or 'flat' or None
@@ -75,9 +76,9 @@ pump_sunpump = pp.Pump(path=pump_file)
 
 
 pipes1 = pn.PipeNetwork(
-    h_stat=20,  # static head [m]
-    l_tot=100,  # length of pipes [m]
-    diam=0.05,  # diameter [m]
+    h_stat=33.5,  # static head [m]
+    l_tot=93,  # length of pipes [m]
+    diam=0.038,  # diameter [m]
     material="plastic",
 )
 
@@ -94,8 +95,9 @@ voltage_pump, current_pump = get_iv_curve_pump(pvps1.motorpump, pipes1.h_stat)
 voltage_solar, current_solar = get_iv_curve_solar(pvps1.pvgeneration.system, 1000, 25)
 
 fig, ax = plt.subplots()
-ax.plot(voltage_pump, current_pump)
-ax.plot(voltage_solar, current_solar)
+ax.plot(voltage_pump, current_pump, label="Pump")
+ax.plot(voltage_solar, current_solar, label="Solar")
 ax.set_xlabel("Voltage [V]")
 ax.set_ylabel("Current [A]")
+ax.legend()
 plt.show()
