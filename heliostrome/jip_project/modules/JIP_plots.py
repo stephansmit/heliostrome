@@ -1,7 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def plot_season_data(input_path, start_dates):
+def plot_season_data(input_path, start_dates): 
+    """input the file of cleaned waterflux with the full row of 
+    the excel data for start date, it needs a list of startdates as long as the amount of sheets in waterflux (should always match up if files are related)"""
     # Load the Excel file
     xls = pd.ExcelFile(input_path)
     
