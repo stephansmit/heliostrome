@@ -2,8 +2,7 @@ from datetime import datetime
 from heliostrome.models.location import Location
 from heliostrome.models.climate import ClimateData
 from aquacrop.core import IrrigationManagement
-from aquacrop.entities.fieldManagement import FieldMngt
-from aquacrop import Crop, InitialWaterContent, Soil, AquaCropModel
+from aquacrop import Crop, InitialWaterContent, Soil, AquaCropModel, FieldMngt
 from heliostrome.data_collection.crops import get_crop_data
 from heliostrome.models.aquacrop_results import (
     SimulationResult,
@@ -21,45 +20,16 @@ from openpyxl import load_workbook #added!
 import numpy as np
 import time
 import matplotlib.pyplot as plt
+from modules.Load_excel import factors_to_run
 
 # Start the timer 
 start_time = time.time()
 
-
-# Load the Excel file
-excel_file = excel_file = r'heliostrome\jip_project\results\Factors to run simulation.xlsx'  # Replace with the path to your Excel file
 sheet_name = "Bangladesh Case Study"  # Replace with the name of the sheet containing the data
-df_bangladesh = pd.read_excel(excel_file, sheet_name=sheet_name)
-
-# Define a mapping of row names to row indices
-row_mapping = {
-    "Case Study": 0,
-    "Longitude": 1,
-    "Latitude": 2,
-    "Start Date": 3,
-    "End Date": 4,
-    "Sowing Date": 5,
-    "Soil Type": 6,
-    "Irrigation Method": 7,
-    "Initial Water Content": 8,
-    "Crop Type": 9,
-    "Yield": 10,
-    "Water used": 11
-}
-
-# Initialize a dictionary to store the extracted rows with names
-extracted_rows = {}
+extracted_rows = factors_to_run(sheet_name)
 
 # Initialize an empty list for the Case Study Names
 Casestudies = []
-
-# Loop through the row names and extract the rows
-for row_name, row_index in row_mapping.items():
-    row_data = df_bangladesh.iloc[row_index, 1:].tolist()
-    extracted_rows[row_name] = row_data
-
-# Now, the extracted_rows dictionary contains the data with row names as keys
-# You can access each list by its corresponding row name, e.g., extracted_rows["Longitude"]
 
 alt.data_transformers.enable("default", max_rows=None)
 
@@ -75,7 +45,7 @@ final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Star
 writer1 = pd.ExcelWriter(r'heliostrome\jip_project\results\WaterFlux_Bangladesh.xlsx', engine='openpyxl')
 
 
-for i in range(len(extracted_rows['Case Study'])):
+for i in range(1):
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
     start_date = extracted_rows["Start Date"][i].date()
     end_date = extracted_rows["End Date"][i].date()
@@ -92,8 +62,8 @@ for i in range(len(extracted_rows['Case Study'])):
     crop = get_crop_data(extracted_rows["Crop Type"][i])
     sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
     crop = Crop(crop.Name, planting_date=sowing_date)
-    irr_mngt = IrrigationManagement(irrigation_method=1, SMT=[extracted_rows["Irrigation Method"][i]]*4)
-    InitWC = InitialWaterContent(wc_type = 'Pct', value=[extracted_rows["Initial Water Content"][i]])
+    irr_mngt = IrrigationManagement(irrigation_method=4, NetIrrSMT=80, MaxIrr = 100)
+    InitWC = InitialWaterContent(value=["FC"])
     
     
     input_df = {'Case Study': [extracted_rows["Case Study"][i]],
@@ -119,7 +89,8 @@ for i in range(len(extracted_rows['Case Study'])):
         soil=soil,
         crop=crop,
         initial_water_content=InitWC,
-        irrigation_management=irr_mngt, 
+        irrigation_management=irr_mngt,
+         
         
     )
     model.run_model(till_termination=True)
