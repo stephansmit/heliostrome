@@ -24,7 +24,7 @@ def factors_to_run(sheet_name):
         "Maximum Flow Rate": 13,
         "Average Flow Rate": 14,
         "Modules Per String": 15,
-        "String in Parralel": 16,
+        "Strings in Parallel": 16,
         "PV Module Name": 17,
         "Pump Name": 18,
         "Static Head": 19,
