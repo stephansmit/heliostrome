@@ -20,7 +20,17 @@ def factors_to_run(sheet_name):
         "Crop Type": 9,
         "Yield": 10,
         "Water used": 11,
-        "Mulches": 12
+        "Mulches": 12,
+        "Maximum Flow Rate": 13,
+        "Average Flow Rate": 14,
+        "Modules Per String": 15,
+        "String in Parralel": 16,
+        "PV Module Name": 17,
+        "Pump Name": 18,
+        "Static Head": 19,
+        "Total Length of Pipes": 20,
+        "Diameter of Pipes": 21,
+        "Material of Pipes": 22 
     }
 
     # Initialize a dictionary to store the extracted rows with names
