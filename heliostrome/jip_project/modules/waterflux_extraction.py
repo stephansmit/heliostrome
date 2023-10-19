@@ -40,13 +40,15 @@ def clean_excel_file(input_path, output_path):
         df = pd.read_excel(input_path, sheet_name=sheet_name)
 
         # Check for rows with all columns equal to 0
-        zero_rows = (df == 0).all(axis=1)
+        #zero_rows = (df == 0).all(axis=1)
 
         # Check for rows where the 'season_counter' column is -1
         season_counter_minus_one = (df['season_counter'] == -1)
 
         # Filter out unwanted rows
-        df = df[~(zero_rows | season_counter_minus_one)]
+        #df = df[~(zero_rows | season_counter_minus_one)]
+        df = df[~(season_counter_minus_one)]
+
 
         # Write the cleaned DataFrame to the new Excel file
         df.to_excel(writer, sheet_name=sheet_name, index=False)

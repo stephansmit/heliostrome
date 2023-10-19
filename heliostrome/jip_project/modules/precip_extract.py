@@ -38,12 +38,13 @@ def Precip_data(sheets_factors_to_run):
             precipitation_data = climate_data.climate_daily
 
             # Create a DataFrame from precipitation_data
+            
             precip_df = pd.DataFrame([{
                 "temp_air_min_c": entry.temp_air_min_c,
                 "temp_air_max_c": entry.temp_air_max_c,
                 "precip_mm": entry.precip_mm,
                 "etref_mm": entry.etref_mm,
-                "date": entry.date,
+                "date": entry.date.tz_convert(None),  # Convert to timezone-unaware datetime
                 "poa_global_whm2": entry.poa_global_whm2,
             } for entry in precipitation_data])
 

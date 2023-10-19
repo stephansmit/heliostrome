@@ -38,8 +38,13 @@ def factors_to_run(sheet_name):
 
     # Loop through the row names and extract the rows
     for row_name, row_index in row_mapping.items():
-        row_data = df.iloc[row_index, 1:].tolist()
-        extracted_rows[row_name] = row_data
+        # Check if the row index is within the valid range
+        if row_index < df.shape[0]:
+            row_data = df.iloc[row_index, 1:].tolist()
+            extracted_rows[row_name] = row_data
+        else:
+            # Handle the case where the row is missing or out of bounds
+            extracted_rows[row_name] = None
 
     # Now, the extracted_rows dictionary contains the data with row names as keys
     return extracted_rows
