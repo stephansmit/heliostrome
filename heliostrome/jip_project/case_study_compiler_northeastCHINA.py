@@ -184,7 +184,7 @@ for i in range(2):
 
     #waterflux related lines
     water_flux = model._outputs.water_flux
-    sheet_name = f"waterflux for {extracted_rows['Case Study'][i+4]}"
+    sheet_name = f"{extracted_rows['Case Study'][i+4]}"
     water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
 
     #time elapsed

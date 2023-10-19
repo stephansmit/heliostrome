@@ -118,7 +118,7 @@ for i in range(len(extracted_rows["Case Study"])):
 
     #waterflux related lines
     water_flux = model._outputs.water_flux
-    sheet_name = f"waterflux for {extracted_rows['Case Study'][i]}"
+    sheet_name = f"{extracted_rows['Case Study'][i]}"
     water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
 
 
