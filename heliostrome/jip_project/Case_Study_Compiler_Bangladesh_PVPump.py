@@ -60,10 +60,8 @@ Casestudies = []
 
 alt.data_transformers.enable("default", max_rows=None)
 
-#for i in range(len(extracted_rows['Case Study'])):
-
-
-for i in range(len(extracted_rows["Case Study"])):
+#for i in range(len(extracted_rows["Case Study"])):
+for i in range(1):
 
     latitude = extracted_rows["Latitude"][i]
     longitude = extracted_rows["Longitude"][i]
@@ -147,16 +145,16 @@ for i in range(len(extracted_rows["Case Study"])):
     ax.legend()
     plt.show()
 
-    # pvps1.run_model()
+    pvps1.run_model()
 
-    # pvps1.calc_efficiency()
+    pvps1.calc_efficiency()
 
-    # print(pvps1)
-    # print("\ntotal water pumped in the year = ", pvps1.flow.Qlpm.sum() * 60)
-    # print(
-    #     "\ndetails on second day of pumping = \n", pvps1.flow[24:200]
-    # )  #pvgen1.plot_model()
+    #print(pvps1)
+    print("\ntotal water pumped in the year = ", pvps1.flow.Qlpm.sum() * 60)
+    #print(
+     #   "\ndetails on second day of pumping = \n", pvps1.flow[24:200]
+    #)  #pvgen1.plot_model()
 
     # pvps1.flow.Qlpm.plot()
     # plt.show()
-    # #plt.plot(, pvps.flow.Qlpm)
+    #plt.plot(, pvps.flow.Qlpm)
