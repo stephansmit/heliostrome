@@ -39,10 +39,6 @@ alt.data_transformers.enable("default", max_rows=None)
 final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
 final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value',  'Yield (Ton/HA)', 'Water Used (mm)'])
 
-#waterflux excel file
-writer1 = pd.ExcelWriter(r'heliostrome\jip_project\results\WaterFlux_moroccoWheat.xlsx', engine='openpyxl')
-
-
 for i in range(len(extracted_rows["Case Study"])):
     
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
@@ -58,15 +54,13 @@ for i in range(len(extracted_rows["Case Study"])):
     climate_data.plot_data(y_axis='temp_air_max_c')
 
     soil = Soil("ClayLoam")
-
-    # crop = get_crop_data("Wheat")
+    crop = get_crop_data("Wheat")
     sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
-    crop = Crop("Wheat", planting_date=sowing_date)
-
+    crop = Crop(crop.Name, planting_date=sowing_date)
     
     print(IRRschedule(i), sowing_date, start_date, end_date)
 
-    irr_mngt = IrrigationManagement(irrigation_method=3, Schedule = IRRschedule(i, B = 10), MaxIrr = 100)
+    irr_mngt = IrrigationManagement(irrigation_method=3, Schedule = IRRschedule(i, B = 5), MaxIrr = 100)
     InitWC = InitialWaterContent(value = ['FC'])
     
     input_df = {'Case Study': [extracted_rows["Case Study"][i]],
@@ -96,7 +90,7 @@ for i in range(len(extracted_rows["Case Study"])):
         field_management= FieldMngt(bunds=True, z_bund=0.12, bund_water=30),
 
         )
-    breakpoint
+    
     model.run_model(till_termination=True)
     
     #end simulation run
@@ -118,14 +112,6 @@ for i in range(len(extracted_rows["Case Study"])):
     final_input_df = pd.concat([final_input_df, pd.DataFrame(input_df)], ignore_index=True)
     #final_input_df = final_input_df.append(input_df, ignore_index=True)
 
-    #waterflux related lines
-    water_flux = model._outputs.water_flux
-    sheet_name = f"{extracted_rows['Case Study'][i]}"
-    water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
-
-
-
-
 
     #time elapsed
     end_time = time.time()
@@ -135,14 +121,14 @@ for i in range(len(extracted_rows["Case Study"])):
 
 
 
-writer1.close()
 
 # Insert the 'Case Study' column to final_df
+breakpoint()
 final_df.insert(0, 'Case Study', Casestudies)
 
-writer = pd.ExcelWriter(r'heliostrome\jip_project\results\sensitivity_Morocco.xlsx', engine = 'openpyxl')
+writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results_moroccoWheat.xlsx', engine = 'openpyxl')
 final_input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
-final_df.to_excel(writer, index=False, sheet_name= "Original_soil_ClayLoam")
+final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 
 
 writer.close()
