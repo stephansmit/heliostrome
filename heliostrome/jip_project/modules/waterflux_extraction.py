@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 
-def extract_rows(input_path, output_path, start_date = None):
+def extract_rows(input_path, output_path, start_date = None, field_size=None):
     # Create a new Excel writer object to save the extracted data
     writer = pd.ExcelWriter(output_path, engine='openpyxl')
 
@@ -20,6 +20,14 @@ def extract_rows(input_path, output_path, start_date = None):
             # Add a new column with the calculated dates
             extracted_df['Date'] = pd.to_datetime(start_date) + pd.to_timedelta(extracted_df['time_step_counter'], unit='D')
 
+        if field_size is not None:
+            # Convert 'IrrDay' from mm to m³
+            extracted_df['IrrDay'] *= 0.001  # 1 mm = 0.001 m
+
+            # Convert volume to m³ based on the field size
+            extracted_df['IrrDay'] *= field_size * 10_000  # 1 ha = 10,000 m²
+
+            print("Field size provided. 'IrrDay' values have been converted to m³.")
 
         if not extracted_df.empty:
             # Write the extracted DataFrame to the new Excel file
@@ -93,8 +101,8 @@ def min_max_irrigation(excel_file, field_size=None):
             min_irrigation_m3 = min_irrigation * 0.001
 
             # Convert volume to cubic meters (1 ha = 10,000 m^2)
-            max_irrigation_m3 *= field_size/10_000
-            min_irrigation_m3 *= field_size/10_000
+            max_irrigation_m3 *= field_size*10_000
+            min_irrigation_m3 *= field_size*10_000
 
             # Update max_irrigation and min_irrigation
             max_irrigation = max_irrigation_m3
