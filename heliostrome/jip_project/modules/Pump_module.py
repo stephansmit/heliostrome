@@ -1,7 +1,7 @@
 import pandas as pd
-
+"""IMPARTANT needs pvps.flow data that as been converted to daily avg Qlpm!!!"""
 def convert_Qlpm(df, field_size=None):
-    # Convert liters per minute to cubic meters per day
+    # Convert AVG liters per minute per day to cubic meters per day
     liters_per_min_to_cubic_meters_per_day = 1 / 1000  # 1 liter = 0.001 cubic meters
     minutes_in_a_day = 1440  # 24 hours * 60 minutes
 
