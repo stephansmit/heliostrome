@@ -90,7 +90,7 @@ for i in range(len(extracted_rows["Case Study"])):
         field_management= FieldMngt(bunds=True, z_bund=0.12, bund_water=30),
 
         )
-    
+    breakpoint()
     model.run_model(till_termination=True)
     
     #end simulation run
