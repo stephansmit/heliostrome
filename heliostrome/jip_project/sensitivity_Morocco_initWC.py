@@ -33,9 +33,9 @@ extracted_rows = factors_to_run(sheet_name)
 
 
 WC_values = [
-    "WP",
     "FC",
-    "SAT"
+    "SAT",
+    "WP"
 ]
 
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\sensitivity_Morocco_initWC.xlsx', engine='openpyxl')
@@ -68,7 +68,8 @@ for WC_value in WC_values:
         print(IRRschedule(i), sowing_date, start_date, end_date)
 
         irr_mngt = IrrigationManagement(irrigation_method=3, Schedule = IRRschedule(i, B = 5), MaxIrr = 100)
-        InitWC = InitialWaterContent(WC_value)
+        InitWC = InitialWaterContent(value=[WC_value])
+        # breakpoint()
     
         input_df = {'Case Study': [extracted_rows["Case Study"][i]],
                 'Latitude' : [location.latitude],
