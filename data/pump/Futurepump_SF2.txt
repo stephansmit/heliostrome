@@ -1,0 +1,18 @@
+PUMP NAME: Futurepump_SF2
+PRICE: 0  					# in USD
+ELECTRICAL ARCHITECTURE: permanent_magnet	
+# '.' are mandatory inputs that should be replaced by specifications or the line should be removed. 
+# 'nan' are optional input.
+# Units for columns are in the order: 
+# [V]	[m]	[A]	[L/min]	[W]	[no unit]
+voltage	tdh	current	flow	power	efficiency
+1.32	6.00	5.49	2.50
+2.64	8.40	5.47	2.25
+3.95	10.40	5.45	2.00
+5.27	12.50	5.43	1.75
+6.59	14.50	5.41	1.50
+7.91	16.00	5.39	1.25
+9.23	17.00	5.36	1.00
+10.54	17.30	5.28	0.75
+11.86	17.20	4.84	0.50
+13.18	17.10	3.17	0.25	

@@ -1,0 +1,11 @@
+{
+    "table": {
+        "columnNames": ["time", "latitude", "longitude", "precip"],
+        "columnTypes": ["String", "float", "float", "float"],
+        "columnUnits": ["UTC", "degrees_north", "degrees_east", "mm/day"],
+        "rows": [
+            ["2019-01-01T00:00:00Z", -18.675001, 35.524994, 0],
+            ["2019-01-02T00:00:00Z", -18.675001, 35.524994, 22.652636]
+        ]
+    }
+}
