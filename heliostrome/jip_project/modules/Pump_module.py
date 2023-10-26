@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+
 """IMPARTANT needs pvps.flow data that as been converted to daily avg Qlpm!!! Field size in m2"""
 def convert_Qlpm(df, field_size=None):
 
