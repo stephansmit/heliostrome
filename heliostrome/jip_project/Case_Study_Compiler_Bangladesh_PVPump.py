@@ -169,9 +169,14 @@ for i in range(0,3):
 
     #monthly_data = pvps1.flow.groupby(pvps1.flow.index.month).sum()
     daily_data = pvps1.flow.groupby(pvps1.flow.index.date).mean()
+    print(daily_data)
+
     pump_setup = str(extracted_rows['Pump Name'][i]) + ' (' + str(extracted_rows['Modules Per String'][i]) + ',' + str(extracted_rows['Strings in Parallel'][i]) + ')'
     
     daily_data = convert_Qlpm(daily_data,field_size=extracted_rows['Area of Field'][0])
+    print(daily_data)
+
+    
     #PVPump_results_df.index = daily_data.index
     PVPump_results_df[pump_setup] = daily_data['Water_depth_mm']
 
