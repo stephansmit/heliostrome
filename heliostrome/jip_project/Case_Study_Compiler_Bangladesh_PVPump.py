@@ -168,10 +168,10 @@ for i in range(0,3):
     #plt.plot(, pvps.flow.Qlpm)
 
     #monthly_data = pvps1.flow.groupby(pvps1.flow.index.month).sum()
-    daily_data = pvps1.flow.groupby(pvps1.flow.index.day).mean()
+    daily_data = pvps1.flow.groupby(pvps1.flow.index.date).mean()
     pump_setup = str(extracted_rows['Pump Name'][i]) + ' (' + str(extracted_rows['Modules Per String'][i]) + ',' + str(extracted_rows['Strings in Parallel'][i]) + ')'
     
-    daily_data = convert_Qlpm(daily_data,extracted_rows['Area of Field'][0])
+    daily_data = convert_Qlpm(daily_data,field_size=extracted_rows['Area of Field'][0])
     #PVPump_results_df.index = daily_data.index
     PVPump_results_df[pump_setup] = daily_data['Water_depth_mm']
 
@@ -192,7 +192,7 @@ def pumpname(pumpno, modno,strno):
 clean_excel_file(r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx",r"heliostrome/jip_project/results/cleaned_WaterFlux_Bangladesh.xlsx",start_date=extracted_rows['Start Date'][0])
 
 results_excel_file = r'heliostrome\jip_project\results\cleaned_WaterFlux_Bangladesh.xlsx'
-aquacrop_results = pd.read_excel(results_excel_file, sheet_name=sheet_name)
+aquacrop_results = pd.read_excel(results_excel_file)
 
 PVPump_results_df['Aquacrop Daily Irrigation'] = aquacrop_results['IrrDay']
 
@@ -210,7 +210,7 @@ plt.plot(PVPump_results_df['Date'], PVPump_results_df['Aquacrop Daily Irrigation
 
 # Customize the plot
 plt.title('Variation of ability to pump water over a year in Bangladesh Columns')
-plt.xlabel('Month')
+plt.xlabel('Date')
 plt.ylabel('mm per Day')
 plt.legend()
 
