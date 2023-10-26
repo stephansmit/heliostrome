@@ -176,14 +176,20 @@ print(PVPump_results_df)
 # Plot multiple columns on the same plot
 plt.figure(figsize=(10, 6))  # Optional: Adjust the figure size
 
+def pumpname(pumpno, modno,strno):
+    pumpn = str(extracted_rows['Pump Name'][pumpno]) + ' (' + str(extracted_rows['Modules Per String'][modno]) + ',' + str(extracted_rows['Strings in Parallel'][strno]) + ')'
+
+    return pumpn
+
+
 # Plot Column1
-plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,1], label='Pump 1')
+plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,1], label=pumpname(0,0,0))
 
 # Plot Column2
-plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,2], label='Pump 2')
+plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,2], label=pumpname(0,1,1))
 
 # Plot Column2
-plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,3], label='Pump 3')
+plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,3], label=pumpname(0,2,2))
 
 # Customize the plot
 plt.title('Variation of ability to pump water over a year in Bangladesh Columns')
