@@ -63,7 +63,10 @@ alt.data_transformers.enable("default", max_rows=None)
 #for i in range(len(extracted_rows['Case Study'])):
 
 
-for i in range(len(extracted_rows["Case Study"])):
+# for i in range(len(extracted_rows["Case Study"])):
+months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
+PVPump_results_df = pd.DataFrame({'Months': months})
+for i in range(0,3):
 
     latitude = extracted_rows["Latitude"][i]
     longitude = extracted_rows["Longitude"][i]
@@ -139,20 +142,20 @@ for i in range(len(extracted_rows["Case Study"])):
     # plt.show()
 
     #Voltage versus Power Plot
-    fig, ax = plt.subplots()
-    ax.plot(voltage_pump, power_pump, label="Pump")
-    ax.plot(voltage_solar, power_solar, label="Solar")
-    ax.set_xlabel("Voltage [V]")
-    ax.set_ylabel("Power [W]")
-    ax.legend()
-    plt.show()
+    # fig, ax = plt.subplots()
+    # ax.plot(voltage_pump, power_pump, label="Pump")
+    # ax.plot(voltage_solar, power_solar, label="Solar")
+    # ax.set_xlabel("Voltage [V]")
+    # ax.set_ylabel("Power [W]")
+    # ax.legend()
+    # plt.show()
 
     pvps1.run_model()
 
-    # pvps1.calc_efficiency()
+    pvps1.calc_efficiency()
 
-    # print(pvps1)
-    # print("\ntotal water pumped in the year = ", pvps1.flow.Qlpm.sum() * 60)
+    #print(pvps1)
+   # print("\ntotal water pumped in the year = ", pvps1.flow.Qlpm.sum() * 60)
     # print(
     #     "\ndetails on second day of pumping = \n", pvps1.flow[24:200]
     # )  #pvgen1.plot_model()
@@ -160,3 +163,33 @@ for i in range(len(extracted_rows["Case Study"])):
     # pvps1.flow.Qlpm.plot()
     # plt.show()
     #plt.plot(, pvps.flow.Qlpm)
+
+    monthly_data = pvps1.flow.groupby(pvps1.flow.index.month).sum()
+    pump_setup = str(extracted_rows['Pump Name'][i]) + ' (' + str(extracted_rows['Modules Per String'][i]) + ',' + str(extracted_rows['Strings in Parallel'][i]) + ')'
+    
+    PVPump_results_df.index = monthly_data.index
+    PVPump_results_df[pump_setup] = monthly_data['Qlpm']
+
+
+print(PVPump_results_df)
+
+# Plot multiple columns on the same plot
+plt.figure(figsize=(10, 6))  # Optional: Adjust the figure size
+
+# Plot Column1
+plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,1], label='Pump 1')
+
+# Plot Column2
+plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,2], label='Pump 2')
+
+# Plot Column2
+plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,3], label='Pump 3')
+
+# Customize the plot
+plt.title('Variation of ability to pump water over a year in Bangladesh Columns')
+plt.xlabel('Month')
+plt.ylabel('Qlpm')
+plt.legend()
+
+# Show the plot
+plt.show()
