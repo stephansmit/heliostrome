@@ -67,7 +67,8 @@ alt.data_transformers.enable("default", max_rows=None)
 
 # for i in range(len(extracted_rows["Case Study"])):
 months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
-PVPump_results_df = pd.DataFrame({'Months': months})
+#Day = [i for i in range(1, 366)]
+PVPump_results_df = pd.DataFrame({'Day': months})
 for i in range(0,3):
 
     latitude = extracted_rows["Latitude"][i]
@@ -171,12 +172,12 @@ for i in range(0,3):
     pump_setup = str(extracted_rows['Pump Name'][i]) + ' (' + str(extracted_rows['Modules Per String'][i]) + ',' + str(extracted_rows['Strings in Parallel'][i]) + ')'
     
     daily_data = convert_Qlpm(daily_data,extracted_rows['Area of Field'][0])
-    PVPump_results_df.index = daily_data.index
+    #PVPump_results_df.index = daily_data.index
     PVPump_results_df[pump_setup] = daily_data['Water_depth_mm']
 
     
 
-print(PVPump_results_df)
+PVPump_results_df['Date'] = daily_data['Date']
 
 # Plot multiple columns on the same plot
 plt.figure(figsize=(10, 6))  # Optional: Adjust the figure size
@@ -196,16 +197,16 @@ aquacrop_results = pd.read_excel(results_excel_file, sheet_name=sheet_name)
 PVPump_results_df['Aquacrop Daily Irrigation'] = aquacrop_results['IrrDay']
 
 # Plot Column1
-plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,1], label=pumpname(0,0,0))
+plt.plot(PVPump_results_df['Date'], PVPump_results_df.iloc[:,1], label=pumpname(0,0,0))
 
 # Plot Column2
-plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,2], label=pumpname(0,1,1))
+plt.plot(PVPump_results_df['Date'], PVPump_results_df.iloc[:,2], label=pumpname(0,1,1))
 
 # Plot Column3
-plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,3], label=pumpname(0,2,2))
+plt.plot(PVPump_results_df['Date'], PVPump_results_df.iloc[:,3], label=pumpname(0,2,2))
 
 # Plot Column4
-plt.plot(PVPump_results_df['Months'], PVPump_results_df['Aquacrop Daily Irrigation'], label="Aquacrop Results")
+plt.plot(PVPump_results_df['Date'], PVPump_results_df['Aquacrop Daily Irrigation'], label="Aquacrop Results")
 
 # Customize the plot
 plt.title('Variation of ability to pump water over a year in Bangladesh Columns')
