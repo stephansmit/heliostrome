@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from openpyxl import Workbook
 
 
 def extract_rows(input_path, output_path, start_date = None, field_size=None):
@@ -119,4 +120,38 @@ def min_max_irrigation(excel_file, field_size=None):
 
 # result = process_waterflux_excel(excel_file_path, field_size=field_size_ha)
 # print(result)
- 
+
+
+
+def summarize_monthly_data(input_path, output_path):
+    """use analysed_waterflux from extracted_rows function. make an output location where you want the data stored. Make sure the input waterflux is made with a startdate (fieldsize is optional)"""
+    # Create a new Excel writer object to save the summarized data
+    writer = pd.ExcelWriter(output_path, engine='openpyxl')
+
+    # Load the Excel file
+    xls = pd.ExcelFile(input_path)
+
+    for sheet_name in xls.sheet_names:
+        # Read the sheet into a DataFrame
+        df = pd.read_excel(input_path, sheet_name=sheet_name)
+
+        if 'Date' in df.columns:
+            # Ensure the 'Date' column is in datetime format
+            df['Date'] = pd.to_datetime(df['Date'])
+
+            # Group by year and month, sum the 'IrrDay' values, and reset the index
+            monthly_summary = df.groupby([df['Date'].dt.year, df['Date'].dt.month])['IrrDay'].sum().reset_index()
+
+            # Rename the columns for clarity
+            monthly_summary.columns = ['Year', 'Month', 'Total_IrrDay']
+
+            # Create a new Excel sheet for the summarized data
+            monthly_summary.to_excel(writer, sheet_name=sheet_name, index=False)
+
+    # Close the Excel writer to ensure proper resource release
+    writer.close()
+
+    print(f"Data summarization complete. Summarized data saved as '{output_path}'")
+
+# Example usage:
+# summarize_monthly_data('input_data.xlsx', 'output_summary.xlsx')
