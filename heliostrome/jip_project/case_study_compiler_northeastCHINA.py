@@ -21,13 +21,19 @@ from openpyxl import load_workbook #added!
 import numpy as np
 import time
 import matplotlib.pyplot as plt
+
 from modules.Load_excel import factors_to_run
+from modules.waterflux_extraction import *
+from modules.Pump_module import *
+from modules.precip_extract import *
+
+
 
 # Start the timer 
 start_time = time.time()
 
-sheet_name = "Northeast China Case Study"  # Replace with the name of the sheet containing the data
-extracted_rows = factors_to_run(sheet_name)
+CaseStudy_sheet = "Northeast China Case Study"  # Replace with the name of the sheet containing the data
+extracted_rows = factors_to_run(CaseStudy_sheet)
 
 alt.data_transformers.enable("default", max_rows=None)
 
@@ -105,10 +111,10 @@ for i in range(4):
 
     for x in range(len(df)):
         Casestudies.append(extracted_rows["Case Study"][i])
-
-    final_df = final_df.append(df, ignore_index=True)
+    
+    final_df = pd.concat([final_df, df], ignore_index=True)
     input_df = pd.DataFrame(input_df)
-    final_input_df = final_input_df.append(input_df, ignore_index=True)
+    final_input_df = pd.concat([final_input_df, pd.DataFrame(input_df)], ignore_index=True)
 
     #waterflux related lines
     water_flux = model._outputs.water_flux
@@ -178,9 +184,10 @@ for i in range(2):
     for x in range(len(df)):
         Casestudies.append(extracted_rows["Case Study"][i+4])
 
-    final_df = final_df.append(df, ignore_index=True)
+    
+    final_df = pd.concat([final_df, df], ignore_index=True)
     input_df = pd.DataFrame(input_df)
-    final_input_df = final_input_df.append(input_df, ignore_index=True)
+    final_input_df = pd.concat([final_input_df, pd.DataFrame(input_df)], ignore_index=True)
 
     #waterflux related lines
     water_flux = model._outputs.water_flux
@@ -202,4 +209,28 @@ final_input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
 final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 
 writer.close()
+
+
+
+
+
+input_path =  r"heliostrome/jip_project/results/WaterFlux_northeastCHINA.xlsx"
+output_path_clean = r"heliostrome/jip_project/results/cleaned_WaterFlux_NorthEastCHINA.xlsx"
+output_path_analyse= r"heliostrome/jip_project/results/analysed_WaterFlux_NorthEastCHINA.xlsx"
+clean_excel_file(input_path, output_path_clean, start_date=extracted_rows['Start Date'][0])
+extract_rows(input_path, output_path_analyse, start_date=extracted_rows['Start Date'][0])
+Min_max = min_max_irrigation(input_path)
+print(Min_max)
+
+
+sheet = [CaseStudy_sheet]
+
+Precip_data(sheet)
+
+
+
+
+
+
+
 

@@ -80,7 +80,8 @@ def clean_excel_file(input_path, output_path, start_date = None):
 
 
 def min_max_irrigation(excel_file, field_size=None):
-    """takes cleaned waterflux for precaution in future. season -1 might give problems"""
+    """takes cleaned waterflux for precaution in future. season -1 might give problems
+    fieldsize in m2"""
     # Create an empty DataFrame to store the results
     result_df = pd.DataFrame(columns=["variation", "max_irrigation", "min_irrigation"])
 
@@ -101,9 +102,9 @@ def min_max_irrigation(excel_file, field_size=None):
             max_irrigation_m3 = max_irrigation * 0.001
             min_irrigation_m3 = min_irrigation * 0.001
 
-            # Convert volume to cubic meters (1 ha = 10,000 m^2)
-            max_irrigation_m3 *= field_size*10_000
-            min_irrigation_m3 *= field_size*10_000
+            # Convert volume to cubic meters
+            max_irrigation_m3 *= field_size
+            min_irrigation_m3 *= field_size
 
             # Update max_irrigation and min_irrigation
             max_irrigation = max_irrigation_m3

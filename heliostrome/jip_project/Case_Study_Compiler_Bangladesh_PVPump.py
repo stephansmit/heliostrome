@@ -54,8 +54,8 @@ main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
 #Extracting the data from the factors to run simulation file excel
 
 # Load the Excel file
-sheet_name = "Case study pump"  # Replace with the name of the sheet containing the data
-extracted_rows = factors_to_run(sheet_name) # You can access each list by its corresponding row name, e.g., extracted_rows["Longitude"]
+CaseStudy_sheet = "Case study pump"  # Replace with the name of the sheet containing the data
+extracted_rows = factors_to_run(CaseStudy_sheet) # You can access each list by its corresponding row name, e.g., extracted_rows["Longitude"]
 
 # Initialize an empty list for the Case Study Names
 Casestudies = []
