@@ -66,9 +66,9 @@ alt.data_transformers.enable("default", max_rows=None)
 
 
 # for i in range(len(extracted_rows["Case Study"])):
-months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
+#months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
 #Day = [i for i in range(1, 366)]
-PVPump_results_df = pd.DataFrame({'Day': months})
+PVPump_results_df = pd.DataFrame()
 for i in range(0,3):
 
     latitude = extracted_rows["Latitude"][i]
@@ -179,6 +179,7 @@ for i in range(0,3):
 
 PVPump_results_df['Date'] = daily_data['Date']
 
+
 # Plot multiple columns on the same plot
 plt.figure(figsize=(10, 6))  # Optional: Adjust the figure size
 
@@ -195,6 +196,8 @@ results_excel_file = r'heliostrome\jip_project\results\cleaned_WaterFlux_Banglad
 aquacrop_results = pd.read_excel(results_excel_file)
 
 PVPump_results_df['Aquacrop Daily Irrigation'] = aquacrop_results['IrrDay']
+
+print(PVPump_results_df)
 
 # Plot Column1
 plt.plot(PVPump_results_df['Date'], PVPump_results_df.iloc[:,1], label=pumpname(0,0,0))
@@ -219,7 +222,7 @@ plt.show()
 
 
 #############################
-extract_rows(r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx",r"heliostrome/jip_project/results/analysed_WaterFlux_Bangladesh.xlsx",start_date=extracted_rows['Start Date'][0])
-result = min_max_irrigation(r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx", field_size=extracted_rows['Area of Field'][0])
+# extract_rows(r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx",r"heliostrome/jip_project/results/analysed_WaterFlux_Bangladesh.xlsx",start_date=extracted_rows['Start Date'][0])
+# result = min_max_irrigation(r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx", field_size=extracted_rows['Area of Field'][0])
 
-print(result)
+# print(result)
