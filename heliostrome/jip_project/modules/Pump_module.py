@@ -11,7 +11,7 @@ def convert_Qlpm(df, field_size=None):
     
     # Apply the conversion to the "Qlpm" column
     new_df["cubic_meters_per_day"] = df["Qlpm"] * liters_per_min_to_cubic_meters_per_day * minutes_in_a_day
-    new_df["Date"] = df.index.date
+    new_df["Date"] = df.index
      
     # If a field size (in hectares) is provided, calculate water depth in mm 
     # #(which is still related to that field size, but can be compared with general mm from aquacrop)
@@ -22,7 +22,7 @@ def convert_Qlpm(df, field_size=None):
         # # mm depth available for the field_size, not the same as aquacrop output, which is unrelated to fieldsize, but still comparable because of that
         new_df["Water_depth_mm"] = new_df["cubic_meters_per_day"] * 1000 / field_size_sqm 
 
-    return new_df[["Date","cubic_meters_per_day", "Water_depth_mm"]]
+    return new_df
 
   
 
