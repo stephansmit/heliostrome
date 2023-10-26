@@ -41,6 +41,8 @@ def pump_compatibility(waterflux_excel, pump_df):
     else:
         print("The pump may not be sufficient for irrigation on the following dates:")
         print(insufficient_pump_df[["Date", "IrrDay", "Water_depth_mm"]])
+    return merged_df
+
 
 # Example usage:
 # pump_compatibility(waterflux_excel, pump_df)
