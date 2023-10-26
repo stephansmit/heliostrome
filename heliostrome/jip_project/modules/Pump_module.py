@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import random
 
 """IMPARTANT needs pvps.flow data that as been converted to daily avg Qlpm!!! Field size in m2"""
 def convert_Qlpm(df, field_size=None):
@@ -28,13 +29,52 @@ def convert_Qlpm(df, field_size=None):
 
   
 
-def pump_compatibility(waterflux_excel, Daily_Pump_data):
-    """Match up the datetime in the "Date" column from clean_excel_file and pump_df to align the Date column entries. 
-    Compare "IrrDay" values of clean_excel with "Water_depth_mm" from pump_df. 
+
+
+
+# def pump_compatibility(waterflux_excel, Daily_Pump_data):
+#     """Match up the datetime in the "Date" column from clean_excel_file and pump_df to align the Date column entries. 
+#     Compare "IrrDay" values of clean_excel with "Water_depth_mm" from pump_df. 
+#     If "IrrDay" > "Water_depth_mm," show those instances (date, IrrDay, Water_depth_mm) and indicate a message that the pump is not enough for irrigation."""
+
+#     # Merge the two DataFrames on the "Date" column
+#     merged_df = pd.merge(waterflux_excel, Daily_Pump_data, on="Date", how="inner")
+
+#     # Filter instances where "IrrDay" is greater than "Water_depth_mm"
+#     insufficient_pump_df = merged_df[merged_df["IrrDay"] > merged_df["Water_depth_mm"]]
+
+#     if insufficient_pump_df.empty:
+#         print("The pump is sufficient for irrigation for all available dates.")
+#     else:
+#         print("The pump may not be sufficient for irrigation on the following dates:")
+#         print(insufficient_pump_df[["Date", "IrrDay", "Water_depth_mm"]])
+    
+    
+#     # Create a bar plot of "IrrDay" and "Water_depth_mm" against date
+#     plt.figure(figsize=(12, 6))
+#     plt.bar(merged_df["Date"], merged_df["IrrDay"], label="Aquacrop Irrigation")
+#     plt.bar(merged_df["Date"], merged_df["Water_depth_mm"], label="Pump Potential")
+#     plt.xlabel("Date")
+#     plt.ylabel("Values")
+#     plt.title("Aquacrop Irrigation vs Pump Potential")
+#     plt.legend()
+#     plt.xticks(rotation=45)
+#     plt.show()
+
+#     return merged_df
+
+
+
+def pump_compatibility(waterflux_excel, pump_df):
+    """Match up the datetime in the "Date" column from waterflux_excel and pump_df to align the Date column entries.
+    Compare "IrrDay" values of waterflux_excel with "Water_depth_mm" from pump_df.
     If "IrrDay" > "Water_depth_mm," show those instances (date, IrrDay, Water_depth_mm) and indicate a message that the pump is not enough for irrigation."""
 
-    # Merge the two DataFrames on the "Date" column
-    merged_df = pd.merge(waterflux_excel, Daily_Pump_data, on="Date", how="inner")
+    # Extract the month/day from the "Date" column of pump_df
+    pump_df['Date'] = pump_df['Date'].dt.strftime('%m/%d')
+
+    # Merge the two DataFrames on the "Date" column (month/day)
+    merged_df = pd.merge(waterflux_excel, pump_df, on="Date", how="inner")
 
     # Filter instances where "IrrDay" is greater than "Water_depth_mm"
     insufficient_pump_df = merged_df[merged_df["IrrDay"] > merged_df["Water_depth_mm"]]
@@ -44,13 +84,12 @@ def pump_compatibility(waterflux_excel, Daily_Pump_data):
     else:
         print("The pump may not be sufficient for irrigation on the following dates:")
         print(insufficient_pump_df[["Date", "IrrDay", "Water_depth_mm"]])
-    
-    
-    # Create a bar plot of "IrrDay" and "Water_depth_mm" against date
+
+    # Create a bar plot of "IrrDay" and "Water_depth_mm" against "Date"
     plt.figure(figsize=(12, 6))
     plt.bar(merged_df["Date"], merged_df["IrrDay"], label="Aquacrop Irrigation")
     plt.bar(merged_df["Date"], merged_df["Water_depth_mm"], label="Pump Potential")
-    plt.xlabel("Date")
+    plt.xlabel("Date (Month/Day)")
     plt.ylabel("Values")
     plt.title("Aquacrop Irrigation vs Pump Potential")
     plt.legend()
