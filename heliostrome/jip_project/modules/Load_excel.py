@@ -30,7 +30,8 @@ def factors_to_run(sheet_name):
         "Static Head": 19,
         "Total Length of Pipes": 20,
         "Diameter of Pipes": 21,
-        "Material of Pipes": 22 
+        "Material of Pipes": 22,
+        "Area of Field": 29 
     }
 
     # Initialize a dictionary to store the extracted rows with names
