@@ -13,6 +13,8 @@ from pvpumpingsystem.pump import Pump
 import heliostrome
 import altair as alt
 from modules.Load_excel import factors_to_run
+from modules.waterflux_extraction import *
+from modules.Pump_module import convert_Qlpm
 
 def get_iv_curve_pump(pump: Pump, static_head: float):
     load_fctI, intervalsVH = pump.functIforVH()
@@ -164,12 +166,15 @@ for i in range(0,3):
     # plt.show()
     #plt.plot(, pvps.flow.Qlpm)
 
-    monthly_data = pvps1.flow.groupby(pvps1.flow.index.month).sum()
+    #monthly_data = pvps1.flow.groupby(pvps1.flow.index.month).sum()
+    daily_data = pvps1.flow.groupby(pvps1.flow.index.day).mean()
     pump_setup = str(extracted_rows['Pump Name'][i]) + ' (' + str(extracted_rows['Modules Per String'][i]) + ',' + str(extracted_rows['Strings in Parallel'][i]) + ')'
     
-    PVPump_results_df.index = monthly_data.index
-    PVPump_results_df[pump_setup] = monthly_data['Qlpm']
+    daily_data = convert_Qlpm(daily_data,extracted_rows['Area of Field'][0])
+    PVPump_results_df.index = daily_data.index
+    PVPump_results_df[pump_setup] = daily_data['Water_depth_mm']
 
+    
 
 print(PVPump_results_df)
 
@@ -182,20 +187,38 @@ def pumpname(pumpno, modno,strno):
     return pumpn
 
 
+############## Getting Aquacrop Bangladesh Data -> Water Per Month Needed
+clean_excel_file(r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx",r"heliostrome/jip_project/results/cleaned_WaterFlux_Bangladesh.xlsx",start_date=extracted_rows['Start Date'][0])
+
+results_excel_file = r'heliostrome\jip_project\results\cleaned_WaterFlux_Bangladesh.xlsx'
+aquacrop_results = pd.read_excel(results_excel_file, sheet_name=sheet_name)
+
+PVPump_results_df['Aquacrop Daily Irrigation'] = aquacrop_results['IrrDay']
+
 # Plot Column1
 plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,1], label=pumpname(0,0,0))
 
 # Plot Column2
 plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,2], label=pumpname(0,1,1))
 
-# Plot Column2
+# Plot Column3
 plt.plot(PVPump_results_df['Months'], PVPump_results_df.iloc[:,3], label=pumpname(0,2,2))
+
+# Plot Column4
+plt.plot(PVPump_results_df['Months'], PVPump_results_df['Aquacrop Daily Irrigation'], label="Aquacrop Results")
 
 # Customize the plot
 plt.title('Variation of ability to pump water over a year in Bangladesh Columns')
 plt.xlabel('Month')
-plt.ylabel('Qlpm')
+plt.ylabel('mm per Day')
 plt.legend()
 
 # Show the plot
 plt.show()
+
+
+#############################
+extract_rows(r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx",r"heliostrome/jip_project/results/analysed_WaterFlux_Bangladesh.xlsx",start_date=extracted_rows['Start Date'][0])
+result = min_max_irrigation(r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx", field_size=extracted_rows['Area of Field'][0])
+
+print(result)
