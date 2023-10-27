@@ -160,7 +160,7 @@ def summarize_monthly_data(input_path, output_path):
 
 def resample_and_save_weekly(clean_input_file, output_file):
     xls = pd.ExcelFile(clean_input_file)
-    writer = pd.ExcelWriter(output_file, engine='xlsxwriter')
+    writer = pd.ExcelWriter(output_file, engine='openpyxl')
 
     for sheet_name in xls.sheet_names:
         df = pd.read_excel(clean_input_file, sheet_name=sheet_name)
@@ -176,3 +176,6 @@ def resample_and_save_weekly(clean_input_file, output_file):
 
     writer.close()
 
+output_path_clean = r"heliostrome/jip_project/results/cleaned_WaterFlux_Bangladesh.xlsx"
+output_path_weekly = r"heliostrome/jip_project/results/weekly_WaterFlux_Bangladesh.xlsx"
+resample_and_save_weekly(output_path_clean, output_path_weekly)
