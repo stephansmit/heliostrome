@@ -156,3 +156,23 @@ def summarize_monthly_data(input_path, output_path):
 
 # Example usage:
 # summarize_monthly_data('input_data.xlsx', 'output_summary.xlsx')
+
+
+def resample_and_save_weekly(clean_input_file, output_file):
+    xls = pd.ExcelFile(clean_input_file)
+    writer = pd.ExcelWriter(output_file, engine='xlsxwriter')
+
+    for sheet_name in xls.sheet_names:
+        df = pd.read_excel(clean_input_file, sheet_name=sheet_name)
+        
+        # Assuming you have a 'Date' column, set it as the index
+        df = df.set_index('Date')
+
+        # Resample the data to weekly frequency and calculate the sum
+        weekly_data = df.resample('W').sum()
+
+        # Save the resampled data to a new sheet in the output Excel file
+        weekly_data.to_excel(writer, sheet_name=sheet_name)
+
+    writer.close()
+
