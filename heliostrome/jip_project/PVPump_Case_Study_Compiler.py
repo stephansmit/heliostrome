@@ -30,8 +30,8 @@ alt.data_transformers.enable("default", max_rows=None)
 PVPump_results_df = pd.DataFrame()
 
 #Looping through all the case studies to simulate different aquacrop inputs as well as pump inputs
-for i in range(len(extracted_rows["Case Study"])):
-
+#for i in range(len(extracted_rows["Case Study"])):
+for i in range(2):
     latitude = extracted_rows["Latitude"][i]
     longitude = extracted_rows["Longitude"][i]
     name = extracted_rows['Case Study'][i]
@@ -86,9 +86,9 @@ for i in range(len(extracted_rows["Case Study"])):
     power_pump = voltage_pump * current_pump
     power_solar = voltage_solar * current_solar
 
-    pump_solar_voltage_current_plot(voltage_pump,current_pump,voltage_solar,current_solar)
+    #pump_solar_voltage_current_plot(voltage_pump,current_pump,voltage_solar,current_solar)
 
-    pump_solar_voltage_power_plot(voltage_pump,power_pump,voltage_solar,power_solar)
+    #pump_solar_voltage_power_plot(voltage_pump,power_pump,voltage_solar,power_solar)
 
     pvps1.run_model()
 
