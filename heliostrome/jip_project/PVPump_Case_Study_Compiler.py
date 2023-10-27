@@ -16,6 +16,7 @@ from modules.Load_excel import factors_to_run
 from modules.waterflux_extraction import *
 from modules.Pump_module import convert_Qlpm, pump_solar_voltage_current_plot,pump_solar_voltage_power_plot
 from heliostrome.simulation.curve_plotting import get_iv_curve_pump, get_iv_curve_solar
+from openpyxl import load_workbook #added!
 
 main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
 
@@ -31,7 +32,7 @@ PVPump_results_df = pd.DataFrame()
 
 #Looping through all the case studies to simulate different aquacrop inputs as well as pump inputs
 #for i in range(len(extracted_rows["Case Study"])):
-for i in range(2):
+for i in range(1):
     latitude = extracted_rows["Latitude"][i]
     longitude = extracted_rows["Longitude"][i]
     name = extracted_rows['Case Study'][i]
@@ -103,8 +104,39 @@ for i in range(2):
 
 PVPump_results_df['Date'] = daily_data['Date']
 
+PVPump_results_df['Date'] = pd.to_datetime(PVPump_results_df['Date'])
+
+PVPump_results_df = PVPump_results_df.set_index('Date')
+
+sim_start_year = 2005
+sim_end_year = 2016
+
+PVPump_results_df.index = PVPump_results_df.index.map(lambda x: x.replace(year=sim_start_year))
+PVPump_results_df = PVPump_results_df.sort_index()
+
+PVPump_full_df = pd.DataFrame(columns=PVPump_results_df.columns)
+PVPump_results_df.index = pd.to_datetime(PVPump_results_df.index)
+
+
+for year in range(sim_start_year, sim_end_year + 1):
+    # Duplicate the original DataFrame and update the 'Date' column
+    current_year_df = PVPump_results_df.copy()
+    current_year_df.index = current_year_df.index.map(lambda x: x.replace(year=year))
+
+    # Append the current year's data to the repeated DataFrame
+    PVPump_full_df = PVPump_full_df.append(current_year_df, ignore_index=False)
+
+
+PVPump_full_df = PVPump_full_df.set_index(pd.to_datetime(PVPump_full_df.index))
+
+weekly_data = PVPump_full_df.resample('W').sum()
+
+print(weekly_data)
+
+#####NOT WORKING FROM HERE?????
+
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', engine = 'openpyxl')
-PVPump_results_df.to_excel(writer, index=False)
+PVPump_full_df.to_excel(writer, index=False)
 writer.close()
 
 resample_and_save_weekly(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx',r'heliostrome\jip_project\results\weekly_Pump_Data.xlsx')

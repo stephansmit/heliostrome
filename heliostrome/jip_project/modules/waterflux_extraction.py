@@ -166,8 +166,13 @@ def resample_and_save_weekly(clean_input_file, output_file):
         df = pd.read_excel(clean_input_file, sheet_name=sheet_name)
         
         # Assuming you have a 'Date' column, set it as the index
-        df = df.set_index('Date')
-
+        if 'Date' in df.columns:
+        # Set the index to be the 'Date' column
+            df.set_index('Date', inplace=True)
+        else:
+        # If 'Date' column doesn't exist, do nothing
+            pass
+        
         # Resample the data to weekly frequency and calculate the sum
         weekly_data = df.resample('W').sum()
 
