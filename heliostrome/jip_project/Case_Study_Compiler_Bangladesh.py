@@ -29,7 +29,7 @@ from modules.precip_extract import *
 # Start the timer 
 start_time = time.time()
 
-CaseStudy_sheet = "Bangladesh Case Study"  # Replace with the name of the sheet containing the data
+CaseStudy_sheet = "Case study pump"  # Replace with the name of the sheet containing the data
 extracted_rows = factors_to_run(CaseStudy_sheet)
 
 # Initialize an empty list for the Case Study Names
