@@ -64,18 +64,16 @@ alt.data_transformers.enable("default", max_rows=None)
 
 #for i in range(len(extracted_rows['Case Study'])):
 
+PVPump_results_df = pd.DataFrame()
 
 # for i in range(len(extracted_rows["Case Study"])):
-#months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec']
-#Day = [i for i in range(1, 366)]
-PVPump_results_df = pd.DataFrame()
+
 for i in range(0,3):
 
     latitude = extracted_rows["Latitude"][i]
     longitude = extracted_rows["Longitude"][i]
     name = extracted_rows['Case Study'][i]
     tz = 'UTC'
-
 
     data, months_selected, inputs, metadata = get_pvgis_tmy(latitude, longitude, outputformat='csv', usehorizon=True, userhorizon=None, startyear=None, endyear=None, map_variables=True, url='https://re.jrc.ec.europa.eu/api/', timeout=30)
 
@@ -98,7 +96,6 @@ for i in range(0,3):
 
     pump_sunpump = pp.Pump(path=pump_file)
 
-
     pipes1 = pn.PipeNetwork(
         h_stat=extracted_rows['Static Head'][i],  # static head [m]
         l_tot=extracted_rows['Total Length of Pipes'][i],  # length of pipes [m]
@@ -112,7 +109,6 @@ for i in range(0,3):
         coupling="direct",  # to adapt: 'mppt' or 'direct',
         mppt=mppt1,
         pipes=pipes1,
-        
     )
 
     voltage_pump, current_pump = get_iv_curve_pump(pvps1.motorpump, pipes1.h_stat)
@@ -125,11 +121,10 @@ for i in range(0,3):
     solar_df['Current Solar'] = current_solar
     solar_df['Case Study'] = [extracted_rows["Case Study"][i] for _ in range(len(solar_df))]
    
-
     # writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results_Bangladesh.xlsx', engine = 'openpyxl')
     # pump_df.to_excel(writer, index=False, sheet_name= "Pump Outputs")
     # solar_df.to_excel(writer, index=False, sheet_name= "Solar Outputs")
-
+    
     # writer.close()
 
     power_pump = voltage_pump * current_pump

@@ -25,7 +25,7 @@ from modules.Load_excel import factors_to_run
 # Start the timer 
 start_time = time.time()
 
-sheet_name = "Bangladesh Case Study"  # Replace with the name of the sheet containing the data
+sheet_name = "Case study pump"  # Replace with the name of the sheet containing the data
 extracted_rows = factors_to_run(sheet_name)
 
 # Initialize an empty list for the Case Study Names
@@ -109,15 +109,11 @@ for i in range(len(extracted_rows["Case Study"])):
     sheet_name = f"{extracted_rows['Case Study'][i]}"
     water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
 
-
-
     #time elapsed
     end_time = time.time()
     elapsed_time = end_time - start_time
     print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
     start_time = end_time
-
-
 
 writer1.close()
 
