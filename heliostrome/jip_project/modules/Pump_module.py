@@ -129,7 +129,7 @@ def pump_compatibility(waterflux_excel_path, pump_df_path):
     merged_df = pd.merge(waterflux_excel, pump_df, on="Month_Day", how="inner")
 
     # Filter instances where "IrrDay_waterflux" is greater than "Water_depth_mm_pump"
-    insufficient_pump_df = merged_df[merged_df["IrrDay_waterflux"] > merged_df["Water_depth_mm_pump"]]
+    insufficient_pump_df = merged_df[merged_df["IrrDay"] > merged_df["Water_depth_mm"]]
 
     if insufficient_pump_df.empty:
         print("The pump is sufficient for irrigation for all available dates.")
