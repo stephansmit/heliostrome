@@ -29,7 +29,7 @@ from modules.precip_extract import *
 # Start the timer 
 start_time = time.time()
 
-CaseStudy_sheet = "Bangladesh Case Study"  # Replace with the name of the sheet containing the data
+CaseStudy_sheet = "Case study pump"  # Replace with the name of the sheet containing the data
 extracted_rows = factors_to_run(CaseStudy_sheet)
 
 # Initialize an empty list for the Case Study Names
@@ -66,7 +66,7 @@ for i in range(len(extracted_rows["Case Study"])):
     crop = get_crop_data(extracted_rows["Crop Type"][i])
     sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
     crop = Crop(crop.Name, planting_date=sowing_date)
-    irr_mngt = IrrigationManagement(irrigation_method=1, SMT = extracted_rows["Irrigation Method"][i])
+    irr_mngt = IrrigationManagement(irrigation_method=1, smt = extracted_rows["Irrigation Method"][i])
     InitWC = InitialWaterContent(value=["FC"])
     
     
