@@ -94,8 +94,8 @@ for i in range(2):
 
     pvps1.calc_efficiency()
 
-    pump_setup = str(extracted_rows['Pump Name'][i]) + ' (' + str(extracted_rows['Modules Per String'][i]) + ',' + str(extracted_rows['Strings in Parallel'][i]) + ')'
-    
+    #pump_setup = str(extracted_rows['Pump Name'][i]) + ' (' + str(extracted_rows['Modules Per String'][i]) + ',' + str(extracted_rows['Strings in Parallel'][i]) + ')'
+    pump_setup = 'Pump ' + str(i)
     daily_data = convert_Qlpm(pvps1.flow,field_size=extracted_rows['Area of Field'][0])
    
     PVPump_results_df[pump_setup] = daily_data['Water_depth_mm']
