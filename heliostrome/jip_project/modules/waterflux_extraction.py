@@ -171,11 +171,12 @@ def resample_and_save_weekly(clean_input_file, output_file):
         # Resample the data to weekly frequency and calculate the sum
         weekly_data = df.resample('W').sum()
 
+        # Check for rows with all columns equal to 0
+        zero_rows = (weekly_data == 0).all(axis=1)
+        # Filter out unwanted rows
+        weekly_data = weekly_data[~(zero_rows)]
         # Save the resampled data to a new sheet in the output Excel file
         weekly_data.to_excel(writer, sheet_name=sheet_name)
 
     writer.close()
 
-output_path_clean = r"heliostrome/jip_project/results/cleaned_WaterFlux_Bangladesh.xlsx"
-output_path_weekly = r"heliostrome/jip_project/results/weekly_WaterFlux_Bangladesh.xlsx"
-resample_and_save_weekly(output_path_clean, output_path_weekly)

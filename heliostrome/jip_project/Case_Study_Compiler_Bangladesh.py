@@ -49,7 +49,7 @@ final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Star
 writer1 = pd.ExcelWriter(r'heliostrome\jip_project\results\WaterFlux_Bangladesh.xlsx', engine='openpyxl')
 
 
-for i in range(len(extracted_rows["Case Study"])):
+for i in range(1):
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
     start_date = extracted_rows["Start Date"][i].date()
     end_date = extracted_rows["End Date"][i].date()
@@ -137,7 +137,7 @@ clean_excel_file(input_path, output_path_clean, start_date=extracted_rows['Start
 extract_rows(input_path, output_path_analyse, start_date=extracted_rows['Start Date'][0])
 Min_max = min_max_irrigation(input_path)
 print(Min_max)
-
+resample_and_save_weekly(r'heliostrome\jip_project\results\cleaned_WaterFlux_Bangladesh.xlsx', r"heliostrome/jip_project/results/weekly_WaterFlux_Bangladesh.xlsx")
 
 sheet = [CaseStudy_sheet]
 
