@@ -14,7 +14,7 @@ experimental_yields = pd.read_excel(excel_file, sheet_name="Input Parameters")
 average_yields_list = average_yields['Yield (tonne/ha)'].tolist()
 experimental_yields_list = experimental_yields['Yield (Ton/HA)'].tolist()
 
-# THIS DOESNT WORK YET BECAUSE THE LENGTHS DONT MATCH
+#THIS DOESNT WORK YET BECAUSE THE LENGTHS DONT MATCH
 
 def calculate_rmse_percentage(average_yields_list, experimental_yields_list):
     if len(average_yields_list) != len(experimental_yields_list):

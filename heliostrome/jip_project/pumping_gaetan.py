@@ -95,8 +95,8 @@ def req_flow_rate(mm_max: float):
  
     return flow_rate
 
-def req_power(tsh,Q,pump_eff):
-    power = (tsh*Q*16)/pump_eff
+def req_power(tsh,Q):
+    power = (tsh*Q*16)
 
     return power
 
@@ -113,14 +113,14 @@ r = 0.0015 #Value for roughness of PVC pipe (material in paper)
 mm_max = 25 #Taken from simulation
 Q = req_flow_rate(mm_max)
 l = [93] #Calculated from Brinjal in Gazipur layout
-pump_eff = 0.75 #Assumption from averages
+pump_eff = 0.6 #Assumption from averages
 
 #Calculating the Required Total Dynamic Head with the goal to select the optimum pump
 tsh =total_static_head(static_suction_head[0],static_delivery_head[0])
 tfh = total_frictional_head(l[0],d,t,Q,r,'plastic')
 tvh = total_velociy_head(Q,d)
 print(f"Total Dynamic Head = {round(total_dynamic_head(tsh,tfh,tvh),2)}")
-print(f"Power Required = {round(req_power(tsh,Q,pump_eff),2)}W")
+print(f"Power Required = {round(req_power(33.5,Q),2)}W")
 
 
 ##################################################
@@ -128,47 +128,47 @@ print(f"Power Required = {round(req_power(tsh,Q,pump_eff),2)}W")
 #Running the simulation with the given pump in case study
 
 
-main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
+# main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
 
-#Need to adjust weather data for bangladesh
+# #Need to adjust weather data for bangladesh
 
-pvpumping_input = os.path.join(main_folder, "data/weather/TUN_Tunis.607150_IWEC.epw")
-pvgen1 = pvgen.PVGeneration(
-    # Weather data path
-    weather_data_and_metadata=pvpumping_input,
-    pv_module_name="Canadian Solar CS5C 80M",  # Name of pv module to model
-    modules_per_string=4,
-    strings_in_parallel=1,
-    orientation_strategy="south_at_latitude_tilt",  # or 'flat' or None
-)
+# pvpumping_input = os.path.join(main_folder, "data/weather/TUN_Tunis.607150_IWEC.epw")
+# pvgen1 = pvgen.PVGeneration(
+#     # Weather data path
+#     weather_data_and_metadata=pvpumping_input,
+#     pv_module_name="Canadian Solar CS5C 80M",  # Name of pv module to model
+#     modules_per_string=4,
+#     strings_in_parallel=1,
+#     orientation_strategy="south_at_latitude_tilt",  # or 'flat' or None
+# )
 
-mppt1 = mppt.MPPT(efficiency=0.96, idname="PCA-120-BLS-M2")
+# mppt1 = mppt.MPPT(efficiency=0.96, idname="PCA-120-BLS-M2")
 
-#Pump Used - Lorentz PS 1200, 2.2 HP
+# #Pump Used - Lorentz PS 1200, 2.2 HP
 
-pump_file = os.path.join(main_folder, "data/pump/SCB_10_150_120_BL.txt")
-pump_sunpump = pp.Pump(path=pump_file)
+# pump_file = os.path.join(main_folder, "data/pump/SCB_10_150_120_BL.txt")
+# pump_sunpump = pp.Pump(path=pump_file)
 
-pipes1 = pn.PipeNetwork(
-    h_stat=tsh,  # static head [m]
-    l_tot=l[0],  # length of pipes [m]
-    diam=d/1000,  # diameter [m]
-    material="plastic",
-)
+# pipes1 = pn.PipeNetwork(
+#     h_stat=tsh,  # static head [m]
+#     l_tot=l[0],  # length of pipes [m]
+#     diam=d/1000,  # diameter [m]
+#     material="plastic",
+# )
 
-pvps1 = pvps.PVPumpSystem(
-    pvgen1,
-    pump_sunpump,
-    coupling="direct",  # to adapt: 'mppt' or 'direct',
-    mppt=mppt1,
-    pipes=pipes1,
-)
-pvps1.run_model()
+# pvps1 = pvps.PVPumpSystem(
+#     pvgen1,
+#     pump_sunpump,
+#     coupling="direct",  # to adapt: 'mppt' or 'direct',
+#     mppt=mppt1,
+#     pipes=pipes1,
+# )
+# pvps1.run_model()
 
-pvps1.calc_efficiency()
+# pvps1.calc_efficiency()
 
-print(pvps1)
-print("\ntotal water pumped in the year = ", pvps1.flow.Qlpm.sum() * 60)
-print(
-    "\ndetails on second day of pumping = \n", pvps1.flow[24:200]
-)  # pvgen1.plot_model()
+# print(pvps1)
+# print("\ntotal water pumped in the year = ", pvps1.flow.Qlpm.sum() * 60)
+# print(
+#     "\ndetails on second day of pumping = \n", pvps1.flow[24:200]
+# )  # pvgen1.plot_model()

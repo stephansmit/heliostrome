@@ -66,7 +66,7 @@ for i in range(len(extracted_rows["Case Study"])):
     crop = get_crop_data(extracted_rows["Crop Type"][i])
     sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
     crop = Crop(crop.Name, planting_date=sowing_date)
-    irr_mngt = IrrigationManagement(irrigation_method=4, NetIrrSMT=80, MaxIrr = 100)
+    irr_mngt = IrrigationManagement(irrigation_method=1, smt = extracted_rows["Irrigation Method"][i])
     InitWC = InitialWaterContent(value=["FC"])
     
     
@@ -114,15 +114,11 @@ for i in range(len(extracted_rows["Case Study"])):
     sheet_name = f"{extracted_rows['Case Study'][i]}"
     water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
 
-
-
     #time elapsed
     end_time = time.time()
     elapsed_time = end_time - start_time
     print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
     start_time = end_time
-
-
 
 writer1.close()
 

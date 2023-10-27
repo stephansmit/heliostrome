@@ -88,7 +88,7 @@ def pump_compatibility(waterflux_excel, pump_df):
         print("The pump may not be sufficient for irrigation on the following dates:")
         print(insufficient_pump_df[["Date", "IrrDay", "Water_depth_mm"]])
 
-    # Create a bar plot of "IrrDay" and "Water_depth_mm" against "Date"
+        # Create a bar plot of "IrrDay" and "Water_depth_mm" against "Date"
     plt.figure(figsize=(12, 6))
     plt.bar(merged_df["Date"], merged_df["IrrDay"], label="Aquacrop Irrigation")
     plt.bar(merged_df["Date"], merged_df["Water_depth_mm"], label="Pump Potential")
@@ -100,3 +100,24 @@ def pump_compatibility(waterflux_excel, pump_df):
     plt.show()
 
     return merged_df
+
+# Example usage:
+# pump_compatibility(waterflux_excel, pump_df)
+
+def pump_solar_voltage_current_plot(voltage_pump,current_pump,voltage_solar,current_solar):
+     fig, ax = plt.subplots()
+     ax.plot(voltage_pump, current_pump, label="Pump")
+     ax.plot(voltage_solar, current_solar, label="Solar")
+     ax.set_xlabel("Voltage [V]")
+     ax.set_ylabel("Current [A]")
+     ax.legend()
+     plt.show()
+    
+def pump_solar_voltage_power_plot(voltage_pump,power_pump,voltage_solar,power_solar):
+    fig, ax = plt.subplots()
+    ax.plot(voltage_pump, power_pump, label="Pump")
+    ax.plot(voltage_solar, power_solar, label="Solar")
+    ax.set_xlabel("Voltage [V]")
+    ax.set_ylabel("Power [W]")
+    ax.legend()
+    plt.show()
