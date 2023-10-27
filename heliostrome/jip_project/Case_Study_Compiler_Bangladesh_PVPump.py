@@ -54,8 +54,8 @@ main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
 #Extracting the data from the factors to run simulation file excel
 
 # Load the Excel file
-sheet_name = "Case study pump"  # Replace with the name of the sheet containing the data
-extracted_rows = factors_to_run(sheet_name) # You can access each list by its corresponding row name, e.g., extracted_rows["Longitude"]
+CaseStudy_sheet = "Case study pump"  # Replace with the name of the sheet containing the data
+extracted_rows = factors_to_run(CaseStudy_sheet) # You can access each list by its corresponding row name, e.g., extracted_rows["Longitude"]
 
 # Initialize an empty list for the Case Study Names
 Casestudies = []
@@ -164,9 +164,14 @@ for i in range(0,3):
 
     #monthly_data = pvps1.flow.groupby(pvps1.flow.index.month).sum()
     daily_data = pvps1.flow.groupby(pvps1.flow.index.date).mean()
+    print(daily_data)
+
     pump_setup = str(extracted_rows['Pump Name'][i]) + ' (' + str(extracted_rows['Modules Per String'][i]) + ',' + str(extracted_rows['Strings in Parallel'][i]) + ')'
     
     daily_data = convert_Qlpm(daily_data,field_size=extracted_rows['Area of Field'][0])
+    print(daily_data)
+
+    
     #PVPump_results_df.index = daily_data.index
     PVPump_results_df[pump_setup] = daily_data['Water_depth_mm']
 

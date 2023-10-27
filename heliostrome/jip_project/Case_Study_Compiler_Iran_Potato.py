@@ -22,12 +22,16 @@ import numpy as np
 import time
 import matplotlib.pyplot as plt
 from modules.Load_excel import factors_to_run
+from modules.waterflux_extraction import *
+from modules.Pump_module import *
+from modules.precip_extract import *
+
 
 # Start the timer 
 start_time = time.time()
 
-sheet_name = "Iran Potato Case Study"  # Replace with the name of the sheet containing the data
-extracted_rows = factors_to_run(sheet_name)
+CaseStudy_sheet = "Iran Potato Case Study"  # Replace with the name of the sheet containing the data
+extracted_rows = factors_to_run(CaseStudy_sheet)
 
 # Initialize an empty list for the Case Study Names
 Casestudies = []

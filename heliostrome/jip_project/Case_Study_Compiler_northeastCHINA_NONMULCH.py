@@ -32,7 +32,7 @@ from modules.precip_extract import *
 # Start the timer 
 start_time = time.time()
 
-CaseStudy_sheet = "Northeast China Case Study"  # Replace with the name of the sheet containing the data
+CaseStudy_sheet = "xxxxx"  # Replace with the name of the sheet containing the data
 extracted_rows = factors_to_run(CaseStudy_sheet)
 
 alt.data_transformers.enable("default", max_rows=None)
@@ -52,11 +52,11 @@ final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/D
 final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value',  'Yield (Ton/HA)', 'Water Used (mm)'])
 
 #waterflux excel file
-writer1 = pd.ExcelWriter(r'heliostrome\jip_project\results\WaterFlux_northeastCHINA.xlsx', engine='openpyxl')
+writer1 = pd.ExcelWriter(r'heliostrome\jip_project\results\WaterFlux_northeastCHINA_nonMulch.xlsx', engine='openpyxl')
 
 
 
-for i in range(4):
+for i in range(2):
     location = Location(latitude=40, longitude=114)
     start_date = extracted_rows["Start Date"][i].date()
     end_date = extracted_rows["End Date"][i].date()
@@ -102,7 +102,7 @@ for i in range(4):
         crop=crop,
         initial_water_content=InitWC,
         irrigation_management=irr_mngt, 
-        field_management=FieldMngt(mulches= extracted_rows["Mulches"][i], mulch_pct=100),
+        #field_management=FieldMngt(mulches= extracted_rows["Mulches"][i], mulch_pct=100),
     )
     
     model.run_model(till_termination=True)
@@ -128,7 +128,7 @@ for i in range(4):
     print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
     start_time = end_time
 
-for i in range(2):
+for i in range(1):
     location = Location(latitude=40, longitude=114)
     start_date = extracted_rows["Start Date"][i+4].date()
     end_date = extracted_rows["End Date"][i+4].date()
@@ -141,8 +141,8 @@ for i in range(2):
 
     climate_data.plot_data(y_axis='temp_air_max_c')
 
-    soil = Soil(extracted_rows["Soil Type"][i+4])
-    crop = get_crop_data(extracted_rows["Crop Type"][i+4])
+    soil = Soil(extracted_rows["Soil Type"][i+2])
+    crop = get_crop_data(extracted_rows["Crop Type"][i+2])
     sowing_date = extracted_rows["Sowing Date"][i+4].strftime("%m/%d")
     crop = Crop(crop.Name, planting_date=sowing_date)
     irr_mngt = IrrigationManagement(irrigation_method=0)
@@ -150,7 +150,7 @@ for i in range(2):
     
     
     
-    input_df = {'Case Study': [extracted_rows["Case Study"][i+4]],
+    input_df = {'Case Study': [extracted_rows["Case Study"][i+2]],
                 'Latitude' : [location.latitude],
                 'Longitude' :[location.longitude],
                 'Start Date' : [start_date],
@@ -162,8 +162,8 @@ for i in range(2):
                 'SMT' : [irr_mngt.SMT], 
                 'Init WC - WC Type' :[InitWC.wc_type],
                 'Init WC - Value': [InitWC.value],
-                'Yield (Ton/HA)': [extracted_rows['Yield'][i+4]],
-                'Water Used (mm)': [extracted_rows['Water used'][i+4]]}
+                'Yield (Ton/HA)': [extracted_rows['Yield'][i+2]],
+                'Water Used (mm)': [extracted_rows['Water used'][i+2]]}
 
 
     model = AquaCropModel(
@@ -174,7 +174,7 @@ for i in range(2):
         crop=crop,
         initial_water_content=InitWC,
         irrigation_management=irr_mngt, 
-        field_management=FieldMngt(mulches=extracted_rows["Mulches"][i+4], mulch_pct=100),
+        #field_management=FieldMngt(mulches=extracted_rows["Mulches"][i+2], mulch_pct=100),
     )
     
     model.run_model(till_termination=True)
@@ -191,20 +191,20 @@ for i in range(2):
 
     #waterflux related lines
     water_flux = model._outputs.water_flux
-    sheet_name = f"{extracted_rows['Case Study'][i+4]}"
+    sheet_name = f"{extracted_rows['Case Study'][i+2]}"
     water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
 
     #time elapsed
     end_time = time.time()
     elapsed_time = end_time - start_time
-    print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
+    print(f"Iteration {i+3}: Elapsed time = {elapsed_time} seconds")
     start_time = end_time
 
 writer1.close()
 
 final_df.insert(0, 'Case Study', Casestudies)
 
-writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results_northeastCHINA.xlsx', engine = 'openpyxl')
+writer = pd.ExcelWriter(r'heliostrome\jip_project\results\test_results_northeastCHINA_nonMulch.xlsx', engine = 'openpyxl')
 final_input_df.to_excel(writer, index=False, sheet_name= "Input Parameters")
 final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 
@@ -214,9 +214,9 @@ writer.close()
 
 
 
-input_path =  r"heliostrome/jip_project/results/WaterFlux_northeastCHINA.xlsx"
-output_path_clean = r"heliostrome/jip_project/results/cleaned_WaterFlux_NorthEastCHINA.xlsx"
-output_path_analyse= r"heliostrome/jip_project/results/analysed_WaterFlux_NorthEastCHINA.xlsx"
+input_path =  r"heliostrome/jip_project/results/WaterFlux_northeastCHINA_nonMulch.xlsx"
+output_path_clean = r"heliostrome/jip_project/results/cleaned_WaterFlux_NorthEastCHINA_nonMulch.xlsx"
+output_path_analyse= r"heliostrome/jip_project/results/analysed_WaterFlux_NorthEastCHINA_nonMulch.xlsx"
 clean_excel_file(input_path, output_path_clean, start_date=extracted_rows['Start Date'][0])
 extract_rows(input_path, output_path_analyse, start_date=extracted_rows['Start Date'][0])
 Min_max = min_max_irrigation(input_path)

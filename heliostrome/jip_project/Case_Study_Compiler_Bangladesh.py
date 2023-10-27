@@ -21,12 +21,16 @@ import numpy as np
 import time
 import matplotlib.pyplot as plt
 from modules.Load_excel import factors_to_run
+from modules.waterflux_extraction import *
+from modules.Pump_module import *
+from modules.precip_extract import *
+
 
 # Start the timer 
 start_time = time.time()
 
-sheet_name = "Case study pump"  # Replace with the name of the sheet containing the data
-extracted_rows = factors_to_run(sheet_name)
+CaseStudy_sheet = "Bangladesh Case Study"  # Replace with the name of the sheet containing the data
+extracted_rows = factors_to_run(CaseStudy_sheet)
 
 # Initialize an empty list for the Case Study Names
 Casestudies = []
@@ -100,9 +104,10 @@ for i in range(len(extracted_rows["Case Study"])):
     for x in range(len(df)):
         Casestudies.append(extracted_rows["Case Study"][i])
 
-    final_df = final_df.append(df, ignore_index=True)
+    final_df = pd.concat([final_df, df], ignore_index=True)
     input_df = pd.DataFrame(input_df)
-    final_input_df = final_input_df.append(input_df, ignore_index=True)
+    final_input_df = pd.concat([final_input_df, pd.DataFrame(input_df)], ignore_index=True)
+
 
     #waterflux related lines
     water_flux = model._outputs.water_flux
@@ -125,3 +130,15 @@ final_df.to_excel(writer, index=False, sheet_name= "Output Results")
 
 writer.close()
 
+input_path =  r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx"
+output_path_clean = r"heliostrome/jip_project/results/cleaned_WaterFlux_Bangladesh.xlsx"
+output_path_analyse= r"heliostrome/jip_project/results/analysed_WaterFlux_Bangladesh.xlsx"
+clean_excel_file(input_path, output_path_clean, start_date=extracted_rows['Start Date'][0])
+extract_rows(input_path, output_path_analyse, start_date=extracted_rows['Start Date'][0])
+Min_max = min_max_irrigation(input_path)
+print(Min_max)
+
+
+sheet = [CaseStudy_sheet]
+
+Precip_data(sheet)
