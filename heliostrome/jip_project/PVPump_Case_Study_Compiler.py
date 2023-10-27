@@ -105,5 +105,8 @@ PVPump_results_df['Date'] = daily_data['Date']
 
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', engine = 'openpyxl')
 PVPump_results_df.to_excel(writer, index=False)
-
 writer.close()
+
+resample_and_save_weekly(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx',r'heliostrome\jip_project\results\weekly_Pump_Data.xlsx')
+
+
