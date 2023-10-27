@@ -2,11 +2,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import random
 
-"""IMPARTANT needs pvps.flow data that as been converted to daily avg Qlpm!!! Field size in m2"""
+
 def convert_Qlpm(df, field_size=None):
 
     # Create a new DataFrame to store the results
     new_df = pd.DataFrame()
+
+    #convert pump flow from hourly to daily avg
+    df_daily = df.groupby(df.index.date).mean()
 
     # Convert AVG liters per minute per day to cubic meters per day
     liters_per_min_to_cubic_meters_per_day = 1 / 1000  # 1 liter = 0.001 cubic meters
@@ -14,8 +17,8 @@ def convert_Qlpm(df, field_size=None):
     
     # Apply the conversion to the "Qlpm" column
     
-    new_df["cubic_meters_per_day"] = df["Qlpm"] * liters_per_min_to_cubic_meters_per_day * minutes_in_a_day
-    new_df["Date"] = df.index
+    new_df["cubic_meters_per_day"] = df_daily["Qlpm"] * liters_per_min_to_cubic_meters_per_day * minutes_in_a_day
+    new_df["Date"] = df_daily.index
      
     # If a field size (in hectares) is provided, calculate water depth in mm 
     # #(which is still related to that field size, but can be compared with general mm from aquacrop)
