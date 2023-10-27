@@ -7,38 +7,39 @@ from math import sqrt
 input_file_path = r'heliostrome\jip_project\results\test_results_moroccoWheat.xlsx'
 output_file_path = r'heliostrome\jip_project\results\RMSE_Percentage_Morocco.xlsx'
 
-# read input and out put input
+# Read input and output data
 input_df = pd.read_excel(input_file_path, sheet_name='Input Parameters')
 output_df = pd.read_excel(input_file_path, sheet_name='Output Results')
 
-# create an empty excel
+# Create an empty Excel file
 writer = pd.ExcelWriter(output_file_path, engine='openpyxl')
 
-# crate an empty DataFrame to store the output of RMSE
+# Create an empty DataFrame to store the output of RMSE
 rmse_df = pd.DataFrame(columns=['Case Study', 'Yield RMSE', 'Yield RMSE Percentage', 'Water Used RMSE', 'Water Used RMSE Percentage'])
 
+# Merge the output and input data on 'Case Study'
 matched_data = pd.merge(output_df, input_df, on='Case Study', how='inner')
 
-# 获取唯一的Case Study列表
+# Get a list of unique Case Studies
 case_studies = input_df['Case Study'].unique()
 
-# 循环计算每个Case Study的RMSE和百分比误差
+# Loop to calculate RMSE and RMSE Percentage for each Case Study
 for case_study in case_studies:
-    # 选择特定Case Study的数据
-    actual_yield= matched_data.loc[matched_data['Case Study'] == case_study, 'Yield (Ton/HA)']
+    # Select data for a specific Case Study
+    actual_yield = matched_data.loc[matched_data['Case Study'] == case_study, 'Yield (Ton/HA)']
     simulation_yield = matched_data.loc[matched_data['Case Study'] == case_study, 'Yield (tonne/ha)']
-    actual_wateruse= matched_data.loc[matched_data['Case Study'] == case_study, 'Water Used (mm)']
-    simulation_wateruse= matched_data.loc[matched_data['Case Study'] == case_study, 'Seasonal irrigation (mm)']
+    actual_water_use = matched_data.loc[matched_data['Case Study'] == case_study, 'Water Used (mm)']
+    simulation_water_use = matched_data.loc[matched_data['Case Study'] == case_study, 'Seasonal irrigation (mm)']
 
-    # yield's RMSE and RMSE Percentage
+    # Calculate yield's RMSE and RMSE Percentage
     yield_rmse = sqrt(mean_squared_error(actual_yield, simulation_yield))
     yield_rmse_percentage = (yield_rmse / np.mean(actual_yield)) * 100
     
-    # wateruse's RMSE and RMSE Percentage
-    water_used_rmse = sqrt(mean_squared_error(actual_wateruse, simulation_wateruse))
-    water_used_rmse_percentage = (water_used_rmse / np.mean(actual_wateruse)) * 100
+    # Calculate water use's RMSE and RMSE Percentage
+    water_used_rmse = sqrt(mean_squared_error(actual_water_use, simulation_water_use))
+    water_used_rmse_percentage = (water_used_rmse / np.mean(actual_water_use)) * 100
     
-    # 将结果添加到rmse_df中
+    # Append the results to rmse_df
     rmse_df = rmse_df.append({'Case Study': case_study,
                               'Yield RMSE': yield_rmse,
                               'Yield RMSE Percentage': yield_rmse_percentage,
@@ -46,9 +47,9 @@ for case_study in case_studies:
                               'Water Used RMSE Percentage': water_used_rmse_percentage},
                              ignore_index=True)
 
-# 将rmse_df保存到Excel文件中
+# Save rmse_df to an Excel file
 rmse_df.to_excel(writer, index=False, sheet_name='RMSE_Percentage')
 
-# 保存Excel文件
+# Save the Excel file
 writer.save()
 writer.close()
