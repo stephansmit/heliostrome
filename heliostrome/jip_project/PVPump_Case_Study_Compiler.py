@@ -128,17 +128,10 @@ for year in range(sim_start_year, sim_end_year + 1):
 
 
 PVPump_full_df = PVPump_full_df.set_index(pd.to_datetime(PVPump_full_df.index))
-
-weekly_data = PVPump_full_df.resample('W').sum()
-
-print(weekly_data)
-
-#####NOT WORKING FROM HERE?????
+PVPump_full_df['Date'] = PVPump_full_df.index
 
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', engine = 'openpyxl')
-PVPump_full_df.to_excel(writer, index=False)
+PVPump_full_df.to_excel(writer, index=True)
 writer.close()
-
-resample_and_save_weekly(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx',r'heliostrome\jip_project\results\weekly_Pump_Data.xlsx')
 
 
