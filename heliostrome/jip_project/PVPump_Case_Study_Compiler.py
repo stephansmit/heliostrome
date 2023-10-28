@@ -112,29 +112,35 @@ sim_start_year = 2005
 sim_end_year = 2016
 
 PVPump_results_df.index = PVPump_results_df.index.map(lambda x: x.replace(year=sim_start_year))
-PVPump_results_df = PVPump_results_df.sort_index()
 
 PVPump_full_df = pd.DataFrame(columns=PVPump_results_df.columns)
 PVPump_results_df.index = pd.to_datetime(PVPump_results_df.index)
-
-
-for year in range(sim_start_year, sim_end_year + 1):
-    # Duplicate the original DataFrame and update the 'Date' column
-    current_year_df = PVPump_results_df.copy()
-    current_year_df.index = current_year_df.index.map(lambda x: x.replace(year=year))
-
-    # Append the current year's data to the repeated DataFrame
-    PVPump_full_df = PVPump_full_df.append(current_year_df, ignore_index=False)
-
-
-PVPump_full_df = PVPump_full_df.set_index(pd.to_datetime(PVPump_full_df.index))
 PVPump_results_df = PVPump_results_df.sort_index()
-PVPump_full_df['Date'] = PVPump_full_df.index
-
 
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', engine = 'openpyxl')
-PVPump_full_df.to_excel(writer, index=True)
+PVPump_results_df.to_excel(writer, index=True)
 date_format = 'yyyy-mm-dd'  # You can change this format to suit your needs
 writer.sheets['Sheet1'].column_dimensions['A'].number_format = date_format
 writer.close()
+
+
+# for year in range(sim_start_year, sim_end_year + 1):
+#     # Duplicate the original DataFrame and update the 'Date' column
+#     current_year_df = PVPump_results_df.copy()
+#     current_year_df.index = current_year_df.index.map(lambda x: x.replace(year=year))
+
+#     # Append the current year's data to the repeated DataFrame
+#     PVPump_full_df = PVPump_full_df.append(current_year_df, ignore_index=False)
+
+
+# PVPump_full_df = PVPump_full_df.set_index(pd.to_datetime(PVPump_full_df.index))
+# PVPump_results_df = PVPump_results_df.sort_index()
+# PVPump_full_df['Date'] = PVPump_full_df.index
+
+
+# writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', engine = 'openpyxl')
+# PVPump_full_df.to_excel(writer, index=True)
+# date_format = 'yyyy-mm-dd'  # You can change this format to suit your needs
+# writer.sheets['Sheet1'].column_dimensions['A'].number_format = date_format
+# writer.close()
 
