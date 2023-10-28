@@ -93,7 +93,7 @@ for i in range(1):
 
     pvps1.run_model()
 
-    pvps1.calc_efficiency()
+    efficiency = pvps1.calc_efficiency()
 
     #pump_setup = str(extracted_rows['Pump Name'][i]) + ' (' + str(extracted_rows['Modules Per String'][i]) + ',' + str(extracted_rows['Strings in Parallel'][i]) + ')'
     pump_setup = 'Pump ' + str(i+1)
