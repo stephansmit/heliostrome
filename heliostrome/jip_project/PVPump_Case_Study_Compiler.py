@@ -128,7 +128,9 @@ for year in range(sim_start_year, sim_end_year + 1):
 
 
 PVPump_full_df = PVPump_full_df.set_index(pd.to_datetime(PVPump_full_df.index))
+PVPump_results_df = PVPump_results_df.sort_index()
 PVPump_full_df['Date'] = PVPump_full_df.index
+
 
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', engine = 'openpyxl')
 PVPump_full_df.to_excel(writer, index=True)
