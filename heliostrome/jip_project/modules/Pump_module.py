@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import random
+import numpy as np
 
 
 def convert_Qlpm(df, field_size=None):
@@ -132,27 +133,42 @@ def pump_compatibility(waterflux_excel_path, pump_df_path):
     merged_df = pd.merge(waterflux_excel, pump_df, on="Month_Day", how="inner")
     
     # Filter instances where "IrrDay" is greater than both "Pump 1" and "Pump 2"
-    insufficient_pump_df = merged_df[(merged_df["IrrDay"] > merged_df["Pump 1"]) & (merged_df["IrrDay"] > merged_df["Pump 2"])]
+    insufficient_pump_df = merged_df[(merged_df["IrrDay"] > merged_df["Pump 1"])]
+    pd.set_option('display.max_rows', None)
     print(merged_df)
     if insufficient_pump_df.empty:
         print("The pump is sufficient for irrigation for all available dates.")
     else:
         print("The pump may not be sufficient for irrigation on the following dates:")
-        print(insufficient_pump_df[["Date_x", "IrrDay", "Pump 1", "Pump 2"]])
+        print(insufficient_pump_df[["Date_x", "IrrDay", "Pump 1"]])
 
-    # Create a bar plot of "IrrDay" and "Water_depth_mm" against "Date"
+    merged_df["Date_x"] = merged_df["Date_x"].dt.strftime('%d/%m/%Y')
+    
+    # Your existing code to load data and create a figure
     plt.figure(figsize=(12, 6))
-    plt.bar(merged_df["Date_x"], merged_df["IrrDay"], label="Aquacrop Irrigation")
-    plt.bar(merged_df["Date_x"], merged_df["Pump 1"], label="Pump 1")
-    plt.bar(merged_df["Date_x"], merged_df["Pump 2"], label="Pump 2")
+
+    # Define bar width and separation
+    bar_width = 0.4
+    bar_sep = 0.2
+
+    # Calculate the x-coordinates for each bar group
+    x = np.arange(len(merged_df["Date_x"]))
+    x1 = x - bar_sep
+    x2 = x + bar_sep
+
+    # Create bar plots with adjusted x-coordinates
+    plt.bar(x1, merged_df["IrrDay"], width=bar_width, label="Aquacrop Irrigation")
+    plt.bar(x2, merged_df["Pump 1"], width=bar_width, label="Pump 1")
+
+    # Other plot settings
     plt.xlabel("Date")
     plt.ylabel("Values")
     plt.title("Aquacrop Irrigation vs Pump Potential")
     plt.legend()
-    plt.xticks(rotation=45)
+    plt.xticks(x, merged_df["Date_x"], rotation=90)
     plt.show()
 
-    return merged_df[["Date_x", "IrrDay", "Pump 1", "Pump 2"]]
+    return merged_df
 
 
 """ the merging of the pump_df data with the waterflux data is repeated for each year in the waterflux data. 
