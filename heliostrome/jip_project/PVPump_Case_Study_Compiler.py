@@ -132,6 +132,7 @@ PVPump_full_df['Date'] = PVPump_full_df.index
 
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', engine = 'openpyxl')
 PVPump_full_df.to_excel(writer, index=True)
+date_format = 'yyyy-mm-dd'  # You can change this format to suit your needs
+writer.sheets['Sheet1'].column_dimensions['A'].number_format = date_format
 writer.close()
-
 
