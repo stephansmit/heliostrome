@@ -1,5 +1,5 @@
 from datetime import datetime
-from jip_project.models.location import Location
+from heliostrome.models.location import Location
 from heliostrome.models.climate import ClimateData
 from aquacrop.core import IrrigationManagement
 from aquacrop.entities.irrigationManagement import IrrMngtStruct
@@ -38,7 +38,7 @@ WC_values = [
     "WP"
 ]
 
-writer = pd.ExcelWriter(r'heliostrome\jip_project\results\sensitivity_Morocco_initWC111.xlsx', engine='openpyxl')
+writer = pd.ExcelWriter(r'heliostrome\jip_project\results\sensitivity_Morocco_initWC.xlsx', engine='openpyxl')
 
 alt.data_transformers.enable("default", max_rows=None)
 
