@@ -198,3 +198,11 @@ def pump_solar_voltage_power_plot(voltage_pump,power_pump,voltage_solar,power_so
     ax.set_ylabel("Power [W]")
     ax.legend()
     plt.show()
+
+
+def mean_percentage_error(dataframe_actual,dataframe_optimal):
+    mpe_df_individ = 100* (dataframe_optimal-dataframe_actual)/dataframe_optimal
+    
+    mpe_df_average = mpe_df_individ.mean()
+
+    return mpe_df_individ, mpe_df_average
