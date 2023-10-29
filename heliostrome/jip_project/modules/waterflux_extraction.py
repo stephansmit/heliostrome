@@ -195,3 +195,15 @@ def mean_percentage_error(dataframe_actual,actual_column_name,dataframe_optimal,
     mpe_df_average = mpe_df_individ.mean()
 
     return mpe_df_individ, mpe_df_average
+
+def average_waterflux(excel_file_path):
+    # Read the Excel file into a DataFrame
+    df = pd.read_excel(excel_file_path)
+
+    # Extract day and month from the "Date" column while ignoring the year
+    df['Date (no year)'] = df['Date'].dt.strftime('%m-%d')
+
+    # Calculate the average values for each day/month
+    avg_df = df.groupby('Date (no year)')['IrrDay'].mean().reset_index()
+
+    return avg_df
