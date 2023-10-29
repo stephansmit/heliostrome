@@ -137,7 +137,7 @@ clean_excel_file(input_path, output_path_clean, start_date=extracted_rows['Start
 extract_rows(input_path, output_path_analyse, start_date=extracted_rows['Start Date'][0])
 Min_max = min_max_irrigation(input_path)
 print(Min_max)
-resample_and_save_weekly(r'heliostrome\jip_project\results\cleaned_WaterFlux_Bangladesh.xlsx', r"heliostrome/jip_project/results/weekly_WaterFlux_Bangladesh.xlsx")
+
 
 sheet = [CaseStudy_sheet]
 
