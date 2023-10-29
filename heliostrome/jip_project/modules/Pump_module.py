@@ -31,6 +31,42 @@ def convert_Qlpm(df, field_size=None):
 
     return new_df
 
+  
+
+
+
+
+# def pump_compatibility(waterflux_excel, Daily_Pump_data):
+#     """Match up the datetime in the "Date" column from clean_excel_file and pump_df to align the Date column entries. 
+#     Compare "IrrDay" values of clean_excel with "Water_depth_mm" from pump_df. 
+#     If "IrrDay" > "Water_depth_mm," show those instances (date, IrrDay, Water_depth_mm) and indicate a message that the pump is not enough for irrigation."""
+
+#     # Merge the two DataFrames on the "Date" column
+#     merged_df = pd.merge(waterflux_excel, Daily_Pump_data, on="Date", how="inner")
+
+#     # Filter instances where "IrrDay" is greater than "Water_depth_mm"
+#     insufficient_pump_df = merged_df[merged_df["IrrDay"] > merged_df["Water_depth_mm"]]
+
+#     if insufficient_pump_df.empty:
+#         print("The pump is sufficient for irrigation for all available dates.")
+#     else:
+#         print("The pump may not be sufficient for irrigation on the following dates:")
+#         print(insufficient_pump_df[["Date", "IrrDay", "Water_depth_mm"]])
+    
+    
+#     # Create a bar plot of "IrrDay" and "Water_depth_mm" against date
+#     plt.figure(figsize=(12, 6))
+#     plt.bar(merged_df["Date"], merged_df["IrrDay"], label="Aquacrop Irrigation")
+#     plt.bar(merged_df["Date"], merged_df["Water_depth_mm"], label="Pump Potential")
+#     plt.xlabel("Date")
+#     plt.ylabel("Values")
+#     plt.title("Aquacrop Irrigation vs Pump Potential")
+#     plt.legend()
+#     plt.xticks(rotation=45)
+#     plt.show()
+
+#     return merged_df
+
 
 
 # def pump_compatibility(waterflux_excel_path, pump_df_path):
@@ -39,55 +75,42 @@ def convert_Qlpm(df, field_size=None):
 #     If "IrrDay" > "Water_depth_mm," show those instances (date, IrrDay, Water_depth_mm) and indicate a message that the pump is not enough for irrigation."""
 
 #     # Read the Excel files into DataFrames
-#     waterflux_excel = pd.read_excel(waterflux_excel_path)
+#     waterflux = pd.read_excel(waterflux_excel_path)
 #     pump_df = pd.read_excel(pump_df_path)
 
-#     # Extract the month and day from the "Date" column of waterflux
-#     waterflux_excel['Month_Day'] = waterflux_excel['Date'].dt.strftime('%m-%d')
-#     print(waterflux_excel)
-#     # Extract the month and day from the "Date" column of pump_df
-#     pump_df['Month_Day'] = pump_df['Date'].dt.strftime('%m-%d')
+#     # Convert the "Date" column in pump_df to datetime
+#     pump_df['Date'] = pd.to_datetime(pump_df['Date'])
 
-#     # Merge the DataFrames based on matching month and day
-#     merged_df = pd.merge(waterflux_excel, pump_df, on="Month_Day", how="inner")
-    
-#     # Filter instances where "IrrDay" is greater than both "Pump 1" and "Pump 2"
-#     insufficient_pump_df = merged_df[(merged_df["IrrDay"] > merged_df["Pump 1"])]
-#     pd.set_option('display.max_rows', None)
-#     print(merged_df)
+#     # Extract the month/day from the "Date" column of pump_df
+#     pump_df['Date'] = pump_df['Date'].dt.strftime('%m/%d')
+
+#     # Merge the two DataFrames on the "Date" column (month/day)
+#     merged_df = pd.merge(waterflux, pump_df, on="Date", how="inner")
+
+#     # Filter instances where "IrrDay" is greater than "Water_depth_mm"
+#     insufficient_pump_df = merged_df[merged_df["IrrDay"] > merged_df["Water_depth_mm"]]
+
 #     if insufficient_pump_df.empty:
 #         print("The pump is sufficient for irrigation for all available dates.")
 #     else:
 #         print("The pump may not be sufficient for irrigation on the following dates:")
-#         print(insufficient_pump_df[["Date_x", "IrrDay", "Pump 1"]])
+#         print(insufficient_pump_df[["Date", "IrrDay", "Water_depth_mm"]])
 
-#     merged_df["Date_x"] = merged_df["Date_x"].dt.strftime('%d/%m/%Y')
-    
-#     # Your existing code to load data and create a figure
+#         # Create a bar plot of "IrrDay" and "Water_depth_mm" against "Date"
 #     plt.figure(figsize=(12, 6))
-
-#     # Define bar width and separation
-#     bar_width = 0.4
-#     bar_sep = 0.2
-
-#     # Calculate the x-coordinates for each bar group
-#     x = np.arange(len(merged_df["Date_x"]))
-#     x1 = x - bar_sep
-#     x2 = x + bar_sep
-
-#     # Create bar plots with adjusted x-coordinates
-#     plt.bar(x1, merged_df["IrrDay"], width=bar_width, label="Aquacrop Irrigation")
-#     plt.bar(x2, merged_df["Pump 1"], width=bar_width, label="Pump 1")
-
-#     # Other plot settings
-#     plt.xlabel("Date")
+#     plt.bar(merged_df["Date"], merged_df["IrrDay"], label="Aquacrop Irrigation")
+#     plt.bar(merged_df["Date"], merged_df["Water_depth_mm"], label="Pump Potential")
+#     plt.xlabel("Date (Month/Day)")
 #     plt.ylabel("Values")
 #     plt.title("Aquacrop Irrigation vs Pump Potential")
 #     plt.legend()
-#     plt.xticks(x, merged_df["Date_x"], rotation=90)
+#     plt.xticks(rotation=45)
 #     plt.show()
 
 #     return merged_df
+
+
+
 
 def pump_compatibility(waterflux_excel_path, pump_df_path):
     """Match up the datetime in the "Date" column from waterflux_excel and pump_df to align the Date column entries.
@@ -167,6 +190,7 @@ def pump_compatibility(waterflux_excel_path, pump_df_path):
 
     return Weekly
 
+
 """ the merging of the pump_df data with the waterflux data is repeated for each year in the waterflux data. 
 The merging is based on matching month and day values, and since you are using an "inner" merge, 
 only the rows with matching month and day values will be included in the result. This means that 
@@ -194,3 +218,15 @@ def pump_solar_voltage_power_plot(voltage_pump,power_pump,voltage_solar,power_so
     ax.set_ylabel("Power [W]")
     ax.legend()
     plt.show()
+
+
+def mean_percentage_error(dataframe_actual,actual_column_name,dataframe_optimal,optimal_column_name):
+    '''Determines the mean percentage error both on an row basis (for weekly purposes)
+       as well as a whole to deteremine the whole systems suitability. Allows specific 
+       columns to be compared for flexibility.
+    '''
+    mpe_df_individ = 100* (dataframe_optimal[optimal_column_name]-dataframe_actual[actual_column_name])/dataframe_optimal[optimal_column_name]
+    
+    mpe_df_average = mpe_df_individ.mean()
+
+    return mpe_df_individ, mpe_df_average
