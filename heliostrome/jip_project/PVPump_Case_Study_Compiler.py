@@ -32,7 +32,8 @@ PVPump_results_df = pd.DataFrame()
 
 #Looping through all the case studies to simulate different aquacrop inputs as well as pump inputs
 #for i in range(len(extracted_rows["Case Study"])):
-for i in range(len(extracted_rows['Case Study'])):
+#for i in range(len(extracted_rows['Case Study'])):
+for i in range(2):
     latitude = extracted_rows["Latitude"][i]
     longitude = extracted_rows["Longitude"][i]
     name = extracted_rows['Case Study'][i]
@@ -124,6 +125,7 @@ writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', eng
 for column_name in PVPump_results_df.columns:
     PVPump_subset_df = pd.DataFrame()
     PVPump_subset_df = PVPump_results_df[[column_name]]
+    PVPump_subset_df = PVPump_subset_df.rename(columns={column_name: 'Pump'})
     PVPump_subset_df.index = PVPump_results_df.index
     PVPump_subset_df.to_excel(writer, sheet_name=column_name, index=True)
     date_format = 'yyyy-mm-dd'  # You can change this format to suit your needs
@@ -154,6 +156,7 @@ writer.close()
 # for column_name in PVPump_full_df.columns:
 #     PVPump_subset_df = pd.DataFrame()
 #     PVPump_subset_df = PVPump_full_df[[column_name]]
+#     PVPump_subset_df = PVPump_subset_df.rename(columns={column_name: 'Pump'})
 #     PVPump_subset_df.index = PVPump_full_df.index
 #     PVPump_subset_df.to_excel(writer, sheet_name=column_name, index=True)
 #     date_format = 'yyyy-mm-dd'  # You can change this format to suit your needs
