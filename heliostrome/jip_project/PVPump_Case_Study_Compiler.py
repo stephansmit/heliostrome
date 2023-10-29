@@ -32,7 +32,7 @@ PVPump_results_df = pd.DataFrame()
 
 #Looping through all the case studies to simulate different aquacrop inputs as well as pump inputs
 #for i in range(len(extracted_rows["Case Study"])):
-for i in range(1):
+for i in range(2):
     latitude = extracted_rows["Latitude"][i]
     longitude = extracted_rows["Longitude"][i]
     name = extracted_rows['Case Study'][i]
@@ -111,19 +111,30 @@ PVPump_results_df = PVPump_results_df.set_index('Date')
 sim_start_year = 2005
 sim_end_year = 2016
 
+#########Run the following code if you just want 1 years worth of data all in the sim_start_year
 PVPump_results_df.index = PVPump_results_df.index.map(lambda x: x.replace(year=sim_start_year))
 
-PVPump_full_df = pd.DataFrame(columns=PVPump_results_df.columns)
+
 PVPump_results_df.index = pd.to_datetime(PVPump_results_df.index)
 PVPump_results_df = PVPump_results_df.sort_index()
 
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', engine = 'openpyxl')
-PVPump_results_df.to_excel(writer, index=True)
-date_format = 'yyyy-mm-dd'  # You can change this format to suit your needs
-writer.sheets['Sheet1'].column_dimensions['A'].number_format = date_format
+    
+# Write each column to a new sheet
+for column_name in PVPump_results_df.columns:
+    PVPump_subset_df = pd.DataFrame()
+    PVPump_subset_df = PVPump_results_df[[column_name]]
+    PVPump_subset_df.index = PVPump_results_df.index
+    PVPump_subset_df.to_excel(writer, sheet_name=column_name, index=True)
+    date_format = 'yyyy-mm-dd'  # You can change this format to suit your needs
+    writer.sheets[column_name].column_dimensions['A'].number_format = date_format
+
 writer.close()
 
 
+#########Run the following code if you just want multiple years worth of data in the yearly range (10 years)
+
+# PVPump_full_df = pd.DataFrame(columns=PVPump_results_df.columns)
 # for year in range(sim_start_year, sim_end_year + 1):
 #     # Duplicate the original DataFrame and update the 'Date' column
 #     current_year_df = PVPump_results_df.copy()
@@ -135,12 +146,19 @@ writer.close()
 
 # PVPump_full_df = PVPump_full_df.set_index(pd.to_datetime(PVPump_full_df.index))
 # PVPump_results_df = PVPump_results_df.sort_index()
-# PVPump_full_df['Date'] = PVPump_full_df.index
 
 
 # writer = pd.ExcelWriter(r'heliostrome\jip_project\results\PVPUmp_Data.xlsx', engine = 'openpyxl')
-# PVPump_full_df.to_excel(writer, index=True)
-# date_format = 'yyyy-mm-dd'  # You can change this format to suit your needs
-# writer.sheets['Sheet1'].column_dimensions['A'].number_format = date_format
+
+# # Write each column to a new sheet
+# for column_name in PVPump_full_df.columns:
+#     PVPump_subset_df = pd.DataFrame()
+#     PVPump_subset_df = PVPump_full_df[[column_name]]
+#     PVPump_subset_df.index = PVPump_full_df.index
+#     PVPump_subset_df.to_excel(writer, sheet_name=column_name, index=True)
+#     date_format = 'yyyy-mm-dd'  # You can change this format to suit your needs
+#     writer.sheets[column_name].column_dimensions['A'].number_format = date_format
+
 # writer.close()
+
 
