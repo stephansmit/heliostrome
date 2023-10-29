@@ -32,7 +32,7 @@ PVPump_results_df = pd.DataFrame()
 
 #Looping through all the case studies to simulate different aquacrop inputs as well as pump inputs
 #for i in range(len(extracted_rows["Case Study"])):
-for i in range(2):
+for i in range(len(extracted_rows['Case Study'])):
     latitude = extracted_rows["Latitude"][i]
     longitude = extracted_rows["Longitude"][i]
     name = extracted_rows['Case Study'][i]
