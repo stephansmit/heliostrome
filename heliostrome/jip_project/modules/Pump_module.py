@@ -98,14 +98,24 @@ def pump_compatibility(waterflux_excel_path, pump_df_path):
     waterflux_excel = pd.read_excel(waterflux_excel_path)
     pump_df = pd.read_excel(pump_df_path)
 
-    merged_data = pd.DataFrame()
-    merged_data = pd.merge(waterflux_excel[["Date", "IrrDay"]],  pump_df[["Date", "Pump 1"]], left_on="Date", right_on="Date", how="inner")
-
-    #To make an datetime index
-    merged_data['Date'] = pd.to_datetime(merged_data['Date'])
-    merged_data.set_index('Date', inplace=True)
     
-    print(f"raw merged data = {merged_data}")
+    # Extract day and month from the "Date" column while ignoring the year
+    waterflux_excel['Date (no year)'] = waterflux_excel['Date'].dt.strftime('%m-%d')
+    pump_df['Date (no year)'] = pump_df['Date'].dt.strftime('%m-%d')
+
+    # Calculate the average values for each day/month
+    avg_df_waterflux = waterflux_excel.groupby('Date (no year)')['IrrDay'].mean().reset_index()
+    avg_pump_df = pump_df.groupby('Date (no year)')['Pump 1'].mean().reset_index()
+
+    # Merge the DataFrames
+    merged_data = pd.merge(avg_df_waterflux, avg_pump_df, on="Date (no year)", how="inner")
+
+    # Create a datetime index with an arbitrary year (e.g., 2005)
+    merged_data['Date'] = pd.to_datetime('2005-' + merged_data['Date (no year)'])
+    merged_data.set_index('Date', inplace=True)
+    #merged_data.drop('Date (no year)', axis=1, inplace=True)
+    
+    print(f"raw merged data = \n{merged_data}")
     
     #resample based on weeks, shows date of last day in the summed week. 
     # #This does make some times stamps not contain a full week (first date point is a sunday, so first week only contains a sunday) or be outside of the original data dates (last date is a monday, so last week contains monday but goes to sunday, a guess)
@@ -117,7 +127,9 @@ def pump_compatibility(waterflux_excel_path, pump_df_path):
     # if either "IrrDay" or "Pump 1" is not zero, the row will be included in the new DataFrame.
     Weekly = Weekly.loc[(Weekly['IrrDay'] != 0) | (Weekly['Pump 1'] != 0)]
     Weekly['Date'] = Weekly.index.date
-    print(f"Weekly sampled data= {Weekly}")
+    Weekly['Date'] = pd.to_datetime(Weekly['Date'])
+    Weekly['Date (no year)'] = Weekly['Date'].dt.strftime('%m-%d')
+    print(f"Weekly sampled data= \n{Weekly}")
 
     # Filter instances where "IrrDay" is greater than both "Pump 1" and "Pump 2"
     insufficient_pump_df = Weekly[(Weekly["IrrDay"] > Weekly["Pump 1"])]
@@ -130,7 +142,7 @@ def pump_compatibility(waterflux_excel_path, pump_df_path):
         print(insufficient_pump_df[["IrrDay", "Pump 1"]])
     
     # Your existing code to load data and create a figure
-    plt.figure(figsize=(20, 6))
+    plt.figure(figsize=(16, 6))
 
     # Define bar width and separation
     bar_width = 0.4
@@ -150,7 +162,7 @@ def pump_compatibility(waterflux_excel_path, pump_df_path):
     plt.ylabel("Values")
     plt.title("Aquacrop Irrigation vs Pump Potential")
     plt.legend()
-    plt.xticks(x, Weekly["Date"], rotation=90)
+    plt.xticks(x, Weekly["Date (no year)"], rotation=90)
     plt.show()
 
     return Weekly

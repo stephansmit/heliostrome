@@ -138,7 +138,6 @@ extract_rows(input_path, output_path_analyse, start_date=extracted_rows['Start D
 Min_max = min_max_irrigation(input_path)
 print(Min_max)
 
-
 sheet = [CaseStudy_sheet]
 
 Precip_data(sheet)
