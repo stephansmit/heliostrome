@@ -125,7 +125,7 @@ def pump_compatibility(waterflux_excel_path, pump_df_path):
 
     # Extract the month and day from the "Date" column of waterflux
     waterflux_excel['Month_Day'] = waterflux_excel['Date'].dt.strftime('%m-%d')
-    print(waterflux_excel)
+ 
     # Extract the month and day from the "Date" column of pump_df
     pump_df['Month_Day'] = pump_df['Date'].dt.strftime('%m-%d')
 
@@ -135,7 +135,7 @@ def pump_compatibility(waterflux_excel_path, pump_df_path):
     # Filter instances where "IrrDay" is greater than both "Pump 1" and "Pump 2"
     insufficient_pump_df = merged_df[(merged_df["IrrDay"] > merged_df["Pump 1"])]
     pd.set_option('display.max_rows', None)
-    print(merged_df)
+   
     if insufficient_pump_df.empty:
         print("The pump is sufficient for irrigation for all available dates.")
     else:
@@ -200,8 +200,12 @@ def pump_solar_voltage_power_plot(voltage_pump,power_pump,voltage_solar,power_so
     plt.show()
 
 
-def mean_percentage_error(dataframe_actual,dataframe_optimal):
-    mpe_df_individ = 100* (dataframe_optimal-dataframe_actual)/dataframe_optimal
+def mean_percentage_error(dataframe_actual,actual_column_name,dataframe_optimal,optimal_column_name):
+    '''Determines the mean percentage error both on an row basis (for weekly purposes)
+       as well as a whole to deteremine the whole systems suitability. Allows specific 
+       columns to be compared for flexibility.
+    '''
+    mpe_df_individ = 100* (dataframe_optimal[optimal_column_name]-dataframe_actual[actual_column_name])/dataframe_optimal[optimal_column_name]
     
     mpe_df_average = mpe_df_individ.mean()
 
