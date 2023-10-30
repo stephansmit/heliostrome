@@ -240,7 +240,7 @@ def mean_percentage_error(dataframe_actual,actual_column_name,dataframe_optimal,
        as well as a whole to deteremine the whole systems suitability. Allows specific 
        columns to be compared for flexibility.
     '''
-    mpe_df_individ = 100* (dataframe_optimal[optimal_column_name]-dataframe_actual[actual_column_name])/dataframe_optimal[optimal_column_name]
+    mpe_df_individ = 100* (dataframe_actual[actual_column_name]-dataframe_optimal[optimal_column_name])/dataframe_optimal[optimal_column_name]
     
     mpe_df_average = mpe_df_individ.mean()
 
