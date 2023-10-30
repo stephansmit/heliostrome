@@ -26,16 +26,16 @@ X_axis = np.arange(len(graphing_dataframe['Case Study']))
 ax = graphing_dataframe.plot(kind='bar', x='Case Study', figsize=(10, 6))
 
 ax.bar(X_axis - 0.2, graphing_dataframe['Yield (Ton/HA)'], 0.2, label='Heliostrome Output')
-ax.bar(X_axis, graphing_dataframe['Yield (tonne/ha)'], 0.2, label='Experimental Output')
+ax.bar(X_axis, graphing_dataframe['Yield (tonne/ha)'], 0.2, label='Expected Output')
 ax.bar(X_axis + 0.2, graphing_dataframe['Average_Yield'], 0.2, label='Aquaplan Output')
 
 plt.xlabel('Case Study')
 plt.ylabel('Average Yield (tonne/ha)')
-plt.title('Average Yield by Case Study')
+plt.title('Average Yield as a function of irrigation method & mulch percentage')
 plt.xticks(rotation=90)
 
 # Add legend with appropriate labels
-plt.legend(['Experimnetal Output', 'Heliostrome Output', 'Aquaplan Output'])
+plt.legend(['Expected Output', 'Heliostrome Output', 'Aquaplan Output'])
 
 plt.tight_layout()
 plt.show()
