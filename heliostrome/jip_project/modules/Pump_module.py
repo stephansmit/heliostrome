@@ -167,21 +167,21 @@ def pump_compatibility(waterflux_excel_path, pump_df_excelfile, output_file_path
         # Filter instances where "IrrDay" is greater than "Pump"
         insufficient_pump_df = Weekly[(Weekly["IrrDay"] > Weekly["Pump"])]
 
-        # Plot the data
-        plt.figure(figsize=(16, 6))
-        bar_width = 0.4
-        bar_sep = 0.2
-        x = np.arange(len(Weekly["Date"]))
-        x1 = x - bar_sep
-        x2 = x + bar_sep
-        plt.bar(x1, Weekly["IrrDay"], width=bar_width, label="Aquacrop Irrigation")
-        plt.bar(x2, Weekly["Pump"], width=bar_width, label="Pump")
-        plt.xlabel("Date")
-        plt.ylabel("Values")
-        plt.title("Aquacrop Irrigation vs Pump Potential")
-        plt.legend()
-        plt.xticks(x, Weekly["Date (no year)"], rotation=90)
-        plt.show()
+        # # Plot the data
+        # plt.figure(figsize=(16, 6))
+        # bar_width = 0.4
+        # bar_sep = 0.2
+        # x = np.arange(len(Weekly["Date"]))
+        # x1 = x - bar_sep
+        # x2 = x + bar_sep
+        # plt.bar(x1, Weekly["IrrDay"], width=bar_width, label="Aquacrop Irrigation")
+        # plt.bar(x2, Weekly["Pump"], width=bar_width, label="Pump")
+        # plt.xlabel("Date")
+        # plt.ylabel("Values")
+        # plt.title("Aquacrop Irrigation vs Pump Potential")
+        # plt.legend()
+        # plt.xticks(x, Weekly["Date (no year)"], rotation=90)
+        # plt.show()
 
         # Append the weekly data to the list
         weekly_data_list.append(Weekly)
