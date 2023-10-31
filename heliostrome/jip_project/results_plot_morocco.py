@@ -24,7 +24,7 @@ fig, ax1 = plt.subplots(figsize=(10, 6))
 # Plot expected field outcomes
 ax1.bar(X_axis - 0.2, merged_df['Yield (Ton/HA)'], 0.4, label='Expected Output', color='blue')
 # Plot average simulated outcomes
-ax1.bar(X_axis + 0.2, merged_df['Yield (tonne/ha)'], 0.4, label='Actual Output', color='orange', yerr=std_yields['Yield (tonne/ha)'], capsize=5)
+ax1.bar(X_axis + 0.2, merged_df['Yield (tonne/ha)'], 0.4, label='Heliostrome Output', color='orange', yerr=std_yields['Yield (tonne/ha)'], capsize=5)
 # Add x-axis labels with rotation
 plt.xticks(X_axis, merged_df['Case Study'], rotation=90)
 
@@ -37,7 +37,7 @@ ax1.set_ylabel('Yield (tonne/ha)')
 ax2.set_ylabel('MBE (%)')
 
 # Add legend with appropriate labels
-ax1.legend(['Expected Output', 'avg simulated Output'], loc='upper left')
+ax1.legend(['Expected Output', 'Avg Heliostrome Output'], loc='upper left')
 ax2.legend(['MBE (%)'], loc='upper right')
 
 plt.title('Crop Yield Comparison with Mean Bias Error (MBE) and Standard Deviation')

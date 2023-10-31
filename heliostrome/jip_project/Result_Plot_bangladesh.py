@@ -19,7 +19,7 @@ X_axis = np.arange(len(graphing_dataframe['Case Study']))
 ax = graphing_dataframe.plot(kind='bar', x='Case Study', figsize=(10, 6))
 
 ax.bar(X_axis - 0.2, graphing_dataframe['Yield (Ton/HA)'], 0.4, label='Expected Output')
-ax.bar(X_axis + 0.2, graphing_dataframe['Yield (tonne/ha)'], 0.4, label='Actual Output')
+ax.bar(X_axis + 0.2, graphing_dataframe['Yield (tonne/ha)'], 0.4, label='Heliostrome Output')
 
 plt.xlabel('Case Study')
 plt.ylabel('Average Yield (tonne/ha)')
@@ -27,7 +27,7 @@ plt.title('Average Yield by Case Study')
 plt.xticks(rotation=90)
 
 # Add legend with appropriate labels
-plt.legend(['Expected Output', 'Actual Output'])
+plt.legend(['Expected Output', 'Heliostrome Output'])
 
 plt.tight_layout()
 plt.show()
