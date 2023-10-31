@@ -29,7 +29,7 @@ from modules.precip_extract import *
 # Start the timer 
 start_time = time.time()
 
-CaseStudy_sheet = "Case study pump"  # Replace with the name of the sheet containing the data
+CaseStudy_sheet = "Bangladesh Case Study Drip"  # Replace with the name of the sheet containing the data
 extracted_rows = factors_to_run(CaseStudy_sheet)
 
 # Initialize an empty list for the Case Study Names
@@ -49,7 +49,7 @@ final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Star
 writer1 = pd.ExcelWriter(r'heliostrome\jip_project\results\WaterFlux_Bangladesh.xlsx', engine='openpyxl')
 
 
-for i in range(1):
+for i in range(len(extracted_rows['Case Study'])):
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
     start_date = extracted_rows["Start Date"][i].date()
     end_date = extracted_rows["End Date"][i].date()
