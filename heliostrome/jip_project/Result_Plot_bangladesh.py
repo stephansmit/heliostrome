@@ -46,6 +46,15 @@ excel_file = r'heliostrome\jip_project\results\test_results_Bangladesh.xlsx'
 sheet_name = "Output Results"
 df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Read the Excel file
+excel_file = r'heliostrome\jip_project\results\test_results_Bangladesh.xlsx'
+sheet_name = "Output Results"
+df = pd.read_excel(excel_file, sheet_name=sheet_name)
+
 # Group the data by 'Case Study' and calculate the average 'Yield (tonne/ha)' and standard deviation
 average_yields = df.groupby('Case Study')['Yield (tonne/ha)'].mean().reset_index()
 std_yields = df.groupby('Case Study')['Yield (tonne/ha)'].std().reset_index()
