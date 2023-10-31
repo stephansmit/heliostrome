@@ -49,7 +49,7 @@ final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Star
 writer1 = pd.ExcelWriter(r'heliostrome\jip_project\results\WaterFlux_Bangladesh.xlsx', engine='openpyxl')
 
 
-for i in range(1):
+for i in range(len(extracted_rows['Case Study'])):
     location = Location(latitude=extracted_rows["Latitude"][i], longitude=extracted_rows["Longitude"][i])
     start_date = extracted_rows["Start Date"][i].date()
     end_date = extracted_rows["End Date"][i].date()
