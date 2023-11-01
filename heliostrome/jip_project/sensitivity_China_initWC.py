@@ -30,33 +30,16 @@ start_time = time.time()
 sheet_name = "Northeast China Case Study"  # Replace with the name of the sheet containing the data
 extracted_rows = factors_to_run(sheet_name)
 
-# Define the list of soil types
-soil_types = [
-    "Clay",
-    "ClayLoam",
-    "Loam",
-    "LoamySand",
-    "Sand",
-    "SandyClay",
-    "SandyClayLoam",
-    "SandyLoam",
-    "Silt",
-    "SiltClayLoam",
-    "SiltLoam",
-    "SiltClay",
-    "Paddy",
-    "ac_TunisLocal",
-]
+WC_values = np.arange(8, 50.0, 2)
 
 # Create an Excel writer to save the results
-writer = pd.ExcelWriter(r'heliostrome\jip_project\results\sensitivity_China_soil.xlsx', engine='openpyxl')
+writer = pd.ExcelWriter(r'heliostrome\jip_project\results\sensitivity_China_initWC.xlsx', engine='openpyxl')
 
 
 alt.data_transformers.enable("default", max_rows=None)
 
 
-
-for soil_type in soil_types:
+for WC_value in WC_values:
     final_input_df = pd.DataFrame(columns=['Case Study','Latitude','Longitude','Start Date','End Date','Soil Type', 'Crop Type','Sowing Date','Irrigation Method','SMT', 'Init WC - WC Type','init WC - Value',  'Yield (Ton/HA)', 'Water Used (mm)'])
     final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
     Casestudies = []
@@ -75,12 +58,12 @@ for soil_type in soil_types:
 
         climate_data.plot_data(y_axis='temp_air_max_c')
         print(extracted_rows["Sowing Date"][i])
-        soil = Soil(soil_type)
+        soil = Soil("SandyLoam")
         crop = get_crop_data(extracted_rows["Crop Type"][i])
         sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
         crop = Crop(crop.Name, planting_date=sowing_date)
         irr_mngt = IrrigationManagement(irrigation_method=1, SMT=[extracted_rows["Irrigation Method"][i]]*4)
-        InitWC = InitialWaterContent(wc_type = 'Pct', value=[extracted_rows["Initial Water Content"][i]])
+        InitWC = InitialWaterContent(wc_type = 'Pct', value=[WC_value])
         
         input_df = {'Case Study': [extracted_rows["Case Study"][i]],
                     'Latitude' : [location.latitude],
@@ -144,12 +127,12 @@ for soil_type in soil_types:
 
         climate_data.plot_data(y_axis='temp_air_max_c')
 
-        soil = Soil(soil_type)
+        soil = Soil("SandyLoam")
         crop = get_crop_data(extracted_rows["Crop Type"][i+4])
         sowing_date = extracted_rows["Sowing Date"][i+4].strftime("%m/%d")
         crop = Crop(crop.Name, planting_date=sowing_date)
         irr_mngt = IrrigationManagement(irrigation_method=0)
-        InitWC = InitialWaterContent(wc_type = 'Pct', value=[extracted_rows["Initial Water Content"][i+4]])
+        InitWC = InitialWaterContent(wc_type = 'Pct', value=[WC_value])
         
         
         
@@ -200,7 +183,7 @@ for soil_type in soil_types:
         #time elapsed
         end_time = time.time()
         elapsed_time = end_time - start_time
-        print(f"Iteration {i+1}(Soil Type: {soil_type}):  Elapsed time = {elapsed_time} seconds")
+        print(f"Iteration {i+1}(Initial water content: {WC_value}):  Elapsed time = {elapsed_time} seconds")
         start_time = end_time
 
 
@@ -208,8 +191,8 @@ for soil_type in soil_types:
     final_df.insert(0, 'Case Study', Casestudies)
     
     # Save the results to a separate sheet with the soil type as the sheet name
-    final_input_df.to_excel(writer, index=False, sheet_name=soil_type + "_Input_Parameters")
-    final_df.to_excel(writer, index=False, sheet_name=soil_type + "_Output_Results")
+    final_input_df.to_excel(writer, index=False, sheet_name= str(WC_value) + "_Input_Parameters")
+    final_df.to_excel(writer, index=False, sheet_name= str(WC_value) + "_Output_Results")
     
     Casestudies.clear()  # Clear the list for the next soil type
 
