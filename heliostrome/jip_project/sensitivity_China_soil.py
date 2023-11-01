@@ -61,7 +61,7 @@ for soil_type in soil_types:
     final_df = pd.DataFrame(columns=['Season', 'crop Type', 'Harvest Date (YYYY/MM/DD)', 'Harvest Date (Step)', 'Yield (tonne/ha)', 'Seasonal irrigation (mm)'])
     Casestudies = []
 
-    
+
     for i in range(4):
         location = Location(latitude=40, longitude=114)
         start_date = extracted_rows["Start Date"][i].date()
@@ -82,6 +82,8 @@ for soil_type in soil_types:
         irr_mngt = IrrigationManagement(irrigation_method=1, SMT=[extracted_rows["Irrigation Method"][i]]*4)
         InitWC = InitialWaterContent(wc_type = 'Pct', value=[extracted_rows["Initial Water Content"][i]])
         
+        
+        
         input_df = {'Case Study': [extracted_rows["Case Study"][i]],
                     'Latitude' : [location.latitude],
                     'Longitude' :[location.longitude],
@@ -96,18 +98,19 @@ for soil_type in soil_types:
                     'Init WC - Value': [InitWC.value],
                     'Yield (Ton/HA)': [extracted_rows['Yield'][i]],
                     'Water Used (mm)': [extracted_rows['Water used'][i]]}
+
         
         model = AquaCropModel(
-                sim_start_time=start_date.strftime("%Y/%m/%d"),
-                sim_end_time=end_date.strftime("%Y/%m/%d"),
-                weather_df=climate_data.aquacrop_input,
-                soil=soil,
-                crop=crop,
-                initial_water_content=InitWC,
-                irrigation_management=irr_mngt, 
-                field_management=FieldMngt(mulches= extracted_rows["Mulches"][i], mulch_pct=100),
-            )
-
+            sim_start_time=start_date.strftime("%Y/%m/%d"),
+            sim_end_time=end_date.strftime("%Y/%m/%d"),
+            weather_df=climate_data.aquacrop_input,
+            soil=soil,
+            crop=crop,
+            initial_water_content=InitWC,
+            irrigation_management=irr_mngt, 
+            field_management=FieldMngt(mulches= extracted_rows["Mulches"][i], mulch_pct=100),
+        )
+        
         model.run_model(till_termination=True)
 
         df = model.get_simulation_results()
@@ -122,7 +125,6 @@ for soil_type in soil_types:
         #waterflux related lines
         water_flux = model._outputs.water_flux
         sheet_name = f"{extracted_rows['Case Study'][i]}"
-        # water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
 
 
         #time elapsed
@@ -200,10 +202,9 @@ for soil_type in soil_types:
         #time elapsed
         end_time = time.time()
         elapsed_time = end_time - start_time
-        print(f"Iteration {i+1}(Soil Type: {soil_type}):  Elapsed time = {elapsed_time} seconds")
+        print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
         start_time = end_time
-
-
+    
     # Insert the 'Case Study' column to final_df
     final_df.insert(0, 'Case Study', Casestudies)
     

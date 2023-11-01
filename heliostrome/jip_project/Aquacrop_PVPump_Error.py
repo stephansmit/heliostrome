@@ -15,7 +15,7 @@ merged_df = pump_compatibility(waterfluxexcelpath, pump_df_path, output_file_pat
 mpe_df_avg_list = []
 error_df = pd.DataFrame()
 
-for i in range (15):
+for i in range (13,18):
     csv_pump_file = r'heliostrome\jip_project\results\pump_compatibility\_Pump ' + str(i+1) + '.csv'
     df = pd.read_csv(csv_pump_file)
     mpe_indiv, mpe_df_avg = mean_percentage_error(df,'Pump',df,'IrrDay')
@@ -39,7 +39,7 @@ colors = ['b', 'g', 'r', 'c', 'm']  # Define the colors for each set of three co
 line_styles = ['-', '--', '-.']  # Line styles for each column within a set
 
 columns_to_plot = error_df.columns[1:]
-labels = ['4,1','5,1','6,1']
+labels = ['4,1','5,1','6,1','2,2','3,2']
 
 # Create a line plot for each selected column (solar panel)
 # for i, column in enumerate(columns_to_plot):
@@ -51,7 +51,7 @@ labels = ['4,1','5,1','6,1']
 for i, column in enumerate(columns_to_plot):
     color = colors[i // 3 % len(colors)]  # Cycle through the colors every three columns
     line_style = line_styles[i % 3]  # Cycle through the line styles
-    plt.plot(error_df['Date'], error_df[column], label=column, color=color, linestyle=line_style)
+    plt.plot(error_df['Date'], error_df[column], label=labels[i], color=color, linestyle=line_style)
     
 # Add labels and legend
 plt.xlabel('Date')

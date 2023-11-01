@@ -68,7 +68,7 @@ for i in range(len(extracted_rows["Case Study"])):
     
     print(IRRschedule(i), sowing_date, start_date, end_date)
 
-    irr_mngt = IrrigationManagement(irrigation_method=3, Schedule = IRRschedule(i, B = 10), MaxIrr = 100)
+    irr_mngt = IrrigationManagement(irrigation_method=3, Schedule = IRRschedule(i, B = 5), MaxIrr = 100)
     InitWC = InitialWaterContent(value = ['FC'])
     
     input_df = {'Case Study': [extracted_rows["Case Study"][i]],

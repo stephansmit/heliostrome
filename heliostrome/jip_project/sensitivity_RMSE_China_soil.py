@@ -45,7 +45,7 @@ for input_sheet_name, output_sheet_name in zip(input_sheet_names, output_sheet_n
     # Yield RMSE
     yield_rmse = sqrt(mean_squared_error(matched_data['Yield (tonne/ha)'], matched_data['Yield (Ton/HA)']))
     
-    # # Water Used RMSE
+    # Water Used RMSE
     # water_used_rmse = sqrt(mean_squared_error(matched_data['Seasonal irrigation (mm)'], matched_data['Water Used (mm)']))
     
     # Yield RMSE Percentage
@@ -53,15 +53,17 @@ for input_sheet_name, output_sheet_name in zip(input_sheet_names, output_sheet_n
     
     # Water Used RMSE Percentage
     # water_used_rmse_percentage = (water_used_rmse / matched_data['Water Used (mm)'].mean()) * 100
-    
-    soil_type = input_df['Soil Type'].iloc[0]
 
-    # ouput
-    df_to_append = pd.DataFrame({'soil type': soil_type, 'Yield RMSE': yield_rmse, 'Yield RMSE Percentage': yield_rmse_percentage}, index=[0])
+    WCvalue_type = input_sheet_name.split('_')[0]
+
+    # append the results to rmse_df
+    # df_to_append = pd.DataFrame({'soil type': WCvalue_type, 'Yield RMSE': yield_rmse, 'Yield RMSE Percentage': yield_rmse_percentage, 'Water Used RMSE': water_used_rmse, 'Water Used RMSE Percentage': water_used_rmse_percentage}, index=[0])
+    df_to_append = pd.DataFrame({'soil type': WCvalue_type, 'Yield RMSE': yield_rmse, 'Yield RMSE Percentage': yield_rmse_percentage}, index=[0])
+    
     rmse_df = pd.concat([rmse_df, df_to_append], ignore_index=True)
 
-# 将 RMSE 结果保存到新 Excel 文件
+# save the RMSE results to Excel
 rmse_df.to_excel(writer, index=False, sheet_name='RMSE Results')
 
-# 关闭 Excel writer
+# close the Excel writer
 writer.save()

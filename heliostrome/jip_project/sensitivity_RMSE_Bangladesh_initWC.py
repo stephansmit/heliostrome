@@ -37,19 +37,18 @@ for input_sheet_name, output_sheet_name in zip(input_sheet_names, output_sheet_n
     yield_rmse = sqrt(mean_squared_error(matched_data['Yield (tonne/ha)'], matched_data['Yield (Ton/HA)']))
     
     # Water Used RMSE
-    # water_used_rmse = sqrt(mean_squared_error(matched_data['Seasonal irrigation (mm)'], matched_data['Water Used (mm)']))
+    water_used_rmse = sqrt(mean_squared_error(matched_data['Seasonal irrigation (mm)'], matched_data['Water Used (mm)']))
     
     # Yield RMSE Percentage
     yield_rmse_percentage = (yield_rmse / matched_data['Yield (Ton/HA)'].mean()) * 100
     
     # Water Used RMSE Percentage
-    # water_used_rmse_percentage = (water_used_rmse / matched_data['Water Used (mm)'].mean()) * 100
+    water_used_rmse_percentage = (water_used_rmse / matched_data['Water Used (mm)'].mean()) * 100
 
     WCvalue_type = input_sheet_name.split('_')[0]
 
     # append the results to rmse_df
-    # df_to_append = pd.DataFrame({'WCvalue_type': WCvalue_type, 'Yield RMSE': yield_rmse, 'Yield RMSE Percentage': yield_rmse_percentage, 'Water Used RMSE': water_used_rmse, 'Water Used RMSE Percentage': water_used_rmse_percentage}, index=[0])
-    df_to_append = pd.DataFrame({'WCvalue_type': WCvalue_type, 'Yield RMSE': yield_rmse, 'Yield RMSE Percentage': yield_rmse_percentage}, index=[0])
+    df_to_append = pd.DataFrame({'WCvalue_type': WCvalue_type, 'Yield RMSE': yield_rmse, 'Yield RMSE Percentage': yield_rmse_percentage, 'Water Used RMSE': water_used_rmse, 'Water Used RMSE Percentage': water_used_rmse_percentage}, index=[0])
     
     rmse_df = pd.concat([rmse_df, df_to_append], ignore_index=True)
 

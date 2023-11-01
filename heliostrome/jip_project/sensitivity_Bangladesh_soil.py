@@ -51,7 +51,7 @@ soil_types = [
 ]
 
 # Create an Excel writer to save the results
-writer = pd.ExcelWriter(r'heliostrome\jip_project\results\sensitivity_Bangladesh_soil.xlsx', engine='openpyxl')
+writer = pd.ExcelWriter(r'heliostrome\jip_project\results\sensitivity_Bangladesh_soil1.xlsx', engine='openpyxl')
 
 
 alt.data_transformers.enable("default", max_rows=None)
@@ -130,7 +130,7 @@ for soil_type in soil_types:
         #time elapsed
         end_time = time.time()
         elapsed_time = end_time - start_time
-        print(f"Iteration {i+1}(Soil Type: {soil_type}): Elapsed time = {elapsed_time} seconds")
+        print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
         start_time = end_time
     
     # Insert the 'Case Study' column to final_df

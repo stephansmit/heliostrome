@@ -8,17 +8,17 @@ input_file_path = r'heliostrome\jip_project\results\sensitivity_China_initWC.xls
 output_file_path = r'heliostrome\jip_project\results\sensitivity_RMSE_China_initWC.xlsx'
 
 # 定义所使用的土壤类型列表
-WC_values = np.arange(8, 50.0, 2)
+WCvalue_types = np.arange(5, 55, 5)
 
 # read all input and output tables
-input_sheet_names = [f"{str(WC_value)}_Input_Parameters" for WC_value in WC_values]
-output_sheet_names = [f"{str(WC_value)}_Output_Results" for WC_value in WC_values]
+input_sheet_names = [f"{str(WCvalue_type)}_Input_Parameters" for WCvalue_type in WCvalue_types]
+output_sheet_names = [f"{str(WCvalue_type)}_Output_Results" for WCvalue_type in WCvalue_types]
 
 # create an empty excel
 writer = pd.ExcelWriter(output_file_path, engine='openpyxl')
 
 # create an empty DataFrame to store the output of RMSE
-rmse_df = pd.DataFrame(columns=['WCvalue', 'Yield RMSE', 'Yield RMSE Percentage'])
+rmse_df = pd.DataFrame(columns=['WCvalue_type', 'Yield RMSE', 'Yield RMSE Percentage'])
 
 # iterate through WCvalue_types
 for input_sheet_name, output_sheet_name in zip(input_sheet_names, output_sheet_names):
@@ -31,7 +31,7 @@ for input_sheet_name, output_sheet_name in zip(input_sheet_names, output_sheet_n
     
     # Yield RMSE
     yield_rmse = sqrt(mean_squared_error(matched_data['Yield (tonne/ha)'], matched_data['Yield (Ton/HA)']))
-
+    
     # Water Used RMSE
     # water_used_rmse = sqrt(mean_squared_error(matched_data['Seasonal irrigation (mm)'], matched_data['Water Used (mm)']))
     
@@ -44,7 +44,8 @@ for input_sheet_name, output_sheet_name in zip(input_sheet_names, output_sheet_n
     WCvalue_type = input_sheet_name.split('_')[0]
 
     # append the results to rmse_df
-    df_to_append = pd.DataFrame({'WCvalue': WCvalue_type, 'Yield RMSE': yield_rmse, 'Yield RMSE Percentage': yield_rmse_percentage}, index=[0])
+    df_to_append = pd.DataFrame({'WCvalue_type': str(WCvalue_type), 'Yield RMSE': yield_rmse, 'Yield RMSE Percentage': yield_rmse_percentage}, index=[0])
+    
     rmse_df = pd.concat([rmse_df, df_to_append], ignore_index=True)
 
 # save the RMSE results to Excel
