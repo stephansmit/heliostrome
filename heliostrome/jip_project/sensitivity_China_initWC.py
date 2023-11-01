@@ -35,11 +35,7 @@ sheet_name = "Northeast China Case Study"  # Replace with the name of the sheet 
 extracted_rows = factors_to_run(sheet_name)
 
 
-WC_values = [
-    "FC",
-    "SAT",
-    "WP"
-]
+WC_values = np.arange(5, 55, 5)
 
 writer = pd.ExcelWriter(r'heliostrome\jip_project\results\sensitivity_China_initWC.xlsx', engine='openpyxl')
 
@@ -69,7 +65,7 @@ for WC_value in WC_values:
         sowing_date = extracted_rows["Sowing Date"][i].strftime("%m/%d")
         crop = Crop(crop.Name, planting_date=sowing_date)
         irr_mngt = IrrigationManagement(irrigation_method=1, SMT=[extracted_rows["Irrigation Method"][i]]*4)
-        InitWC = InitialWaterContent(wc_type = 'Pct', value=[extracted_rows["Initial Water Content"][i]])
+        InitWC = InitialWaterContent(wc_type = 'Pct', value=[WC_value])
         
         
         
@@ -114,8 +110,6 @@ for WC_value in WC_values:
         #waterflux related lines
         water_flux = model._outputs.water_flux
         sheet_name = f"{extracted_rows['Case Study'][i]}"
-        water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
-
 
         #time elapsed
         end_time = time.time()
@@ -141,7 +135,7 @@ for WC_value in WC_values:
         sowing_date = extracted_rows["Sowing Date"][i+4].strftime("%m/%d")
         crop = Crop(crop.Name, planting_date=sowing_date)
         irr_mngt = IrrigationManagement(irrigation_method=0)
-        InitWC = InitialWaterContent(wc_type = 'Pct', value=[extracted_rows["Initial Water Content"][i+4]])
+        InitWC = InitialWaterContent(wc_type = 'Pct', value=[WC_value])
         
         
         
@@ -187,10 +181,22 @@ for WC_value in WC_values:
         #waterflux related lines
         water_flux = model._outputs.water_flux
         sheet_name = f"{extracted_rows['Case Study'][i+4]}"
-        water_flux.to_excel(writer1, index=False, sheet_name=sheet_name)
 
         #time elapsed
         end_time = time.time()
         elapsed_time = end_time - start_time
         print(f"Iteration {i+1}: Elapsed time = {elapsed_time} seconds")
         start_time = end_time
+
+    # Insert the 'Case Study' column to final_df
+    final_df.insert(0, 'Case Study', Casestudies)
+    
+    # Save the results to a separate sheet with the soil type as the sheet name
+    final_input_df.to_excel(writer, index=False, sheet_name=str(WC_value) + "_Input_Parameters")
+    final_df.to_excel(writer, index=False, sheet_name=str(WC_value) + "_Output_Results")
+    
+    Casestudies.clear()  # Clear the list for the next soil type
+
+# Close the Excel writer
+writer.save()
+writer.close()
