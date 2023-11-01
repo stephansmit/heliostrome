@@ -3,11 +3,11 @@ import numpy as np
 from sklearn.metrics import mean_squared_error
 from math import sqrt
 
-# 定义输入和输出文件的路径
+
 input_file_path = r'heliostrome\jip_project\results\sensitivity_Bangladesh_initWC.xlsx'
 output_file_path = r'heliostrome\jip_project\results\sensitivity_RMSE_Bangladesh_initWC.xlsx'
 
-# 定义所使用的土壤类型列表
+
 WCvalue_types = [
     "WP",
     "FC",
