@@ -2,13 +2,16 @@ import time
 from requests.exceptions import HTTPError
 from pydantic import BaseModel
 from soilgrids import SoilGrids
+from typing import Union
+from aquacrop import Soil
+from heliostrome.models.location import Location
 
 try:
     from typing import Literal
 except ImportError:
     from typing_extensions import Literal
 from typing import List
-from shapely.geometry import Polygon
+from shapely.geometry import Polygon, Point
 
 LAYER_NAMES = [
     "_0-5cm_mean",
@@ -39,12 +42,25 @@ class SoilLayer(BaseModel):
         "_100-200cm_mean",
     ]
     weight: float
-    clay_value: float
-    sand_value: float
+    clay_gkg: float
+    sand_gkg: float
+    silt_gkg: float
+    
+    @property
+    def correction_factor(self):
+        return 1000 / (self.clay_gkg + self.sand_gkg + self.silt_gkg)
 
     @property
-    def silt_value(self):
-        return 100 - self.clay_value - self.sand_value
+    def clay_pct(self):
+        return (self.clay_gkg / 1000 * self.correction_factor) * 100
+
+    @property
+    def sand_pct(self):
+        return (self.sand_gkg / 1000 * self.correction_factor) * 100
+
+    @property
+    def silt_pct(self):
+        return (self.silt_gkg / 1000 * self.correction_factor) * 100
 
     @property
     def soil_type(
@@ -63,7 +79,7 @@ class SoilLayer(BaseModel):
         "SiltClay",
         "Clay",
     ]:
-        return get_soil_textural_class(self.sand_value, self.clay_value)
+        return get_soil_textural_class(self.sand_pct, self.clay_pct, self.silt_pct)
 
 
 class SoilDatum(BaseModel):
@@ -79,16 +95,16 @@ class SoilDatum(BaseModel):
     layers: List[SoilLayer]
 
     @property
-    def silt_value(self):
-        return sum([layer.weight * layer.silt_value for layer in self.layers]) / 100
+    def silt_pct(self):
+        return sum([layer.weight/100 * layer.silt_pct for layer in self.layers])
 
     @property
-    def clay_value(self):
-        return sum([layer.weight * layer.clay_value for layer in self.layers]) / 100
+    def clay_pct(self):
+        return sum([layer.weight/100 * layer.clay_pct for layer in self.layers])
 
     @property
-    def sand_value(self):
-        return sum([layer.weight * layer.sand_value for layer in self.layers]) / 100
+    def sand_pct(self):
+        return sum([layer.weight/100 * layer.sand_pct for layer in self.layers])
 
     @property
     def soil_type(
@@ -107,33 +123,39 @@ class SoilDatum(BaseModel):
         "SiltClay",
         "Clay",
     ]:
-        return get_soil_textural_class(self.sand_value, self.clay_value)
+        return get_soil_textural_class(self.sand_pct, self.clay_pct, self.silt_pct)
+
+    def to_aquacrop_soil(self) -> Soil:
+        return Soil(self.soil_type)
 
 
-def get_soil_properties(
-    field_polygon: Polygon,
-) -> SoilDatum:
+def get_soil_properties(location: Location) -> SoilDatum:
     """Returns the soil content % for the given service_id and bounding box.
 
     :type Polygon: shapely.geometry.Polygon
     :rtype: SoilDatum
     """
-    west, south, east, north = field_polygon.bounds
+
+    west, south, east, north = location.field.bounds
 
     layers = []
     for layer_name, weight in zip(LAYER_NAMES, WEIGHTS):
-        sand_value = get_prop_per_layer_type(
+        sand_gkg = get_prop_per_layer_type(
             "sand", layer_name, west, east, south, north
         )
-        clay_value = get_prop_per_layer_type(
+        clay_gkg = get_prop_per_layer_type(
             "clay", layer_name, west, east, south, north
+        )
+        silt_gkg = get_prop_per_layer_type(
+            "silt", layer_name, west, east, south, north
         )
         layers.append(
             SoilLayer(
                 name=layer_name,
                 weight=weight,
-                clay_value=clay_value,
-                sand_value=sand_value,
+                clay_gkg=clay_gkg,
+                sand_gkg=sand_gkg,
+                silt_gkg=silt_gkg,
             )
         )
 
@@ -169,7 +191,7 @@ def get_prop_per_layer_type(
     :type south: float
     :param north: north boundary of the bounding box
     :type north: float
-    :return: mean % of the specific class in the layer
+    :return: mean g/kg of the specific class in the layer
     :rtype: float
     """
     soil_grids = SoilGrids()
@@ -200,7 +222,7 @@ def get_prop_per_layer_type(
                 raise e
 
 
-def get_soil_textural_class(sand: float, clay: float) -> str:
+def get_soil_textural_class(sand: float, clay: float, silt: float) -> str:
     """Returns the soil textural class based on the sand and clay content.
 
     :param sand: sand content in %
@@ -211,9 +233,8 @@ def get_soil_textural_class(sand: float, clay: float) -> str:
     :return: textural class
     :rtype: str
     """
-    silt = 100 - sand - clay
 
-    if sand + clay > 100 or sand < 0 or clay < 0:
+    if (((sand + clay + silt) != 100) or (sand < 0) or (clay < 0) or (silt < 0)):
         raise Exception(r"Inputs add up to over 100% or are negative")
     elif silt + 1.5 * clay < 15:
         textural_class = "Sand"
