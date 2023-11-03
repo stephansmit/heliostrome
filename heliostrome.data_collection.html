@@ -1338,8 +1338,8 @@ validated to form a valid model.</p>
 <p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
 allow <cite>self</cite> as a field name.</p>
 <dl class="py property">
-<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.clay_value">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clay_value</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.clay_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.clay_pct">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clay_pct</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.clay_pct" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1362,13 +1362,13 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.sand_value">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sand_value</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.sand_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.sand_pct">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sand_pct</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.sand_pct" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.silt_value">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">silt_value</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.silt_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.silt_pct">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">silt_pct</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.silt_pct" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -1376,11 +1376,16 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">soil_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'Sand'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'LoamySand'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SandyLoam'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'Loam'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SiltLoam'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'Silt'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SandyClayLoam'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ClayLoam'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SiltyClayLoam'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SandyClay'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'SiltClay'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'Clay'</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.soil_type" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilDatum.to_aquacrop_soil">
+<span class="sig-name descname"><span class="pre">to_aquacrop_soil</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Soil</span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#SoilDatum.to_aquacrop_soil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.SoilDatum.to_aquacrop_soil" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.soil.</span></span><span class="sig-name descname"><span class="pre">SoilLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_0-5cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_5-15cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_15-30cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_30-60cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_60-100cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_100-200cm_mean'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clay_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sand_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#SoilLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.soil.</span></span><span class="sig-name descname"><span class="pre">SoilLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'_0-5cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_5-15cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_15-30cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_30-60cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_60-100cm_mean'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'_100-200cm_mean'</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clay_gkg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sand_gkg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">silt_gkg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#SoilLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
 <p>This class contains the data for a soil layer.</p>
 <dl class="field-list simple">
@@ -1400,8 +1405,18 @@ validated to form a valid model.</p>
 <p><cite>__init__</cite> uses <cite>__pydantic_self__</cite> instead of the more common <cite>self</cite> for the first arg to
 allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.clay_value">
-<span class="sig-name descname"><span class="pre">clay_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.clay_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.clay_gkg">
+<span class="sig-name descname"><span class="pre">clay_gkg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.clay_gkg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.clay_pct">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clay_pct</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.clay_pct" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.correction_factor">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">correction_factor</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.correction_factor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1412,7 +1427,7 @@ allow <cite>self</cite> as a field name.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.model_fields">
-<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'clay_value':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'name':</span> <span class="pre">FieldInfo(annotation=Literal['_0-5cm_mean',</span> <span class="pre">'_5-15cm_mean',</span> <span class="pre">'_15-30cm_mean',</span> <span class="pre">'_30-60cm_mean',</span> <span class="pre">'_60-100cm_mean',</span> <span class="pre">'_100-200cm_mean'],</span> <span class="pre">required=True),</span> <span class="pre">'sand_value':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'weight':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.model_fields" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'clay_gkg':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'name':</span> <span class="pre">FieldInfo(annotation=Literal['_0-5cm_mean',</span> <span class="pre">'_5-15cm_mean',</span> <span class="pre">'_15-30cm_mean',</span> <span class="pre">'_30-60cm_mean',</span> <span class="pre">'_60-100cm_mean',</span> <span class="pre">'_100-200cm_mean'],</span> <span class="pre">required=True),</span> <span class="pre">'sand_gkg':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'silt_gkg':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True),</span> <span class="pre">'weight':</span> <span class="pre">FieldInfo(annotation=float,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.model_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metadata about the fields defined on the model,
 mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
 <p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
@@ -1424,13 +1439,23 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.sand_value">
-<span class="sig-name descname"><span class="pre">sand_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.sand_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.sand_gkg">
+<span class="sig-name descname"><span class="pre">sand_gkg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.sand_gkg" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.silt_value">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">silt_value</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.silt_value" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.sand_pct">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sand_pct</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.sand_pct" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.silt_gkg">
+<span class="sig-name descname"><span class="pre">silt_gkg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.silt_gkg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="heliostrome.data_collection.soil.SoilLayer.silt_pct">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">silt_pct</span></span><a class="headerlink" href="#heliostrome.data_collection.soil.SoilLayer.silt_pct" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -1461,7 +1486,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>mean % of the specific class in the layer</p>
+<dd class="field-even"><p>mean g/kg of the specific class in the layer</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
@@ -1471,7 +1496,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 
 <dl class="py function">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.get_soil_properties">
-<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.soil.</span></span><span class="sig-name descname"><span class="pre">get_soil_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_polygon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Polygon</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#heliostrome.data_collection.soil.SoilDatum" title="heliostrome.data_collection.soil.SoilDatum"><span class="pre">SoilDatum</span></a></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#get_soil_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.get_soil_properties" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.soil.</span></span><span class="sig-name descname"><span class="pre">get_soil_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="heliostrome.models.html#heliostrome.models.location.Location" title="heliostrome.models.location.Location"><span class="pre">Location</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#heliostrome.data_collection.soil.SoilDatum" title="heliostrome.data_collection.soil.SoilDatum"><span class="pre">SoilDatum</span></a></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#get_soil_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.get_soil_properties" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the soil content % for the given service_id and bounding box.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1482,7 +1507,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</
 
 <dl class="py function">
 <dt class="sig sig-object py" id="heliostrome.data_collection.soil.get_soil_textural_class">
-<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.soil.</span></span><span class="sig-name descname"><span class="pre">get_soil_textural_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#get_soil_textural_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.get_soil_textural_class" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">heliostrome.data_collection.soil.</span></span><span class="sig-name descname"><span class="pre">get_soil_textural_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">silt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/heliostrome/data_collection/soil.html#get_soil_textural_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#heliostrome.data_collection.soil.get_soil_textural_class" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the soil textural class based on the sand and clay content.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
