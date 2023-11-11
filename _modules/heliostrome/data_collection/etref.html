@@ -190,8 +190,7 @@
            <div itemprop="articleBody">
             
   <h1>Source code for heliostrome.data_collection.etref</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span> <span class="nn">pvlib.atmosphere</span> <span class="kn">import</span> <span class="n">alt2pres</span>
 <span class="kn">from</span> <span class="nn">pyeto</span> <span class="kn">import</span> <span class="p">(</span>
@@ -206,8 +205,6 @@
 <span class="kn">from</span> <span class="nn">heliostrome.data_collection.irradiance</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">IrradianceDailyDatum</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">heliostrome.models.location</span> <span class="kn">import</span> <span class="n">Location</span>
-
 
 <div class="viewcode-block" id="EtRefDailyDatum"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum">[docs]</a><span class="k">class</span> <span class="nc">EtRefDailyDatum</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
@@ -282,16 +279,7 @@
 
 <div class="viewcode-block" id="EtRefDailyDatum.from_irradiance"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.from_irradiance">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_irradiance</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">irradiance</span><span class="p">:</span> <span class="n">IrradianceDailyDatum</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">time</span><span class="o">=</span><span class="n">irradiance</span><span class="o">.</span><span class="n">time</span><span class="p">,</span>
-            <span class="n">ghi_whm2</span><span class="o">=</span><span class="n">irradiance</span><span class="o">.</span><span class="n">ghi_whm2</span><span class="p">,</span>
-            <span class="n">solar_elevation_deg</span><span class="o">=</span><span class="n">irradiance</span><span class="o">.</span><span class="n">solar_elevation_deg</span><span class="p">,</span>
-            <span class="n">temp_air_min_c</span><span class="o">=</span><span class="n">irradiance</span><span class="o">.</span><span class="n">temp_air_min_c</span><span class="p">,</span>
-            <span class="n">temp_air_c</span><span class="o">=</span><span class="n">irradiance</span><span class="o">.</span><span class="n">temp_air_c</span><span class="p">,</span>
-            <span class="n">temp_air_max_c</span><span class="o">=</span><span class="n">irradiance</span><span class="o">.</span><span class="n">temp_air_max_c</span><span class="p">,</span>
-            <span class="n">wind_speed_10m_ms</span><span class="o">=</span><span class="n">irradiance</span><span class="o">.</span><span class="n">wind_speed_10m_ms</span><span class="p">,</span>
-            <span class="n">altitude_m</span><span class="o">=</span><span class="n">irradiance</span><span class="o">.</span><span class="n">altitude_m</span><span class="p">,</span>
-        <span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">irradiance</span><span class="o">.</span><span class="n">model_dump</span><span class="p">())</span></div></div>
 </pre></div>
 
            </div>
