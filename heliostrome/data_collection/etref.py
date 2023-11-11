@@ -1,5 +1,4 @@
-from typing import List
-from datetime import datetime, date
+from datetime import datetime
 from pydantic import BaseModel
 from pvlib.atmosphere import alt2pres
 from pyeto import (
@@ -14,8 +13,6 @@ from pyeto import (
 from heliostrome.data_collection.irradiance import (
     IrradianceDailyDatum
 )
-from heliostrome.models.location import Location
-
 
 class EtRefDailyDatum(BaseModel):
     time: datetime
@@ -90,13 +87,4 @@ class EtRefDailyDatum(BaseModel):
 
     @classmethod
     def from_irradiance(cls, irradiance: IrradianceDailyDatum):
-        return cls(
-            time=irradiance.time,
-            ghi_whm2=irradiance.ghi_whm2,
-            solar_elevation_deg=irradiance.solar_elevation_deg,
-            temp_air_min_c=irradiance.temp_air_min_c,
-            temp_air_c=irradiance.temp_air_c,
-            temp_air_max_c=irradiance.temp_air_max_c,
-            wind_speed_10m_ms=irradiance.wind_speed_10m_ms,
-            altitude_m=irradiance.altitude_m,
-        )
+        return cls(**irradiance.model_dump())

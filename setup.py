@@ -49,9 +49,9 @@ requirements = [
     "numpy==1.24.0",
     "scikit-learn==1.3.0",
     "seaborn==0.12.1",
-    "aquacrop@git+https://github.com/stephansmit/aquacrop.git@61e6c49ddd98532cbee0307ffd0bb0c05428d623",
+    "aquacrop@git+https://github.com/stephansmit/aquacrop.git@c31d8fb437bc6b5f0eac795c459e010a5135b068",
     "PyETo@git+https://github.com/stephansmit/PyETo.git@79ddd88d727c7ebdad0ce26e220528d2921b66ea",
-    "pvpumpingsystem@git+https://github.com/stephansmit/pvpumpingsystem.git@158d9cc077daf9c2e50909b937d02534d44e4e3f",
+    "pvpumpingsystem@git+https://github.com/stephansmit/pvpumpingsystem.git@c4f2ca8fbae1b15a4a918c9044a5b99f3dae88d1",
 ]
 
 extra_requirements = {

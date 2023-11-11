@@ -2,7 +2,13 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
-from typing import Literal
+from typing import Literal, List
+
+from pvpumpingsystem.pipenetwork import PipeNetwork
+from pvpumpingsystem.pump import Pump
+from pvpumpingsystem.pvgeneration import PVGeneration
+from pvpumpingsystem.pvpumpsystem import PVPumpSystem
+from pvpumpingsystem.mppt import MPPT
 
 import heliostrome
 from heliostrome.data_collection.crops import get_crop_data
@@ -22,8 +28,8 @@ main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")
 
 latitude = 30.5#50.4958#35.6
 longitude = 75.29#4.9016#53.5
-start_date = datetime(2006, 1, 1).date()
-end_date = datetime(2007, 12, 31).date()
+start_date = datetime(2006, 4, 1).date()
+end_date = datetime(2007, 3, 1).date()
 
 location = Location(latitude=latitude, longitude=longitude)
 
@@ -78,16 +84,18 @@ class CropModel(object):
         df_water = df_water.join(df_crop)
         df_water['IrrDay'].plot(ax=ax)
         df_water['biomass'].plot(ax=ax2, color='g')
-        return fig, ax 
+        return fig, ax
+
+    def plot_water_use(self, ax, color='r'):
+        df_water = self.aquacrop_model.get_water_flux()
+        start_date = self.climate_data.climate_daily[0].date.date()
+        end_date = self.climate_data.climate_daily[-1].date.date()
+        df_water.index = pd.date_range(start_date, end_date, freq='D')
+        df_water['IrrDay'].plot(ax=ax, color=color, label='Irrigation')
+        return ax
 
 
-from pvpumpingsystem.mppt import mppt
-from pvpumpingsystem.pipenetwork import pipenetwork as pn
-from pvpumpingsystem.pump import pump as pp
-from pvpumpingsystem.pvgeneration import PVGeneration
 
-from pvpumpingsystem.pvpumpsystem import pvpumpsystem as pvps
-from pvpumpingsystem.reservoir import Reservoir
 
 class IrrigationSystem(object):
     def __init__(self, climate_data: ClimateData):
@@ -98,12 +106,65 @@ class IrrigationSystem(object):
             strings_in_parallel=1,
             orientation_strategy="south_at_latitude_tilt",  # or 'flat' or None
         )
+        self.pump = Pump(name='SCB_10_150_120_BL')
+        self.pipe_network = PipeNetwork(
+            h_stat=20,  # static head [m]
+            l_tot=100,  # length of pipes [m]
+            diam=0.05,  # diameter [m]
+            material="plastic",
+        )
+        self.mppt = MPPT(efficiency=0.96, idname="PCA-120-BLS-M2")
+        self.pvps1 = PVPumpSystem(
+            self.pvgen,
+            self.pump,
+            coupling="direct",  # to adapt: 'mppt' or 'direct',
+            mppt=self.mppt,
+            pipes=self.pipe_network,
+            consumption=None,
+            reservoir=None,
+        )
         
-    def set_pump(self, pump: pp.Pump):
-        self.pump = pump
+    def run_model(self):
+        self.pvps1.run_model(starting_soc='empty', calc_derivatives=False)
+        self.pvps1.calc_flow(stop=100000)
+
+    def calc_potential(self, field_size_m2):
+        self.df = self.pvps1.flow
+        self.df['Qlph'] = self.df['Qlpm']*60
+        self.df['Qm3ph'] = self.df['Qlph']/1000
+        self.df_sum = self.df.groupby(self.df.index.date).sum()
+        self.df_sum['irr_m'] = self.df_sum['Qm3ph']/field_size_m2
+        self.df_sum['irr_mm'] = self.df_sum['irr_m']*1000
+    
+    def get_pump_potential(self) -> List[float]:
+        return list(self.df_sum['irr_mm'].values)
+    
+    def plot_potential(self, ax):
+        self.df_sum.plot(y='irr_mm', ax=ax, label='Pump Potential')
+        return ax
 
 
 
+irr_system = IrrigationSystem(climate_data)
+irr_system.run_model()
+irr_system.calc_potential(field_size_m2=1000)
+potential_mm_day = irr_system.get_pump_potential()
+crop_model = CropModel(climate_data=climate_data,
+                       crop_name='Wheat',
+                       sowing_date=datetime(2006, 6, 1))
+irr_mgnt = IrrigationManagement(irrigation_method=1,
+                                SMT=[100,100,100,100],
+                                MaxIrr=potential_mm_day)
+crop_model.run_model(irr_mgnt)
+
+
+fig, ax = plt.subplots()
+irr_system.plot_potential(ax=ax)
+crop_model.plot_water_use(ax=ax, color='r')
+ax.legend()
+
+crop_model.aquacrop_model.get_simulation_results()
+# # crop_model.
 # # mppt1 = mppt.MPPT(efficiency=0.96, idname="PCA-120-BLS-M2")
 
 # # pump_file = os.path.join(main_folder, "data/pump/SCB_10_150_120_BL.txt")
@@ -144,9 +205,9 @@ class IrrigationSystem(object):
 #     def run_aquacrop_model()
 
 
-model = CropModel(climate_data, 'Wheat', datetime(2006, 12, 1))
-model.run_model(IrrigationManagement(irrigation_method=1, SMT=[100,100,100,100], MaxIrrSeason=None))
-model.plot()
+# model = CropModel(climate_data, 'Wheat', datetime(2006, 12, 1))
+# model.run_model(IrrigationManagement(irrigation_method=1, SMT=[100,100,100,100], MaxIrrSeason=None))
+# model.plot()
 
 # df_water = model.aquacrop_model.get_water_flux()
 # df_crop = model.aquacrop_model.get_crop_growth()

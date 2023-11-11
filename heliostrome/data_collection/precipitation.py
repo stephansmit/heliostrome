@@ -26,7 +26,7 @@ class PrecipitationDailyDatum(BaseModel):
     precip_mm: float
 
     @property
-    def date(self) -> datetime.date:
+    def date(self) -> date:
         return self.time.date()
 
     @field_validator("precip_mm")
