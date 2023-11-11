@@ -4,6 +4,7 @@ from heliostrome.models.climate import ClimateData
 from aquacrop.core import IrrigationManagement
 from aquacrop import Crop, InitialWaterContent, Soil, AquaCropModel
 from heliostrome.data_collection.crops import get_crop_data
+from heliostrome.data_collection.soil import get_soil_properties
 from heliostrome.models.aquacrop_results import (
     SimulationResult,
     CropGrowth,
@@ -28,7 +29,8 @@ climate_data = ClimateData(
     end_date=end_date,
 )
 
-soil = Soil("ClayLoam")
+soil_datum = get_soil_properties(location=location)
+soil = soil_datum.to_aquacrop_soil()
 crop = get_crop_data("Barley")
 sowing_date = datetime(2005, 6, 1, 0).strftime("%m/%d")
 crop = Crop(crop.Name, planting_date=sowing_date)

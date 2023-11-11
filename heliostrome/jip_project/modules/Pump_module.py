@@ -5,37 +5,33 @@ import numpy as np
 
 
 def convert_Qlpm(df, field_size=None):
-
     # Create a new DataFrame to store the results
     new_df = pd.DataFrame()
 
-    #convert pump flow from hourly to daily avg
+    # convert pump flow from hourly to daily avg
     df_daily = df.groupby(df.index.date).mean()
 
     # Convert AVG liters per minute per day to cubic meters per day
     liters_per_min_to_cubic_meters_per_day = 1 / 1000  # 1 liter = 0.001 cubic meters
     minutes_in_a_day = 1440  # 24 hours * 60 minutes
-    
+
     # Apply the conversion to the "Qlpm" column
-    
-    new_df["cubic_meters_per_day"] = df_daily["Qlpm"] * liters_per_min_to_cubic_meters_per_day * minutes_in_a_day
+
+    new_df["cubic_meters_per_day"] = (
+        df_daily["Qlpm"] * liters_per_min_to_cubic_meters_per_day * minutes_in_a_day
+    )
     new_df["Date"] = df_daily.index
-     
-    # If a field size (in hectares) is provided, calculate water depth in mm 
+
+    # If a field size (in hectares) is provided, calculate water depth in mm
     # #(which is still related to that field size, but can be compared with general mm from aquacrop)
     if field_size is not None:
-        
         # Calculate water depth in mm
         # # mm depth available for the field_size, not the same as aquacrop output, which is unrelated to fieldsize, but still comparable because of that
         new_df["Water_depth_mm"] = new_df["cubic_meters_per_day"] * 1000 / field_size
 
     return new_df
 
-  
-
-
-
-#def pump_compatibility(waterflux_excel_path, pump_df_path):
+    # def pump_compatibility(waterflux_excel_path, pump_df_path):
     """Match up the datetime in the "Date" column from waterflux_excel and pump_df to align the Date column entries.
     Compare "IrrDay" values of waterflux_excel with "Water_depth_mm" from pump_df.
     If "IrrDay" > "Water_depth_mm," show those instances (date, IrrDay, Water_depth_mm) and indicate a message that the pump is not enough for irrigation."""
@@ -44,49 +40,50 @@ def convert_Qlpm(df, field_size=None):
     waterflux_excel = pd.read_excel(waterflux_excel_path)
     pump_df = pd.read_excel(pump_df_path)
 
-    
     # Extract day and month from the "Date" column while ignoring the year
-    waterflux_excel['Date (no year)'] = waterflux_excel['Date'].dt.strftime('%m-%d')
-    pump_df['Date (no year)'] = pump_df['Date'].dt.strftime('%m-%d')
+    waterflux_excel["Date (no year)"] = waterflux_excel["Date"].dt.strftime("%m-%d")
+    pump_df["Date (no year)"] = pump_df["Date"].dt.strftime("%m-%d")
 
     # Calculate the average values for each day/month
-    avg_df_waterflux = waterflux_excel.groupby('Date (no year)')['IrrDay'].mean().reset_index()
-    avg_pump_df = pump_df.groupby('Date (no year)')['Pump'].mean().reset_index()
+    avg_df_waterflux = (
+        waterflux_excel.groupby("Date (no year)")["IrrDay"].mean().reset_index()
+    )
+    avg_pump_df = pump_df.groupby("Date (no year)")["Pump"].mean().reset_index()
 
     # Merge the DataFrames
-    merged_data = pd.merge(avg_df_waterflux, avg_pump_df, on="Date (no year)", how="inner")
+    merged_data = pd.merge(
+        avg_df_waterflux, avg_pump_df, on="Date (no year)", how="inner"
+    )
 
     # Create a datetime index with an arbitrary year (e.g., 2005)
-    merged_data['Date'] = pd.to_datetime('2005-' + merged_data['Date (no year)'])
-    merged_data.set_index('Date', inplace=True)
-    #merged_data.drop('Date (no year)', axis=1, inplace=True)
-    
+    merged_data["Date"] = pd.to_datetime("2005-" + merged_data["Date (no year)"])
+    merged_data.set_index("Date", inplace=True)
+    # merged_data.drop('Date (no year)', axis=1, inplace=True)
+
     print(f"raw merged data = \n{merged_data}")
-    
-    #resample based on weeks, shows date of last day in the summed week. 
+
+    # resample based on weeks, shows date of last day in the summed week.
     # #This does make some times stamps not contain a full week (first date point is a sunday, so first week only contains a sunday) or be outside of the original data dates (last date is a monday, so last week contains monday but goes to sunday, a guess)
-    Weekly = merged_data.resample('W').sum()
-    
-    
-    
-    #clean the df from rows that have been added by resampling (dead data points)
+    Weekly = merged_data.resample("W").sum()
+
+    # clean the df from rows that have been added by resampling (dead data points)
     # if either "IrrDay" or "Pump" is not zero, the row will be included in the new DataFrame.
-    Weekly = Weekly.loc[(Weekly['IrrDay'] != 0) | (Weekly['Pump'] != 0)]
-    Weekly['Date'] = Weekly.index.date
-    Weekly['Date'] = pd.to_datetime(Weekly['Date'])
-    Weekly['Date (no year)'] = Weekly['Date'].dt.strftime('%m-%d')
+    Weekly = Weekly.loc[(Weekly["IrrDay"] != 0) | (Weekly["Pump"] != 0)]
+    Weekly["Date"] = Weekly.index.date
+    Weekly["Date"] = pd.to_datetime(Weekly["Date"])
+    Weekly["Date (no year)"] = Weekly["Date"].dt.strftime("%m-%d")
     print(f"Weekly sampled data= \n{Weekly}")
 
     # Filter instances where "IrrDay" is greater than both "Pump" and "Pump 2"
     insufficient_pump_df = Weekly[(Weekly["IrrDay"] > Weekly["Pump"])]
-    pd.set_option('display.max_rows', None)
-    
+    pd.set_option("display.max_rows", None)
+
     if insufficient_pump_df.empty:
         print("The pump is sufficient for irrigation for all available dates.")
     else:
         print("The pump may not be sufficient for irrigation on the following dates:")
         print(insufficient_pump_df[["IrrDay", "Pump"]])
-    
+
     # Your existing code to load data and create a figure
     plt.figure(figsize=(16, 6))
 
@@ -113,6 +110,7 @@ def convert_Qlpm(df, field_size=None):
 
     return Weekly
 
+
 def pump_compatibility(waterflux_excel_path, pump_df_excelfile, output_file_path):
     """Match up the datetime in the "Date" column from waterflux_excel and pump_df to align the Date column entries.
     Compare "IrrDay" values of waterflux_excel with "Water_depth_mm" from pump_df.
@@ -126,43 +124,45 @@ def pump_compatibility(waterflux_excel_path, pump_df_excelfile, output_file_path
     Returns:
     - A list of DataFrames, one for each sheet in pump_df_excelfile.
     """
-    
+
     # Read the Excel file with multiple sheets
     xls = pd.ExcelFile(pump_df_excelfile)
     # Read the waterflux Excel file
     waterflux_excel = pd.read_excel(waterflux_excel_path)
     # Create a list to store the weekly data for each sheet
     weekly_data_list = []
-    
+
     for sheet_name in xls.sheet_names:
         # Read the sheet into a DataFrame
         pump_df = pd.read_excel(pump_df_excelfile, sheet_name)
-        
-
 
         # Extract day and month from the "Date" column while ignoring the year
-        waterflux_excel['Date (no year)'] = waterflux_excel['Date'].dt.strftime('%m-%d')
-        pump_df['Date (no year)'] = pump_df['Date'].dt.strftime('%m-%d')
+        waterflux_excel["Date (no year)"] = waterflux_excel["Date"].dt.strftime("%m-%d")
+        pump_df["Date (no year)"] = pump_df["Date"].dt.strftime("%m-%d")
 
         # Calculate the average values for each day/month
-        avg_df_waterflux = waterflux_excel.groupby('Date (no year)')['IrrDay'].mean().reset_index()
-        avg_pump_df = pump_df.groupby('Date (no year)')['Pump'].mean().reset_index()
+        avg_df_waterflux = (
+            waterflux_excel.groupby("Date (no year)")["IrrDay"].mean().reset_index()
+        )
+        avg_pump_df = pump_df.groupby("Date (no year)")["Pump"].mean().reset_index()
 
         # Merge the DataFrames
-        merged_data = pd.merge(avg_df_waterflux, avg_pump_df, on="Date (no year)", how="inner")
+        merged_data = pd.merge(
+            avg_df_waterflux, avg_pump_df, on="Date (no year)", how="inner"
+        )
 
         # Create a datetime index with an arbitrary year (e.g., 2005)
-        merged_data['Date'] = pd.to_datetime('2005-' + merged_data['Date (no year)'])
-        merged_data.set_index('Date', inplace=True)
+        merged_data["Date"] = pd.to_datetime("2005-" + merged_data["Date (no year)"])
+        merged_data.set_index("Date", inplace=True)
 
         # Resample based on weeks
-        Weekly = merged_data.resample('W').sum()
+        Weekly = merged_data.resample("W").sum()
 
         # Clean the DataFrame from rows that have been added by resampling
-        Weekly = Weekly.loc[(Weekly['IrrDay'] != 0) | (Weekly['Pump'] != 0)]
-        Weekly['Date'] = Weekly.index.date
-        Weekly['Date'] = pd.to_datetime(Weekly['Date'])
-        Weekly['Date (no year)'] = Weekly['Date'].dt.strftime('%m-%d')
+        Weekly = Weekly.loc[(Weekly["IrrDay"] != 0) | (Weekly["Pump"] != 0)]
+        Weekly["Date"] = Weekly.index.date
+        Weekly["Date"] = pd.to_datetime(Weekly["Date"])
+        Weekly["Date (no year)"] = Weekly["Date"].dt.strftime("%m-%d")
 
         # Filter instances where "IrrDay" is greater than "Pump"
         insufficient_pump_df = Weekly[(Weekly["IrrDay"] > Weekly["Pump"])]
@@ -187,9 +187,13 @@ def pump_compatibility(waterflux_excel_path, pump_df_excelfile, output_file_path
         weekly_data_list.append(Weekly)
 
         if insufficient_pump_df.empty:
-            print(f"For sheet '{sheet_name}': The pump is sufficient for irrigation for all available dates.")
+            print(
+                f"For sheet '{sheet_name}': The pump is sufficient for irrigation for all available dates."
+            )
         else:
-            print(f"For sheet '{sheet_name}': The pump may not be sufficient for irrigation on the following dates:")
+            print(
+                f"For sheet '{sheet_name}': The pump may not be sufficient for irrigation on the following dates:"
+            )
             print(insufficient_pump_df[["IrrDay", "Pump"]])
 
     # Save the results for each sheet to separate CSV files
@@ -198,6 +202,7 @@ def pump_compatibility(waterflux_excel_path, pump_df_excelfile, output_file_path
         weekly_data.to_csv(output_filename)
 
     return weekly_data_list
+
 
 # Example usage:
 # pump_df_excelfile = 'path_to_your_pump_df_excelfile.xlsx'
@@ -216,16 +221,20 @@ So, if the waterflux data spans 10 years, the merging process will consider matc
  values for each of those 10 years in the waterflux data. The result will include data from the pump_df for each year, 
  as long as there are matching month and day values."""
 
-def pump_solar_voltage_current_plot(voltage_pump,current_pump,voltage_solar,current_solar):
-     fig, ax = plt.subplots()
-     ax.plot(voltage_pump, current_pump, label="Pump")
-     ax.plot(voltage_solar, current_solar, label="Solar")
-     ax.set_xlabel("Voltage [V]")
-     ax.set_ylabel("Current [A]")
-     ax.legend()
-     plt.show()
-    
-def pump_solar_voltage_power_plot(voltage_pump,power_pump,voltage_solar,power_solar):
+
+def pump_solar_voltage_current_plot(
+    voltage_pump, current_pump, voltage_solar, current_solar
+):
+    fig, ax = plt.subplots()
+    ax.plot(voltage_pump, current_pump, label="Pump")
+    ax.plot(voltage_solar, current_solar, label="Solar")
+    ax.set_xlabel("Voltage [V]")
+    ax.set_ylabel("Current [A]")
+    ax.legend()
+    plt.show()
+
+
+def pump_solar_voltage_power_plot(voltage_pump, power_pump, voltage_solar, power_solar):
     fig, ax = plt.subplots()
     ax.plot(voltage_pump, power_pump, label="Pump")
     ax.plot(voltage_solar, power_solar, label="Solar")
@@ -235,15 +244,22 @@ def pump_solar_voltage_power_plot(voltage_pump,power_pump,voltage_solar,power_so
     plt.show()
 
 
-def mean_percentage_error(dataframe_actual,actual_column_name,dataframe_optimal,optimal_column_name):
-    '''Determines the mean percentage error both on an row basis (for weekly purposes)
-       as well as a whole to deteremine the whole systems suitability. Allows specific 
-       columns to be compared for flexibility.
-    '''
-    mpe_df_individ = 100* (dataframe_actual[actual_column_name]-dataframe_optimal[optimal_column_name])/dataframe_optimal[optimal_column_name]
-    
+def mean_percentage_error(
+    dataframe_actual, actual_column_name, dataframe_optimal, optimal_column_name
+):
+    """Determines the mean percentage error both on an row basis (for weekly purposes)
+    as well as a whole to deteremine the whole systems suitability. Allows specific
+    columns to be compared for flexibility.
+    """
+    mpe_df_individ = (
+        100
+        * (
+            dataframe_actual[actual_column_name]
+            - dataframe_optimal[optimal_column_name]
+        )
+        / dataframe_optimal[optimal_column_name]
+    )
+
     mpe_df_average = mpe_df_individ.mean()
 
     return mpe_df_individ, mpe_df_average
-
-

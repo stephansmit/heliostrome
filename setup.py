@@ -49,9 +49,9 @@ requirements = [
     "numpy==1.24.0",
     "scikit-learn==1.3.0",
     "seaborn==0.12.1",
-    "aquacrop@git+https://github.com/stephansmit/aquacrop.git#61e6c49ddd98532cbee0307ffd0bb0c05428d623",
-    "PyETo@git+https://github.com/stephansmit/PyETo.git#79ddd88d727c7ebdad0ce26e220528d2921b66ea",
-    "pvpumpingsystem@git+https://github.com/stephansmit/pvpumpingsystem.git#b7f0d369863dc06d9550b5b992a993bd67d8d8c3"
+    "aquacrop@git+https://github.com/stephansmit/aquacrop.git@61e6c49ddd98532cbee0307ffd0bb0c05428d623",
+    "PyETo@git+https://github.com/stephansmit/PyETo.git@79ddd88d727c7ebdad0ce26e220528d2921b66ea",
+    "pvpumpingsystem@git+https://github.com/stephansmit/pvpumpingsystem.git@158d9cc077daf9c2e50909b937d02534d44e4e3f",
 ]
 
 extra_requirements = {
@@ -61,7 +61,7 @@ extra_requirements = {
     "all": [
         *requirements,
         *dev_requirements,
-    ]
+    ],
 }
 
 setup(
@@ -77,9 +77,7 @@ setup(
     ],
     description="This package contains all the code required for the heliostrome application",
     entry_points={
-        "console_scripts": [
-            "my_example=heliostrome.bin.my_example:main"
-        ],
+        "console_scripts": ["my_example=heliostrome.bin.my_example:main"],
     },
     install_requires=requirements,
     long_description=readme,

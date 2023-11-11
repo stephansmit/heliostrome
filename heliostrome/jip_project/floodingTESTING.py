@@ -15,9 +15,9 @@ from pydantic import BaseModel
 from typing import List
 from datetime import datetime
 from datetime import date
-import pandas as pd 
+import pandas as pd
 import altair as alt
-from openpyxl import load_workbook #added!
+from openpyxl import load_workbook  # added!
 import numpy as np
 import time
 import matplotlib.pyplot as plt
@@ -38,7 +38,7 @@ soil = Soil("ClayLoam")
 crop = get_crop_data("PaddyRice")
 sowing_date = datetime(2005, 1, 29, 0).strftime("%m/%d")
 crop = Crop(crop.Name, planting_date=sowing_date)
-irr_mngt = IrrigationManagement(irrigation_method=1, SMT = [100]*4)
+irr_mngt = IrrigationManagement(irrigation_method=1, SMT=[100] * 4)
 InitWC = InitialWaterContent(value=["SAT"])
 
 model = AquaCropModel(
@@ -49,7 +49,7 @@ model = AquaCropModel(
     crop=crop,
     initial_water_content=InitWC,
     irrigation_management=irr_mngt,
-    field_management=FieldMngt(sr_inhb = True)
+    field_management=FieldMngt(sr_inhb=True),
 )
 
 

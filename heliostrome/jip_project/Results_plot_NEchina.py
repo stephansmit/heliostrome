@@ -4,59 +4,94 @@ import numpy as np
 from aquaplan_extractor import aquaplan_data
 
 # Read the Excel file
-excel_file = r'heliostrome\jip_project\results\test_results_northeastCHINA.xlsx'
+excel_file = r"heliostrome\jip_project\results\test_results_northeastCHINA.xlsx"
 sheet_name = "Output Results"
 df = pd.read_excel(excel_file, sheet_name=sheet_name)
 aquaplan_df = aquaplan_data()
 
 # Group the data by 'Case Study' and calculate the average 'Yield (tonne/ha)'
-average_yields = df.groupby('Case Study')['Yield (tonne/ha)'].mean().reset_index()
-std_yields = df.groupby('Case Study')['Yield (tonne/ha)'].std().reset_index()
+average_yields = df.groupby("Case Study")["Yield (tonne/ha)"].mean().reset_index()
+std_yields = df.groupby("Case Study")["Yield (tonne/ha)"].std().reset_index()
 experimental_yields = pd.read_excel(excel_file, sheet_name="Input Parameters")
 
-graphing_dataframe = pd.merge(experimental_yields[['Case Study', 'Yield (Ton/HA)']], average_yields[['Case Study', 'Yield (tonne/ha)']])
-graphing_dataframe = pd.merge(graphing_dataframe, aquaplan_df, on='Case Study', how='left')
-graphing_dataframe['MBE'] = ((graphing_dataframe['Yield (tonne/ha)'] - graphing_dataframe['Yield (Ton/HA)']) / graphing_dataframe['Yield (Ton/HA)']) * 100
+graphing_dataframe = pd.merge(
+    experimental_yields[["Case Study", "Yield (Ton/HA)"]],
+    average_yields[["Case Study", "Yield (tonne/ha)"]],
+)
+graphing_dataframe = pd.merge(
+    graphing_dataframe, aquaplan_df, on="Case Study", how="left"
+)
+graphing_dataframe["MBE"] = (
+    (graphing_dataframe["Yield (tonne/ha)"] - graphing_dataframe["Yield (Ton/HA)"])
+    / graphing_dataframe["Yield (Ton/HA)"]
+) * 100
 
-CaseStudy_Names = ['Mulched + Drip - 2013', 'Non-Mulched + Drip - 2013', 'Mulched + Drip - 2014', 'Non-Mulched + Drip - 2014','Mulched + Rainfed - 2016','Non-Mulched + Rainfed - 2016']
+CaseStudy_Names = [
+    "Mulched + Drip - 2013",
+    "Non-Mulched + Drip - 2013",
+    "Mulched + Drip - 2014",
+    "Non-Mulched + Drip - 2014",
+    "Mulched + Rainfed - 2016",
+    "Non-Mulched + Rainfed - 2016",
+]
 
-graphing_dataframe['Case Study'] = CaseStudy_Names
+graphing_dataframe["Case Study"] = CaseStudy_Names
 
 # Create the bar chart
-X_axis = np.arange(len(graphing_dataframe['Case Study']))
+X_axis = np.arange(len(graphing_dataframe["Case Study"]))
 
 fig, ax1 = plt.subplots(figsize=(10, 6))
 
-#ax1 = graphing_dataframe.plot(kind='bar', x='Case Study', figsize=(10, 6))
+# ax1 = graphing_dataframe.plot(kind='bar', x='Case Study', figsize=(10, 6))
 
-ax1.bar(X_axis - 0.2, graphing_dataframe['Yield (Ton/HA)'], 0.2, label='Heliostrome Output')
-ax1.bar(X_axis, graphing_dataframe['Yield (tonne/ha)'], 0.2, label='Expected Output', yerr=std_yields['Yield (tonne/ha)'], capsize=5)
-ax1.bar(X_axis + 0.2, graphing_dataframe['Average_Yield'], 0.2, label='Aquaplan Output')
+ax1.bar(
+    X_axis - 0.2, graphing_dataframe["Yield (Ton/HA)"], 0.2, label="Heliostrome Output"
+)
+ax1.bar(
+    X_axis,
+    graphing_dataframe["Yield (tonne/ha)"],
+    0.2,
+    label="Expected Output",
+    yerr=std_yields["Yield (tonne/ha)"],
+    capsize=5,
+)
+ax1.bar(X_axis + 0.2, graphing_dataframe["Average_Yield"], 0.2, label="Aquaplan Output")
 
 ax2 = ax1.twinx()
-ax2.plot(X_axis, graphing_dataframe['MBE'], linestyle='-', marker='o', color='red', label='MBE (%)')
+ax2.plot(
+    X_axis,
+    graphing_dataframe["MBE"],
+    linestyle="-",
+    marker="o",
+    color="red",
+    label="MBE (%)",
+)
 
 # Set labels for both y-axes
-ax1.set_ylabel('Yield (tonne/ha)')
-ax2.set_ylabel('MBE (%)')
+ax1.set_ylabel("Yield (tonne/ha)")
+ax2.set_ylabel("MBE (%)")
 
 # Set limits to y axis of MBE for scaling purposes
-#ax2.set_ylim(0, 100)
+# ax2.set_ylim(0, 100)
 
 # # Add legend with appropriate labels
 # ax1.legend(['Expected Output', 'Heliostrome Output', 'Aquaplan Output'], loc='upper left')
 # ax2.legend(['MBE (%)'], loc='upper right')
 
-ax1.legend(['Expected Output', 'Heliostrome Output', 'Aquaplan Output'], bbox_to_anchor=(1.05, 1), loc='upper left')
-ax2.legend(['MBE (%)'], bbox_to_anchor=(1.05, 0), loc='lower left')
+ax1.legend(
+    ["Expected Output", "Heliostrome Output", "Aquaplan Output"],
+    bbox_to_anchor=(1.05, 1),
+    loc="upper left",
+)
+ax2.legend(["MBE (%)"], bbox_to_anchor=(1.05, 0), loc="lower left")
 
-plt.xlabel('Case Study')
-#plt.ylabel('Average Yield (tonne/ha)')
-plt.title('Average Yield as a function of irrigation method & mulch application')
+plt.xlabel("Case Study")
+# plt.ylabel('Average Yield (tonne/ha)')
+plt.title("Average Yield as a function of irrigation method & mulch application")
 plt.xticks(rotation=90)
 
 # Add legend with appropriate labels
-#plt.legend(['Expected Output', 'Heliostrome Output', 'Aquaplan Output'])
+# plt.legend(['Expected Output', 'Heliostrome Output', 'Aquaplan Output'])
 
 plt.tight_layout()
 plt.show()

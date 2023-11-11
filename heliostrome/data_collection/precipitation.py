@@ -4,7 +4,7 @@ from pydantic import BaseModel, field_validator
 from urllib.parse import quote
 from requests.adapters import HTTPAdapter, Retry
 from requests import Session
-from datetime import datetime
+from datetime import datetime, date
 from heliostrome.models.location import Location
 import pytz
 from functools import lru_cache
@@ -133,8 +133,8 @@ def _get_precipitation_url_with_param(
 def get_precipitation_table(
     latitude: float,
     longitude: float,
-    start_date: datetime.date,
-    end_date: datetime.date,
+    start_date: date,
+    end_date: date,
 ) -> PrecipitationResponse:
     """Get precipitation data from NOAA's ERDDAP server.
 
@@ -143,9 +143,9 @@ def get_precipitation_table(
     :param longitude: longitude of the location
     :type longitude: float
     :param start_date: start date of the data
-    :type start_date: datetime.date
+    :type start_date: date
     :param end_date: end date of the data
-    :type end_date: datetime.date
+    :type end_date: date
     :return: Response from NOAA's ERDDAP server
     :rtype: PrecipitationResponse
     """

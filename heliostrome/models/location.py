@@ -1,5 +1,6 @@
 from pydantic import BaseModel, Field, computed_field
-from pvlib.location import lookup_altitude
+from pvlib.location import lookup_altitude, Location as PVLocation
+from shapely import Point, Polygon
 
 
 class Location(BaseModel):
@@ -18,3 +19,25 @@ class Location(BaseModel):
         if not isinstance(other, Location):
             return NotImplemented
         return self.longitude == other.longitude and self.latitude == other.latitude
+
+    @property
+    def point(self) -> Point:
+        return Point(self.longitude, self.latitude)
+
+    @property
+    def field(self) -> Polygon:
+        epsilon = 100
+        return Polygon(
+            [
+                (self.longitude - epsilon, self.latitude - epsilon),
+                (self.longitude + epsilon, self.latitude - epsilon),
+                (self.longitude + epsilon, self.latitude + epsilon),
+                (self.longitude - epsilon, self.latitude + epsilon),
+            ]
+        )
+
+    def to_pvlib_location(self) -> PVLocation:
+        return PVLocation(
+            latitude=self.latitude,
+            longitude=self.longitude,
+        )

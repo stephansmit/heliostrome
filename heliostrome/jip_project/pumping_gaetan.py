@@ -37,95 +37,104 @@ import heliostrome
 #     else:
 #         print("Invalid choice. Please choose a valid option.")
 
-def total_static_head(static_suction_head, static_delivery_head):
-    '''
-    Head/Pressure required to bring fluid from a height to another certain height'''
 
-    static_suction_head = static_suction_head  #Height from the water source to the pump (if the water source is higher than the pump, head is +ve)
-    static_delivery_head = static_delivery_head #Height from the pump to where the water needs to be delivered to (if the delivery location is higher than the pump, head is +ve)
+def total_static_head(static_suction_head, static_delivery_head):
+    """
+    Head/Pressure required to bring fluid from a height to another certain height"""
+
+    static_suction_head = static_suction_head  # Height from the water source to the pump (if the water source is higher than the pump, head is +ve)
+    static_delivery_head = static_delivery_head  # Height from the pump to where the water needs to be delivered to (if the delivery location is higher than the pump, head is +ve)
     tsh = static_delivery_head - static_suction_head
 
     return tsh
 
-def total_frictional_head(l: float,d: float,t:float,Q:float,r:float,material: str):
-    '''
+
+def total_frictional_head(
+    l: float, d: float, t: float, Q: float, r: float, material: str
+):
+    """
     Head/pressure required to overcome the friction of the pipes in which the fluid must flow through
     length  - Total length of pipes in the system ignoring bends
     diameter - Diameter of the pipes in mm
     temperature - Temperature of the water
     Q  - Flow rate of the water soruce in litres per minute
     r  - roughness of the material of the pipes
-    material  - Material of the pipes '''
+    material  - Material of the pipes"""
 
-    d = d/1000
+    d = d / 1000
 
-    pipes = pn.PipeNetwork(h_stat=tsh,l_tot=l,diam=d,roughness=r,material=material)
-    q = Q/60000   #Convert litres per minute to m3 per second
-    A = 0.25*np.pi*d**2 #Area of the pie
-    v = q/A #Calculate the velocity of the water in the pipe
-    viscosity_dyn = wp.water_prop('nuf', t+273.15)  # [Pa.s¸]
-    Re = v*pipes.diam/viscosity_dyn
-    darcycoeff = fl.friction.friction_factor(Re, eD=pipes.roughness/pipes.diam)
-   
-    tfh = (darcycoeff*l*v**2)/(2*d*9.81)
+    pipes = pn.PipeNetwork(h_stat=tsh, l_tot=l, diam=d, roughness=r, material=material)
+    q = Q / 60000  # Convert litres per minute to m3 per second
+    A = 0.25 * np.pi * d**2  # Area of the pie
+    v = q / A  # Calculate the velocity of the water in the pipe
+    viscosity_dyn = wp.water_prop("nuf", t + 273.15)  # [Pa.s¸]
+    Re = v * pipes.diam / viscosity_dyn
+    darcycoeff = fl.friction.friction_factor(Re, eD=pipes.roughness / pipes.diam)
+
+    tfh = (darcycoeff * l * v**2) / (2 * d * 9.81)
     return tfh
 
-def total_velociy_head(Q: float,d: float):
-    '''
+
+def total_velociy_head(Q: float, d: float):
+    """
     Head/pressure required to overcome the kinetic energy of a fluid in the pip
-    '''
-    q = Q/60000   #Convert litres per minute to m3 per second
-    A = 0.25*np.pi*d**2 #Area of the pie
-    v = q/A #Calculate the velocity of the water in the pipe
-    tvh = (v**2)/(2*9.81)
+    """
+    q = Q / 60000  # Convert litres per minute to m3 per second
+    A = 0.25 * np.pi * d**2  # Area of the pie
+    v = q / A  # Calculate the velocity of the water in the pipe
+    tvh = (v**2) / (2 * 9.81)
 
     return tvh
-    
-def total_dynamic_head(tsh,tfh,tvh):
-    
+
+
+def total_dynamic_head(tsh, tfh, tvh):
     tdh = tsh + tfh + tvh
 
     return tdh
 
-def req_flow_rate(mm_max: float):
 
+def req_flow_rate(mm_max: float):
     hours_of_irrigation = 12
-    mm_max_per_minute = mm_max/(hours_of_irrigation * 60) #maximum mm of water delivered per minute
-    flow_rate = mm_max_per_minute/1000 #maximum l of water delivered per minute
- 
+    mm_max_per_minute = mm_max / (
+        hours_of_irrigation * 60
+    )  # maximum mm of water delivered per minute
+    flow_rate = mm_max_per_minute / 1000  # maximum l of water delivered per minute
+
     return flow_rate
 
-def req_power(tsh,Q):
-    power = (tsh*Q*16)
+
+def req_power(tsh, Q):
+    power = tsh * Q * 16
 
     return power
 
-#Bangladesh Case Example
 
-#Calculating Required Total Dynamic Head & Flow Rate
+# Bangladesh Case Example
 
-#locations = [Gazipur - Brinjal, Jamalpur, Magura,Barisal]
-static_suction_head = [0,0,0,0] #Given in Paper
-static_delivery_head = [33.5,24,24,8] #Given in Paper
-d = 38 #Given in Paper
-t = 25.5 #Assumed for average water temperature in Bangladesh
-r = 0.0015 #Value for roughness of PVC pipe (material in paper)
-mm_max = 25 #Taken from simulation
+# Calculating Required Total Dynamic Head & Flow Rate
+
+# locations = [Gazipur - Brinjal, Jamalpur, Magura,Barisal]
+static_suction_head = [0, 0, 0, 0]  # Given in Paper
+static_delivery_head = [33.5, 24, 24, 8]  # Given in Paper
+d = 38  # Given in Paper
+t = 25.5  # Assumed for average water temperature in Bangladesh
+r = 0.0015  # Value for roughness of PVC pipe (material in paper)
+mm_max = 25  # Taken from simulation
 Q = req_flow_rate(mm_max)
-l = [93] #Calculated from Brinjal in Gazipur layout
-pump_eff = 0.6 #Assumption from averages
+l = [93]  # Calculated from Brinjal in Gazipur layout
+pump_eff = 0.6  # Assumption from averages
 
-#Calculating the Required Total Dynamic Head with the goal to select the optimum pump
-tsh =total_static_head(static_suction_head[0],static_delivery_head[0])
-tfh = total_frictional_head(l[0],d,t,Q,r,'plastic')
-tvh = total_velociy_head(Q,d)
+# Calculating the Required Total Dynamic Head with the goal to select the optimum pump
+tsh = total_static_head(static_suction_head[0], static_delivery_head[0])
+tfh = total_frictional_head(l[0], d, t, Q, r, "plastic")
+tvh = total_velociy_head(Q, d)
 print(f"Total Dynamic Head = {round(total_dynamic_head(tsh,tfh,tvh),2)}")
 print(f"Power Required = {round(req_power(33.5,Q),2)}W")
 
 
 ##################################################
 
-#Running the simulation with the given pump in case study
+# Running the simulation with the given pump in case study
 
 
 # main_folder = os.path.dirname(heliostrome.__file__)  # .replace("\\","/")

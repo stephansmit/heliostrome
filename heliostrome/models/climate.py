@@ -4,9 +4,9 @@ from datetime import datetime
 import pandas as pd
 import altair as alt
 from heliostrome.models.location import Location
-from heliostrome.data_collection.etref import get_etref_daily, EtRefDailyDatum
-from heliostrome.data_collection.irradiance import IrradianceDataTMY
-from heliostrome.data_collection.irradiance import get_irradiance_tmy
+from heliostrome.data_collection.etref import EtRefDailyDatum
+from heliostrome.data_collection.irradiance import IrradianceHourlyDatum, IrradianceDailyDatum
+from heliostrome.data_collection.irradiance import get_irradiance_hourly, aggregate_to_daily
 
 from heliostrome.data_collection.precipitation import (
     get_precipitation_data,
@@ -20,17 +20,34 @@ class ClimateDailyDatum(BaseModel):
     precip_mm: float
     etref_mm: float
     date: datetime
-    poa_global_whm2: float
+    ghi_whm2: float
 
     @computed_field
     @property
     def etref_clipped_mm(self) -> float:
         return 0.1 if self.etref_mm < 0.1 else self.etref_mm
 
+    @classmethod
+    def from_etref_precip(
+        cls, etref_datum: EtRefDailyDatum, precip_datum: PrecipitationDailyDatum
+    ):
+        if etref_datum.time != precip_datum.time:
+            raise ValueError("Etref and precipitation data must be for the same date")
+
+        return cls(
+            temp_air_min_c=etref_datum.temp_air_min_c,
+            temp_air_max_c=etref_datum.temp_air_max_c,
+            precip_mm=precip_datum.precip_mm,
+            etref_mm=etref_datum.etref_mm,
+            date=etref_datum.time,
+            ghi_whm2=etref_datum.ghi_whm2,
+        )
+
 
 class ClimateData(BaseModel):
     climate_daily: List[ClimateDailyDatum]
-    irradiance_data: IrradianceDataTMY
+    irradiance_hourly: List[IrradianceHourlyDatum]
+    location: Location
 
     @property
     def aquacrop_input(self):
@@ -53,42 +70,49 @@ class ClimateData(BaseModel):
 
     @property
     def pvpumping_input(self):
-        records = [datum.model_dump() for datum in self.irradiance_data.data]
+        records = [datum.model_dump() for datum in self.irradiance_hourly]
         df = pd.DataFrame(data=records)
         df_final = df.rename(
-            {"wind_speed_10m_ms": "windspeed", "temp_air_c": "temp_air"},
+            {"wind_speed_10m_ms": "windspeed", 
+             "temp_air_c": "temp_air",
+             'ghi_wm2': 'ghi',
+             'dhi_wm2': 'dhi',
+             'dni_wm2': 'dni',
+             },
             axis="columns",
         ).set_index("time")
         return {
             "weather_data": df_final,
-            "weather_metadata": self.irradiance_data.metadata,
+            "weather_metadata": self.location.to_pvlib_location()
         }
 
     def __init__(
         self, location: Location, start_date: datetime.date, end_date: datetime.date
     ):
-        etref_data: List[EtRefDailyDatum] = get_etref_daily(
-            location=location, start_year=start_date.year, end_year=end_date.year
+        irradiance_hourly: List[IrradianceHourlyDatum] = get_irradiance_hourly(
+            location=location, start_date=start_date, end_date=end_date
         )
+        irradiance_daily: List[IrradianceDailyDatum] = aggregate_to_daily(
+            hourly_data=irradiance_hourly
+        )
+        etref_data: List[EtRefDailyDatum] = [EtRefDailyDatum.from_irradiance(datum) for datum in irradiance_daily]
         precipitation_data: List[PrecipitationDailyDatum] = get_precipitation_data(
             location=location, start_date=start_date, end_date=end_date
         )
         precipitation_data_dict = {datum.time: datum for datum in precipitation_data}
 
         climate_daily = [
-            ClimateDailyDatum(
-                temp_air_min_c=etref_datum.temp_air_min_c,
-                temp_air_max_c=etref_datum.temp_air_max_c,
-                precip_mm=precipitation_data_dict[etref_datum.time].precip_mm,
-                etref_mm=etref_datum.etref_mm,
-                date=etref_datum.time,
-                poa_global_whm2=etref_datum.poa_global_whm2,
+            ClimateDailyDatum.from_etref_precip(
+                etref_datum, precipitation_data_dict[etref_datum.time]
             )
             for etref_datum in etref_data
             if etref_datum.time in precipitation_data_dict
         ]
-        irradiance_data = get_irradiance_tmy(location=location, year=start_date.year)
-        super().__init__(climate_daily=climate_daily, irradiance_data=irradiance_data)
+        super().__init__(
+            climate_daily=climate_daily,
+            irradiance_hourly=irradiance_hourly,
+            location=location
+        ) 
 
     def plot_data(
         self,
@@ -98,7 +122,7 @@ class ClimateData(BaseModel):
             "temp_air_max_c",
             "temp_air_min_c",
             "etref_clipped_mm",
-            "poa_global_whm2",
+            "ghi_whm2",
         ] = "etref_mm",
     ):
         records = [datum.model_dump() for datum in self.climate_daily]

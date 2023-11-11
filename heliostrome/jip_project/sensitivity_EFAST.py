@@ -18,7 +18,7 @@ from pydantic import BaseModel
 from typing import List
 from datetime import datetime
 from datetime import date
-import pandas as pd 
+import pandas as pd
 import altair as alt
 from openpyxl import load_workbook
 import numpy as np
@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 from modules.irrigation_schedule_morrocco_wheat import IRRschedule
 from modules.Load_excel import factors_to_run
 
-# Start the timer 
+# Start the timer
 start_time = time.time()
 
 # Define the AquaCrop model setup
@@ -39,13 +39,13 @@ soil = Soil("ClayLoam")
 crop = Crop("Wheat", planting_date="12/17")
 irr_mngt = IrrigationManagement(irrigation_method=3, MaxIrr=100)
 # irr_mngt = IrrigationManagement(irrigation_method=3, Schedule = IRRschedule(i, B = 5), MaxIrr = 100)
-InitWC = InitialWaterContent(value=['FC'])
+InitWC = InitialWaterContent(value=["FC"])
 
 # Define the parameters to be analyzed
 problem = {
-    'num_vars': 3,
-    'names': ['Irrigation Threshold', 'Irrigation Efficiency', 'Initial Soil Moisture'],
-    'bounds': [[0.3, 0.7], [0.5, 0.9], [0.2, 0.4]]
+    "num_vars": 3,
+    "names": ["Irrigation Threshold", "Irrigation Efficiency", "Initial Soil Moisture"],
+    "bounds": [[0.3, 0.7], [0.5, 0.9], [0.2, 0.4]],
 }
 
 # Generate parameter samples using Latin Hypercube Sampling (LHS)
@@ -58,7 +58,9 @@ output = np.zeros((param_values.shape[0], 4))
 # Run the AquaCrop model for each parameter set
 for i, params in enumerate(param_values):
     irr_threshold, irr_efficiency, init_wc = params
-    irr_mngt.Schedule = [1] * 4  # You can modify the irrigation schedule based on parameters if needed
+    irr_mngt.Schedule = [
+        1
+    ] * 4  # You can modify the irrigation schedule based on parameters if needed
     InitWC.value = [init_wc]
 
     model = AquaCropModel(
@@ -71,17 +73,17 @@ for i, params in enumerate(param_values):
         irrigation_management=irr_mngt,
         field_management=FieldMngt(bunds=True, z_bund=0.12, bund_water=30),
     )
-    
+
     model.run_model(till_termination=True)
-    
+
     # Store the model output
-    output[i, :] = model.get_simulation_results()['Yield (tonne/ha)'].values
+    output[i, :] = model.get_simulation_results()["Yield (tonne/ha)"].values
 
 # Perform EFAST sensitivity analysis
 si = fast.analyze(problem, output)
 
 # Print sensitivity indices
 print("First-order indices:")
-print(si['S1'])
+print(si["S1"])
 print("Total-order indices:")
-print(si['ST'])
+print(si["ST"])

@@ -5,7 +5,7 @@ from soilgrids import SoilGrids
 from typing import Union
 from aquacrop import Soil
 from heliostrome.models.location import Location
-
+from functools import lru_cache
 try:
     from typing import Literal
 except ImportError:
@@ -45,7 +45,7 @@ class SoilLayer(BaseModel):
     clay_gkg: float
     sand_gkg: float
     silt_gkg: float
-    
+
     @property
     def correction_factor(self):
         return 1000 / (self.clay_gkg + self.sand_gkg + self.silt_gkg)
@@ -96,15 +96,15 @@ class SoilDatum(BaseModel):
 
     @property
     def silt_pct(self):
-        return sum([layer.weight/100 * layer.silt_pct for layer in self.layers])
+        return sum([layer.weight / 100 * layer.silt_pct for layer in self.layers])
 
     @property
     def clay_pct(self):
-        return sum([layer.weight/100 * layer.clay_pct for layer in self.layers])
+        return sum([layer.weight / 100 * layer.clay_pct for layer in self.layers])
 
     @property
     def sand_pct(self):
-        return sum([layer.weight/100 * layer.sand_pct for layer in self.layers])
+        return sum([layer.weight / 100 * layer.sand_pct for layer in self.layers])
 
     @property
     def soil_type(
@@ -129,6 +129,7 @@ class SoilDatum(BaseModel):
         return Soil(self.soil_type)
 
 
+@lru_cache(maxsize=None)
 def get_soil_properties(location: Location) -> SoilDatum:
     """Returns the soil content % for the given service_id and bounding box.
 
@@ -140,15 +141,9 @@ def get_soil_properties(location: Location) -> SoilDatum:
 
     layers = []
     for layer_name, weight in zip(LAYER_NAMES, WEIGHTS):
-        sand_gkg = get_prop_per_layer_type(
-            "sand", layer_name, west, east, south, north
-        )
-        clay_gkg = get_prop_per_layer_type(
-            "clay", layer_name, west, east, south, north
-        )
-        silt_gkg = get_prop_per_layer_type(
-            "silt", layer_name, west, east, south, north
-        )
+        sand_gkg = get_prop_per_layer_type("sand", layer_name, west, east, south, north)
+        clay_gkg = get_prop_per_layer_type("clay", layer_name, west, east, south, north)
+        silt_gkg = get_prop_per_layer_type("silt", layer_name, west, east, south, north)
         layers.append(
             SoilLayer(
                 name=layer_name,
@@ -234,7 +229,7 @@ def get_soil_textural_class(sand: float, clay: float, silt: float) -> str:
     :rtype: str
     """
 
-    if (((sand + clay + silt) != 100) or (sand < 0) or (clay < 0) or (silt < 0)):
+    if ((sand + clay + silt) != 100) or (sand < 0) or (clay < 0) or (silt < 0):
         raise Exception(r"Inputs add up to over 100% or are negative")
     elif silt + 1.5 * clay < 15:
         textural_class = "Sand"

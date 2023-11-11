@@ -3,10 +3,19 @@ import os
 from modules.waterflux_extraction import clean_excel_file
 
 file_paths = [
-    {"input": r"heliostrome/jip_project/results/WaterFlux_moroccoWheat.xlsx", "output": r"heliostrome/jip_project/results/cleaned_WaterFlux_morocco.xlsx"},
-    {"input": r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx", "output": r"heliostrome/jip_project/results/cleaned_WaterFlux_Bangladesh.xlsx"},
-    {"input": r"heliostrome/jip_project/results/WaterFlux_northeastCHINA.xlsx", "output": r"heliostrome/jip_project/results/cleaned_WaterFlux_NorthEastCHINA.xlsx"},
-    #{"input": r"heliostrome/jip_project/results/WaterFlux_IranPotato.xlsx", "output": r"heliostrome/jip_project/results/cleaned_WaterFlux_IranPotato.xlsx"},
+    {
+        "input": r"heliostrome/jip_project/results/WaterFlux_moroccoWheat.xlsx",
+        "output": r"heliostrome/jip_project/results/cleaned_WaterFlux_morocco.xlsx",
+    },
+    {
+        "input": r"heliostrome/jip_project/results/WaterFlux_Bangladesh.xlsx",
+        "output": r"heliostrome/jip_project/results/cleaned_WaterFlux_Bangladesh.xlsx",
+    },
+    {
+        "input": r"heliostrome/jip_project/results/WaterFlux_northeastCHINA.xlsx",
+        "output": r"heliostrome/jip_project/results/cleaned_WaterFlux_NorthEastCHINA.xlsx",
+    },
+    # {"input": r"heliostrome/jip_project/results/WaterFlux_IranPotato.xlsx", "output": r"heliostrome/jip_project/results/cleaned_WaterFlux_IranPotato.xlsx"},
     # Add more file pairs as needed
 ]
 

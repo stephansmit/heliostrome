@@ -1,9 +1,10 @@
 import pandas as pd
 import altair as alt
 
+
 def factors_to_run(sheet_name):
     # Load the Excel file
-    excel_file = r'heliostrome\jip_project\results\Factors to run simulation.xlsx'
+    excel_file = r"heliostrome\jip_project\results\Factors to run simulation.xlsx"
     df = pd.read_excel(excel_file, sheet_name=sheet_name)
 
     # Define a mapping of row names to row indices
@@ -31,7 +32,7 @@ def factors_to_run(sheet_name):
         "Total Length of Pipes": 20,
         "Diameter of Pipes": 21,
         "Material of Pipes": 22,
-        "Area of Field": 29 
+        "Area of Field": 29,
     }
 
     # Initialize a dictionary to store the extracted rows with names
@@ -49,6 +50,3 @@ def factors_to_run(sheet_name):
 
     # Now, the extracted_rows dictionary contains the data with row names as keys
     return extracted_rows
-
-
-
