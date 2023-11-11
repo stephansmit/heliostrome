@@ -222,6 +222,8 @@
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.Aer">Aer (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
+      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.aggregate_to_daily">aggregate_to_daily() (in module heliostrome.data_collection.irradiance)</a>
+</li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.altitude_m">altitude_m (heliostrome.data_collection.etref.EtRefDailyDatum attribute)</a>
 
       <ul>
@@ -324,8 +326,6 @@
         <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterStorage.dap">(heliostrome.models.aquacrop_results.WaterStorage attribute)</a>
 </li>
       </ul></li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDataTMY.data">data (heliostrome.data_collection.irradiance.IrradianceDataTMY attribute)</a>
-</li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipitationDailyDatum.date">date (heliostrome.data_collection.precipitation.PrecipitationDailyDatum property)</a>
 
       <ul>
@@ -334,23 +334,23 @@
       </ul></li>
       <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterFlux.DeepPerc">DeepPerc (heliostrome.models.aquacrop_results.WaterFlux attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.bin.html#heliostrome.bin.my_example.Args.DEFAULT_FIRST">DEFAULT_FIRST (heliostrome.bin.my_example.Args attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.bin.html#heliostrome.bin.my_example.Args.DEFAULT_SECOND">DEFAULT_SECOND (heliostrome.bin.my_example.Args attribute)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.delta_svp_kpa">delta_svp_kpa (heliostrome.data_collection.etref.EtRefDailyDatum property)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.Determinant">Determinant (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.dhi">dhi (heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
-</li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.dHI0">dHI0 (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.dHI_pre">dHI_pre (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.dni">dni (heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
+      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.dhi_wm2">dhi_wm2 (heliostrome.data_collection.irradiance.IrradianceHourlyDatum attribute)</a>
+</li>
+      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.dni_wm2">dni_wm2 (heliostrome.data_collection.irradiance.IrradianceHourlyDatum attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -392,14 +392,20 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.fage">fage (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
+      <li><a href="heliostrome.models.html#heliostrome.models.location.Location.field">field (heliostrome.models.location.Location property)</a>
+</li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.Flowering">Flowering (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.FloweringCD">FloweringCD (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.fshape_r">fshape_r (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
+      <li><a href="heliostrome.models.html#heliostrome.models.climate.ClimateDailyDatum.from_etref_precip">from_etref_precip() (heliostrome.models.climate.ClimateDailyDatum class method)</a>
+</li>
+      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.from_irradiance">from_irradiance() (heliostrome.data_collection.etref.EtRefDailyDatum class method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.fshape_r">fshape_r (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
+</li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.fshape_w1">fshape_w1 (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.fshape_w2">fshape_w2 (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
@@ -434,20 +440,14 @@
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipationTable.get_datums">get_datums() (heliostrome.data_collection.precipitation.PrecipationTable method)</a>
 </li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.get_etref_daily">get_etref_daily() (in module heliostrome.data_collection.etref)</a>
-</li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_daily">get_irradiance_daily() (in module heliostrome.data_collection.irradiance)</a>
-</li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_hourly">get_irradiance_hourly() (in module heliostrome.data_collection.irradiance)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_tmy">get_irradiance_tmy() (in module heliostrome.data_collection.irradiance)</a>
 </li>
       <li><a href="heliostrome.html#heliostrome.get_module_version">get_module_version() (in module heliostrome)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.precipitation.get_precipitation_data">get_precipitation_data() (in module heliostrome.data_collection.precipitation)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.precipitation.get_precipitation_table">get_precipitation_table() (in module heliostrome.data_collection.precipitation)</a>
 </li>
       <li><a href="heliostrome.html#heliostrome.example.Example.get_previous_value">get_previous_value() (heliostrome.example.Example method)</a>
@@ -460,7 +460,15 @@
 </li>
       <li><a href="heliostrome.html#heliostrome.example.Example.get_value">get_value() (heliostrome.example.Example method)</a>
 </li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.ghi">ghi (heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
+      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.ghi_whm2">ghi_whm2 (heliostrome.data_collection.etref.EtRefDailyDatum attribute)</a>
+
+      <ul>
+        <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum.ghi_whm2">(heliostrome.data_collection.irradiance.IrradianceDailyDatum attribute)</a>
+</li>
+        <li><a href="heliostrome.models.html#heliostrome.models.climate.ClimateDailyDatum.ghi_whm2">(heliostrome.models.climate.ClimateDailyDatum attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.ghi_wm2">ghi_wm2 (heliostrome.data_collection.irradiance.IrradianceHourlyDatum attribute)</a>
 </li>
       <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterStorage.growing_season">growing_season (heliostrome.models.aquacrop_results.WaterStorage attribute)</a>
 </li>
@@ -598,15 +606,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterFlux.Infl">Infl (heliostrome.models.aquacrop_results.WaterFlux attribute)</a>
 </li>
-      <li><a href="heliostrome.models.html#heliostrome.models.climate.ClimateData.irradiance_data">irradiance_data (heliostrome.models.climate.ClimateData attribute)</a>
-</li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum">IrradianceDailyDatum (class in heliostrome.data_collection.irradiance)</a>
+      <li><a href="heliostrome.models.html#heliostrome.models.climate.ClimateData.irradiance_hourly">irradiance_hourly (heliostrome.models.climate.ClimateData attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDataTMY">IrradianceDataTMY (class in heliostrome.data_collection.irradiance)</a>
-</li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY">IrradianceDatumTMY (class in heliostrome.data_collection.irradiance)</a>
+      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum">IrradianceDailyDatum (class in heliostrome.data_collection.irradiance)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum">IrradianceHourlyDatum (class in heliostrome.data_collection.irradiance)</a>
 </li>
@@ -634,11 +638,13 @@
         <li><a href="heliostrome.models.html#heliostrome.models.location.Location.latitude">(heliostrome.models.location.Location attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.soil.SoilDatum.layers">layers (heliostrome.data_collection.soil.SoilDatum attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.models.html#heliostrome.models.location.Location">Location (class in heliostrome.models.location)</a>
+</li>
+      <li><a href="heliostrome.models.html#heliostrome.models.climate.ClimateData.location">location (heliostrome.models.climate.ClimateData attribute)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipitationDailyDatum.longitude">longitude (heliostrome.data_collection.precipitation.PrecipitationDailyDatum attribute)</a>
 
@@ -662,8 +668,6 @@
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.MaxRootingCD">MaxRootingCD (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDataTMY.metadata">metadata (heliostrome.data_collection.irradiance.IrradianceDataTMY attribute)</a>
-</li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromCrops.model_config">model_config (heliostrome.data_collection.crops.HeliostromCrops attribute)</a>
 
       <ul>
@@ -672,10 +676,6 @@
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.model_config">(heliostrome.data_collection.etref.EtRefDailyDatum attribute)</a>
 </li>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum.model_config">(heliostrome.data_collection.irradiance.IrradianceDailyDatum attribute)</a>
-</li>
-        <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDataTMY.model_config">(heliostrome.data_collection.irradiance.IrradianceDataTMY attribute)</a>
-</li>
-        <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.model_config">(heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
 </li>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.model_config">(heliostrome.data_collection.irradiance.IrradianceHourlyDatum attribute)</a>
 </li>
@@ -712,10 +712,6 @@
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.model_fields">(heliostrome.data_collection.etref.EtRefDailyDatum attribute)</a>
 </li>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum.model_fields">(heliostrome.data_collection.irradiance.IrradianceDailyDatum attribute)</a>
-</li>
-        <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDataTMY.model_fields">(heliostrome.data_collection.irradiance.IrradianceDataTMY attribute)</a>
-</li>
-        <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.model_fields">(heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
 </li>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.model_fields">(heliostrome.data_collection.irradiance.IrradianceHourlyDatum attribute)</a>
 </li>
@@ -819,21 +815,13 @@
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromCrops.plot">plot() (heliostrome.data_collection.crops.HeliostromCrops method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.models.html#heliostrome.models.climate.ClimateData.plot_data">plot_data() (heliostrome.models.climate.ClimateData method)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.poa_global_mjm2">poa_global_mjm2 (heliostrome.data_collection.etref.EtRefDailyDatum property)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.poa_global_whm2">poa_global_whm2 (heliostrome.data_collection.etref.EtRefDailyDatum attribute)</a>
-
-      <ul>
-        <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum.poa_global_whm2">(heliostrome.data_collection.irradiance.IrradianceDailyDatum attribute)</a>
-</li>
-        <li><a href="heliostrome.models.html#heliostrome.models.climate.ClimateDailyDatum.poa_global_whm2">(heliostrome.models.climate.ClimateDailyDatum attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.poa_global_wm2">poa_global_wm2 (heliostrome.data_collection.irradiance.IrradianceHourlyDatum attribute)</a>
+      <li><a href="heliostrome.models.html#heliostrome.models.location.Location.point">point (heliostrome.models.location.Location property)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.PolColdStress">PolColdStress (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
@@ -851,8 +839,6 @@
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipitationResponse">PrecipitationResponse (class in heliostrome.data_collection.precipitation)</a>
 </li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.pressure">pressure (heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
-</li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.psy_kpa">psy_kpa (heliostrome.data_collection.etref.EtRefDailyDatum property)</a>
 </li>
       <li><a href="heliostrome.models.html#heliostrome.models.climate.ClimateData.pvpumping_input">pvpumping_input (heliostrome.models.climate.ClimateData property)</a>
@@ -863,12 +849,10 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.relative_humidity">relative_humidity (heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
+      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipationTable.rows">rows (heliostrome.data_collection.precipitation.PrecipationTable attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.precipitation.PrecipationTable.rows">rows (heliostrome.data_collection.precipitation.PrecipationTable attribute)</a>
-</li>
       <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterFlux.Runoff">Runoff (heliostrome.models.aquacrop_results.WaterFlux attribute)</a>
 </li>
   </ul></td>
@@ -956,8 +940,6 @@
       <ul>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum.temp_air_c">(heliostrome.data_collection.irradiance.IrradianceDailyDatum attribute)</a>
 </li>
-        <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.temp_air_c">(heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
-</li>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.temp_air_c">(heliostrome.data_collection.irradiance.IrradianceHourlyDatum attribute)</a>
 </li>
       </ul></li>
@@ -999,10 +981,10 @@
 </li>
       <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterStorage.th5">th5 (heliostrome.models.aquacrop_results.WaterStorage attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterStorage.th6">th6 (heliostrome.models.aquacrop_results.WaterStorage attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterStorage.th7">th7 (heliostrome.models.aquacrop_results.WaterStorage attribute)</a>
 </li>
       <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterStorage.th8">th8 (heliostrome.models.aquacrop_results.WaterStorage attribute)</a>
@@ -1013,8 +995,6 @@
 
       <ul>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum.time">(heliostrome.data_collection.irradiance.IrradianceDailyDatum attribute)</a>
-</li>
-        <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.time">(heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
 </li>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.time">(heliostrome.data_collection.irradiance.IrradianceHourlyDatum attribute)</a>
 </li>
@@ -1044,6 +1024,8 @@
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.crops.HeliostromeCrop.Tmin_up">Tmin_up (heliostrome.data_collection.crops.HeliostromeCrop attribute)</a>
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.soil.SoilDatum.to_aquacrop_soil">to_aquacrop_soil() (heliostrome.data_collection.soil.SoilDatum method)</a>
+</li>
+      <li><a href="heliostrome.models.html#heliostrome.models.location.Location.to_pvlib_location">to_pvlib_location() (heliostrome.models.location.Location method)</a>
 </li>
       <li><a href="heliostrome.models.html#heliostrome.models.aquacrop_results.WaterFlux.Tr">Tr (heliostrome.models.aquacrop_results.WaterFlux attribute)</a>
 </li>
@@ -1087,14 +1069,10 @@
 </li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.soil.SoilLayer.weight">weight (heliostrome.data_collection.soil.SoilLayer attribute)</a>
 </li>
-      <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.wind_direction">wind_direction (heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
-</li>
       <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.etref.EtRefDailyDatum.wind_speed_10m_ms">wind_speed_10m_ms (heliostrome.data_collection.etref.EtRefDailyDatum attribute)</a>
 
       <ul>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum.wind_speed_10m_ms">(heliostrome.data_collection.irradiance.IrradianceDailyDatum attribute)</a>
-</li>
-        <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY.wind_speed_10m_ms">(heliostrome.data_collection.irradiance.IrradianceDatumTMY attribute)</a>
 </li>
         <li><a href="heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum.wind_speed_10m_ms">(heliostrome.data_collection.irradiance.IrradianceHourlyDatum attribute)</a>
 </li>

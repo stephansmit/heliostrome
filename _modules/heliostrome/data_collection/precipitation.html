@@ -196,7 +196,7 @@
 <span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">quote</span>
 <span class="kn">from</span> <span class="nn">requests.adapters</span> <span class="kn">import</span> <span class="n">HTTPAdapter</span><span class="p">,</span> <span class="n">Retry</span>
 <span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
 <span class="kn">from</span> <span class="nn">heliostrome.models.location</span> <span class="kn">import</span> <span class="n">Location</span>
 <span class="kn">import</span> <span class="nn">pytz</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
@@ -325,8 +325,8 @@
 <div class="viewcode-block" id="get_precipitation_table"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.precipitation.get_precipitation_table">[docs]</a><span class="k">def</span> <span class="nf">get_precipitation_table</span><span class="p">(</span>
     <span class="n">latitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">longitude</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="n">start_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">,</span>
-    <span class="n">end_date</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PrecipitationResponse</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get precipitation data from NOAA&#39;s ERDDAP server.</span>
 
@@ -335,9 +335,9 @@
 <span class="sd">    :param longitude: longitude of the location</span>
 <span class="sd">    :type longitude: float</span>
 <span class="sd">    :param start_date: start date of the data</span>
-<span class="sd">    :type start_date: datetime.date</span>
+<span class="sd">    :type start_date: date</span>
 <span class="sd">    :param end_date: end date of the data</span>
-<span class="sd">    :type end_date: datetime.date</span>
+<span class="sd">    :type end_date: date</span>
 <span class="sd">    :return: Response from NOAA&#39;s ERDDAP server</span>
 <span class="sd">    :rtype: PrecipitationResponse</span>
 <span class="sd">    &quot;&quot;&quot;</span>

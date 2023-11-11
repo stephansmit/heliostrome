@@ -191,7 +191,7 @@
             
   <h1>Source code for heliostrome.data_collection.irradiance</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
 <span class="kn">from</span> <span class="nn">pvlib.iotools</span> <span class="kn">import</span> <span class="n">get_pvgis_tmy</span><span class="p">,</span> <span class="n">get_pvgis_hourly</span>
 <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">date_range</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
@@ -199,31 +199,20 @@
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 <span class="kn">from</span> <span class="nn">heliostrome.models.location</span> <span class="kn">import</span> <span class="n">Location</span>
 
-
-<div class="viewcode-block" id="IrradianceDatumTMY"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDatumTMY">[docs]</a><span class="k">class</span> <span class="nc">IrradianceDatumTMY</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
-    <span class="n">ghi</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">dni</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">dhi</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">temp_air_c</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">relative_humidity</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">wind_speed_10m_ms</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">wind_direction</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">pressure</span><span class="p">:</span> <span class="nb">float</span></div>
-
-
 <div class="viewcode-block" id="IrradianceHourlyDatum"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceHourlyDatum">[docs]</a><span class="k">class</span> <span class="nc">IrradianceHourlyDatum</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
-    <span class="n">poa_global_wm2</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">solar_elevation_deg</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">ghi_wm2</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">dni_wm2</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">dhi_wm2</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">temp_air_c</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">wind_speed_10m_ms</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="n">altitude_m</span><span class="p">:</span> <span class="nb">float</span></div>
+    <span class="n">altitude_m</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">solar_elevation_deg</span><span class="p">:</span> <span class="nb">float</span></div>
 
 
 <div class="viewcode-block" id="IrradianceDailyDatum"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDailyDatum">[docs]</a><span class="k">class</span> <span class="nc">IrradianceDailyDatum</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span>
-    <span class="n">poa_global_whm2</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">ghi_whm2</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">solar_elevation_deg</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">temp_air_min_c</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">temp_air_c</span><span class="p">:</span> <span class="nb">float</span>
@@ -231,75 +220,9 @@
     <span class="n">wind_speed_10m_ms</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">altitude_m</span><span class="p">:</span> <span class="nb">float</span></div>
 
-
-<div class="viewcode-block" id="IrradianceDataTMY"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.IrradianceDataTMY">[docs]</a><span class="k">class</span> <span class="nc">IrradianceDataTMY</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">]</span>
-    <span class="n">metadata</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="get_irradiance_tmy"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_tmy">[docs]</a><span class="k">def</span> <span class="nf">get_irradiance_tmy</span><span class="p">(</span><span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">year</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the irradiance data for a given location and year.</span>
-
-<span class="sd">    :param longitude: longitude of the location</span>
-<span class="sd">    :type longitude: float</span>
-<span class="sd">    :param latitude: latitude of the location</span>
-<span class="sd">    :type latitude: float</span>
-<span class="sd">    :param year: year of the data</span>
-<span class="sd">    :type year: int</span>
-<span class="sd">    :return: list of the irradiance data</span>
-<span class="sd">    :rtype: List[IrradianceDatum]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">df</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_pvgis_tmy</span><span class="p">(</span>
-        <span class="n">location</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
-        <span class="n">location</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
-        <span class="n">outputformat</span><span class="o">=</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span>
-        <span class="n">usehorizon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">userhorizon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">startyear</span><span class="o">=</span><span class="mi">2007</span><span class="p">,</span>
-        <span class="n">endyear</span><span class="o">=</span><span class="mi">2016</span><span class="p">,</span>
-        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://re.jrc.ec.europa.eu/api/&quot;</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
-        <span class="n">map_variables</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">get_pvgis_tmy</span><span class="p">(</span>
-        <span class="n">location</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
-        <span class="n">location</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
-        <span class="n">outputformat</span><span class="o">=</span><span class="s2">&quot;epw&quot;</span><span class="p">,</span>
-        <span class="n">usehorizon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">userhorizon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">startyear</span><span class="o">=</span><span class="mi">2007</span><span class="p">,</span>
-        <span class="n">endyear</span><span class="o">=</span><span class="mi">2016</span><span class="p">,</span>
-        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://re.jrc.ec.europa.eu/api/&quot;</span><span class="p">,</span>
-        <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
-        <span class="n">map_variables</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="n">start_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">end_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
-    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
-        <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
-            <span class="s2">&quot;wind_speed&quot;</span><span class="p">:</span> <span class="s2">&quot;wind_speed_10m_ms&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;temp_air&quot;</span><span class="p">:</span> <span class="s2">&quot;temp_air_c&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;pressure&quot;</span><span class="p">:</span> <span class="s2">&quot;pressure&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;relative_humidity&quot;</span><span class="p">:</span> <span class="s2">&quot;relative_humidity&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;wind_direction&quot;</span><span class="p">:</span> <span class="s2">&quot;wind_direction&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;ghi&quot;</span><span class="p">:</span> <span class="s2">&quot;ghi&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;dni&quot;</span><span class="p">:</span> <span class="s2">&quot;dni&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;dhi&quot;</span><span class="p">:</span> <span class="s2">&quot;dhi&quot;</span><span class="p">,</span>
-        <span class="p">},</span>
-        <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">IrradianceDataTMY</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">IrradianceDatumTMY</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span>
-    <span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="get_irradiance_hourly"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_hourly">[docs]</a><span class="k">def</span> <span class="nf">get_irradiance_hourly</span><span class="p">(</span>
-    <span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span>
+<div class="viewcode-block" id="get_irradiance_hourly"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_hourly">[docs]</a><span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">get_irradiance_hourly</span><span class="p">(</span>
+    <span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">start_date</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span> <span class="n">date</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceHourlyDatum</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Gets the irradiance data for a given location and year.</span>
 
@@ -312,12 +235,12 @@
 <span class="sd">    :rtype: List[IrradianceDatum]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">df</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_pvgis_hourly</span><span class="p">(</span>
+    <span class="n">df_year</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_pvgis_hourly</span><span class="p">(</span>
         <span class="n">location</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span>
         <span class="n">location</span><span class="o">.</span><span class="n">longitude</span><span class="p">,</span>
-        <span class="n">start</span><span class="o">=</span><span class="n">start_year</span><span class="p">,</span>
-        <span class="n">end</span><span class="o">=</span><span class="n">end_year</span><span class="p">,</span>
-        <span class="n">components</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">start_date</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+        <span class="n">end</span><span class="o">=</span><span class="n">end_date</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+        <span class="n">components</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">surface_tilt</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">surface_azimuth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
         <span class="n">optimalangles</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -325,39 +248,48 @@
         <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://re.jrc.ec.europa.eu/api/&quot;</span><span class="p">,</span>
         <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="c1"># filter</span>
+    <span class="n">df_year</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">end_date_filter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">end_date</span><span class="p">)</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span>
+        <span class="n">hours</span><span class="o">=</span><span class="mi">23</span>
+    <span class="p">)</span>
+    <span class="n">start_date_filter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">start_date</span><span class="p">)</span><span class="o">.</span><span class="n">tz_localize</span><span class="p">(</span><span class="s2">&quot;UTC&quot;</span><span class="p">)</span>
+    <span class="n">df_year</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_year</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="n">df_year</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">start_date_filter</span><span class="p">,</span> <span class="n">end_date_filter</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;dhi_wm2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;poa_sky_diffuse&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;poa_ground_diffuse&quot;</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ghi_wm2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;poa_ground_diffuse&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;poa_sky_diffuse&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;poa_direct&quot;</span><span class="p">]</span>
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;altitude_m&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;elevation&quot;</span><span class="p">]</span>
     <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
         <span class="n">columns</span><span class="o">=</span><span class="p">{</span>
             <span class="s2">&quot;temp_air&quot;</span><span class="p">:</span> <span class="s2">&quot;temp_air_c&quot;</span><span class="p">,</span>
             <span class="s2">&quot;wind_speed&quot;</span><span class="p">:</span> <span class="s2">&quot;wind_speed_10m_ms&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;poa_global&quot;</span><span class="p">:</span> <span class="s2">&quot;poa_global_wm2&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;poa_direct&quot;</span><span class="p">:</span> <span class="s2">&quot;dni_wm2&quot;</span><span class="p">,</span>
             <span class="s2">&quot;solar_elevation&quot;</span><span class="p">:</span> <span class="s2">&quot;solar_elevation_deg&quot;</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">IrradianceHourlyDatum</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="get_irradiance_daily"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.get_irradiance_daily">[docs]</a><span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">get_irradiance_daily</span><span class="p">(</span>
-    <span class="n">location</span><span class="p">:</span> <span class="n">Location</span><span class="p">,</span> <span class="n">start_year</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">end_year</span><span class="p">:</span> <span class="nb">int</span>
+<div class="viewcode-block" id="aggregate_to_daily"><a class="viewcode-back" href="../../../heliostrome.data_collection.html#heliostrome.data_collection.irradiance.aggregate_to_daily">[docs]</a><span class="k">def</span> <span class="nf">aggregate_to_daily</span><span class="p">(</span>
+    <span class="n">hourly_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s2">&quot;IrradianceHourlyDatum&quot;</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IrradianceDailyDatum</span><span class="p">]:</span>
-    <span class="n">hourly_data</span> <span class="o">=</span> <span class="n">get_irradiance_hourly</span><span class="p">(</span>
-        <span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">start_year</span><span class="o">=</span><span class="n">start_year</span><span class="p">,</span> <span class="n">end_year</span><span class="o">=</span><span class="n">end_year</span>
-    <span class="p">)</span>
     <span class="n">df_hourly</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">hourly_data</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
         <span class="s2">&quot;time&quot;</span>
     <span class="p">)</span>
-    <span class="n">df_daily</span> <span class="o">=</span> <span class="n">df_hourly</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;temp_air_c&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">],</span>
-            <span class="s2">&quot;poa_global_wm2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sum&quot;</span><span class="p">],</span>
-            <span class="s2">&quot;wind_speed_10m_ms&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>
-            <span class="s2">&quot;solar_elevation_deg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>
-            <span class="s2">&quot;altitude_m&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>
-        <span class="p">}</span>
+    <span class="n">df_daily</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">df_hourly</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;ghi&quot;</span><span class="p">:</span> <span class="s2">&quot;poa_global_wm2&quot;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;temp_air_c&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;ghi_wm2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sum&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;wind_speed_10m_ms&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;solar_elevation_deg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;altitude_m&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
     <span class="p">)</span>
     <span class="n">df_daily</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">col</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_daily</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
     <span class="n">df_daily</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
@@ -365,7 +297,7 @@
             <span class="s2">&quot;temp_air_c_min&quot;</span><span class="p">:</span> <span class="s2">&quot;temp_air_min_c&quot;</span><span class="p">,</span>
             <span class="s2">&quot;temp_air_c_mean&quot;</span><span class="p">:</span> <span class="s2">&quot;temp_air_c&quot;</span><span class="p">,</span>
             <span class="s2">&quot;temp_air_c_max&quot;</span><span class="p">:</span> <span class="s2">&quot;temp_air_max_c&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;poa_global_wm2_sum&quot;</span><span class="p">:</span> <span class="s2">&quot;poa_global_whm2&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ghi_wm2_sum&quot;</span><span class="p">:</span> <span class="s2">&quot;ghi_whm2&quot;</span><span class="p">,</span>
             <span class="s2">&quot;wind_speed_10m_ms_mean&quot;</span><span class="p">:</span> <span class="s2">&quot;wind_speed_10m_ms&quot;</span><span class="p">,</span>
             <span class="s2">&quot;solar_elevation_deg_mean&quot;</span><span class="p">:</span> <span class="s2">&quot;solar_elevation_deg&quot;</span><span class="p">,</span>
             <span class="s2">&quot;altitude_m_mean&quot;</span><span class="p">:</span> <span class="s2">&quot;altitude_m&quot;</span><span class="p">,</span>
@@ -376,6 +308,47 @@
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">df_daily</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;records&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">IrradianceDailyDatum</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span></div>
+
+
+<span class="c1"># def get_irradiance_daily(</span>
+<span class="c1">#     location: Location, start_date: date, end_date: datetime</span>
+<span class="c1"># ) -&gt; List[IrradianceDailyDatum]:</span>
+<span class="c1">#     hourly_data = get_irradiance_hourly(</span>
+<span class="c1">#         location=location, start_date=start_date, end_date=end_date</span>
+<span class="c1">#     )</span>
+<span class="c1">#     df_hourly = pd.DataFrame([item.model_dump() for item in hourly_data]).set_index(</span>
+<span class="c1">#         &quot;time&quot;</span>
+<span class="c1">#     )</span>
+<span class="c1">#     df_daily = (</span>
+<span class="c1">#         df_hourly.rename({&quot;ghi&quot;: &quot;poa_global_wm2&quot;}, axis=1)</span>
+<span class="c1">#         .resample(&quot;D&quot;)</span>
+<span class="c1">#         .agg(</span>
+<span class="c1">#             {</span>
+<span class="c1">#                 &quot;temp_air_c&quot;: [&quot;min&quot;, &quot;mean&quot;, &quot;max&quot;],</span>
+<span class="c1">#                 &quot;poa_global_wm2&quot;: [&quot;sum&quot;],</span>
+<span class="c1">#                 &quot;wind_speed_10m_ms&quot;: [&quot;mean&quot;],</span>
+<span class="c1">#                 &quot;solar_elevation_deg&quot;: [&quot;mean&quot;],</span>
+<span class="c1">#                 &quot;altitude_m&quot;: [&quot;mean&quot;],</span>
+<span class="c1">#             }</span>
+<span class="c1">#         )</span>
+<span class="c1">#     )</span>
+<span class="c1">#     df_daily.columns = [&quot;_&quot;.join(col).strip() for col in df_daily.columns.values]</span>
+<span class="c1">#     df_daily.rename(</span>
+<span class="c1">#         columns={</span>
+<span class="c1">#             &quot;temp_air_c_min&quot;: &quot;temp_air_min_c&quot;,</span>
+<span class="c1">#             &quot;temp_air_c_mean&quot;: &quot;temp_air_c&quot;,</span>
+<span class="c1">#             &quot;temp_air_c_max&quot;: &quot;temp_air_max_c&quot;,</span>
+<span class="c1">#             &quot;poa_global_wm2_sum&quot;: &quot;poa_global_whm2&quot;,</span>
+<span class="c1">#             &quot;wind_speed_10m_ms_mean&quot;: &quot;wind_speed_10m_ms&quot;,</span>
+<span class="c1">#             &quot;solar_elevation_deg_mean&quot;: &quot;solar_elevation_deg&quot;,</span>
+<span class="c1">#             &quot;altitude_m_mean&quot;: &quot;altitude_m&quot;,</span>
+<span class="c1">#         },</span>
+<span class="c1">#         inplace=True,</span>
+<span class="c1">#     )</span>
+<span class="c1">#     df_daily.reset_index(inplace=True)</span>
+
+<span class="c1">#     data = df_daily.to_dict(orient=&quot;records&quot;)</span>
+<span class="c1">#     return [IrradianceDailyDatum(**item) for item in data]</span>
 </pre></div>
 
            </div>
